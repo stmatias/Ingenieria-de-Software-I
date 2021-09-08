@@ -132,13 +132,13 @@ test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'MS 9/8/2021 11:49:06'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'MS 9/8/2021 20:01:37'!
 test07CanNotSuspendAnInvalidCustomer
 	
 	| customerBook johnLennon |
 	johnLennon := 'John Lennon'.
 	
-	customerBook := self createCostumerBookWith: johnLennon .
+	customerBook := self createCustomerBookWithOneCustomerCalled: johnLennon .
 	
 	[ customerBook suspendCustomerNamed: 'George Harrison'.
 	self fail ]
@@ -164,20 +164,6 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 			self assert: (customerBook includesCustomerNamed: johnLennon) ]
 ! !
 
-
-!CustomerBookTest methodsFor: 'creation' stamp: 'MS 9/8/2021 14:54:53'!
-createCostumerBookWith: aCostumer
-	
-	|customerBook|
-	
-	customerBook := CustomerBook new.
-	customerBook addCustomerNamed: aCostumer.
-	^customerBook .
-
-	
-	
-	
-	! !
 
 !CustomerBookTest methodsFor: 'creation' stamp: 'MS 9/8/2021 15:02:47'!
 createCustomerBookWithOneCustomerCalled: aCostumer
