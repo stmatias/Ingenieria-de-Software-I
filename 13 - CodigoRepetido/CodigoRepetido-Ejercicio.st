@@ -21,6 +21,12 @@ TestCase subclass: #CustomerBookTest
 	poolDictionaries: ''
 	category: 'CodigoRepetido-Ejercicio'!
 
+!CustomerBookTest methodsFor: 'asserts' stamp: 'goc 9/9/2021 13:26:28'!
+assertThatIn: customerBook ThereIsJustOneCustomerNamed: customerName
+
+	self assert: customerBook numberOfCustomers = 1.
+	self assert: (customerBook includesCustomerNamed: customerName)! !
+
 !CustomerBookTest methodsFor: 'asserts' stamp: 'MS 9/8/2021 12:17:11'!
 assertThatIn: aCustomerBook theNumberOfActiveCustomersIs: aNumberOfActiveCustomers theNumberOfSuspendedCustomersIs: aNumberOfSuspendedCustomers
 
@@ -81,7 +87,7 @@ test03CanNotAddACustomerWithEmptyName
 	self assert: customerBook isEmpty.
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'Chen 9/8/2021 21:09:52'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'goc 9/9/2021 13:30:47'!
 test04CanNotRemoveAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -91,8 +97,7 @@ test04CanNotRemoveAnInvalidCustomer
 	
 
 	self checkIfThereIsThisErrorMessage: NotFound with: [customerBook removeCustomerNamed: 'Paul McCartney'.].
-	self assert: customerBook numberOfCustomers = 1.
-	self assert: (customerBook includesCustomerNamed: johnLennon).
+	self assertThatIn: customerBook ThereIsJustOneCustomerNamed: johnLennon.
 ! !
 
 !CustomerBookTest methodsFor: 'testing' stamp: 'MS 9/8/2021 15:07:45'!
@@ -128,7 +133,7 @@ test06RemovingASuspendedCustomerShouldRemoveItFromCustomerBook
 	
 ! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'Chen 9/8/2021 21:13:32'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'goc 9/9/2021 13:28:12'!
 test07CanNotSuspendAnInvalidCustomer
 	
 	| customerBook johnLennon |
@@ -137,10 +142,9 @@ test07CanNotSuspendAnInvalidCustomer
 	customerBook := self createCustomerBookWithOneCustomerCalled: johnLennon .
 
 	self checkIfThereIsThisErrorMessage: CantSuspend with: [customerBook suspendCustomerNamed: 'George Harrison'.].
-	self assert: customerBook numberOfCustomers = 1.
-	self assert: (customerBook includesCustomerNamed: johnLennon).! !
+	self assertThatIn: customerBook ThereIsJustOneCustomerNamed: johnLennon.! !
 
-!CustomerBookTest methodsFor: 'testing' stamp: 'Chen 9/8/2021 21:13:21'!
+!CustomerBookTest methodsFor: 'testing' stamp: 'goc 9/9/2021 13:30:09'!
 test08CanNotSuspendAnAlreadySuspendedCustomer
 	
 	| customerBook johnLennon |
@@ -149,8 +153,7 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 	customerBook := self createCustomerBookWithOneSuspendedCustomerCalled: johnLennon .
 	
 	self checkIfThereIsThisErrorMessage: CantSuspend with: [customerBook suspendCustomerNamed: johnLennon.].
-	self assert: customerBook numberOfCustomers = 1.
-	self assert: (customerBook includesCustomerNamed: johnLennon).! !
+	self assertThatIn: customerBook ThereIsJustOneCustomerNamed: johnLennon.! !
 
 
 !CustomerBookTest methodsFor: 'creation' stamp: 'MS 9/8/2021 15:02:47'!
