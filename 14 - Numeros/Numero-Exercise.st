@@ -401,19 +401,10 @@ divideFromFraccion: aDividend
 	
 	^  aDividend numerator / (self * aDividend denominator).! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'MS 9/13/2021 21:09:08'!
 fibonacci
 
-	| one two |
-	
-	one := Entero with: 1.
-	two := Entero with: 2.
-	
-	self isNegative ifTrue: [self error: Entero negativeFibonacciErrorDescription ].	
-	(self isZero or: [self isOne]) ifTrue: [^one].
-	
-	^ (self - one) fibonacci + (self - two) fibonacci
-		! !
+	self subclassResponsibility ! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:00'!
 greatestCommonDivisorWith: anEntero 
@@ -496,7 +487,7 @@ isOne
 	
 	^value = 1! !
 
-!Entero methodsFor: 'testing' stamp: 'HernanWilkinson 5/7/2016 20:12'!
+!Entero methodsFor: 'testing' stamp: 'MS 9/13/2021 21:13:03'!
 isZero
 	
 	^value = 0! !
@@ -511,13 +502,84 @@ Entero class
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'HernanWilkinson 5/7/2016 22:53'!
+!Entero class methodsFor: 'instance creation' stamp: 'MS 9/13/2021 21:48:32'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	
-	^self new initalizeWith: aValue! !
+	aValue = 0 ifTrue: [^Cero new initalizeWith: aValue.].
+	aValue = 1 ifTrue: [^Uno new initalizeWith: aValue.].
+	aValue < 0 ifTrue: [^Negativos new initalizeWith: aValue.].
+	
+	^MayorA1 new initalizeWith: aValue.! !
+
+
+!classDefinition: #Cero category: 'Numero-Exercise'!
+Entero subclass: #Cero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!Cero methodsFor: 'as yet unclassified' stamp: 'MS 9/13/2021 21:10:49'!
+fibonacci
+	
+	^Entero with: 1.! !
+
+
+!classDefinition: #MayorA1 category: 'Numero-Exercise'!
+Entero subclass: #MayorA1
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!MayorA1 methodsFor: 'as yet unclassified' stamp: 'MS 9/13/2021 21:08:21'!
+fibonacci
+
+	| one two |
+	
+	one := Entero with: 1.
+	two := Entero with: 2.
+	
+	self isNegative ifTrue: [self error: Entero negativeFibonacciErrorDescription ].	
+	(self isZero or: [self isOne]) ifTrue: [^one].
+	
+	^ (self - one) fibonacci + (self - two) fibonacci
+		! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MayorA1 class' category: 'Numero-Exercise'!
+MayorA1 class
+	instanceVariableNames: ''!
+
+!MayorA1 class methodsFor: 'as yet unclassified' stamp: 'MS 9/13/2021 21:41:01'!
+with: aValue
+	
+	^self new initalizeWith: aValue.! !
+
+
+!classDefinition: #Negativos category: 'Numero-Exercise'!
+Entero subclass: #Negativos
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+
+!classDefinition: #Uno category: 'Numero-Exercise'!
+Entero subclass: #Uno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'MS 9/13/2021 21:11:12'!
+fibonacci
+	
+	^Entero with: 1.! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
