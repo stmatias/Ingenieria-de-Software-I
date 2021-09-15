@@ -314,6 +314,12 @@ Object subclass: #Numero
 
 	self subclassResponsibility ! !
 
+!Numero methodsFor: 'arithmetic operations' stamp: 'goc 9/15/2021 15:56:02'!
+fibonacci
+
+	self subclassResponsibility 
+! !
+
 !Numero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 22:48'!
 invalidNumberType
 
@@ -337,6 +343,52 @@ isOne
 
 !Numero methodsFor: 'testing' stamp: 'HernanWilkinson 5/7/2016 22:49'!
 isZero
+
+	self subclassResponsibility ! !
+
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:53:57'!
+divideFromEntero: aDividend
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:55:08'!
+divideFromFraccion: aDividend
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:56:58'!
+greatestCommonDivisorWith: anEntero 
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:57:15'!
+multiplyWithEntero: aMultiplier
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:57:39'!
+multiplyWithFraccion: aMultiplier
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:57:58'!
+substractFromEntero: aMinuend
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:58:16'!
+substractFromFraccion: aMinuend
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:58:29'!
+sumWithEntero: anAdder
+
+	self subclassResponsibility ! !
+
+!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:58:43'!
+sumWithFraccion: anAdder
 
 	self subclassResponsibility ! !
 
@@ -477,20 +529,20 @@ printOn: aStream
 	aStream print: value ! !
 
 
-!Entero methodsFor: 'testing' stamp: 'NR 9/23/2018 22:17:55'!
+!Entero methodsFor: 'testing' stamp: 'goc 9/15/2021 16:01:06'!
 isNegative
 	
-	^value < 0! !
+	self subclassResponsibility! !
 
-!Entero methodsFor: 'testing' stamp: 'HernanWilkinson 5/7/2016 20:14'!
+!Entero methodsFor: 'testing' stamp: 'goc 9/15/2021 16:00:55'!
 isOne
 	
-	^value = 1! !
+	self subclassResponsibility! !
 
-!Entero methodsFor: 'testing' stamp: 'MS 9/13/2021 21:13:03'!
+!Entero methodsFor: 'testing' stamp: 'goc 9/15/2021 16:00:38'!
 isZero
 	
-	^value = 0! !
+	self subclassResponsibility ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -527,6 +579,21 @@ fibonacci
 	
 	^Entero with: 1.! !
 
+!Cero methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:09:13'!
+isNegative
+	
+	^false.! !
+
+!Cero methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:08:49'!
+isOne
+	
+	^false.! !
+
+!Cero methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:09:18'!
+isZero
+	
+	^true.! !
+
 
 !classDefinition: #MayorA1 category: 'Numero-Exercise'!
 Entero subclass: #MayorA1
@@ -546,6 +613,18 @@ fibonacci
 	^ (self - one) fibonacci + (self - two) fibonacci.
 		! !
 
+!MayorA1 methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:08:22'!
+isNegative
+	^false.! !
+
+!MayorA1 methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:09:04'!
+isOne
+	^false.! !
+
+!MayorA1 methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:08:58'!
+isZero
+	^false.! !
+
 
 !classDefinition: #Negativos category: 'Numero-Exercise'!
 Entero subclass: #Negativos
@@ -559,6 +638,24 @@ fibonacci
 
 	self error: Entero negativeFibonacciErrorDescription.! !
 
+!Negativos methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:08:14'!
+isNegative
+
+	^true.
+	! !
+
+!Negativos methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:08:08'!
+isOne
+
+	^false.
+	! !
+
+!Negativos methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:08:05'!
+isZero
+
+	^false.
+	! !
+
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
 Entero subclass: #Uno
@@ -571,6 +668,18 @@ Entero subclass: #Uno
 fibonacci
 	
 	^Entero with: 1.! !
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:08:00'!
+isNegative
+	^false.! !
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:10:08'!
+isOne
+	^true.! !
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:07:55'!
+isZero
+	^false.! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
