@@ -347,47 +347,47 @@ isZero
 	self subclassResponsibility ! !
 
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:53:57'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:53:57'!
 divideFromEntero: aDividend
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:55:08'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:55:08'!
 divideFromFraccion: aDividend
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:56:58'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:56:58'!
 greatestCommonDivisorWith: anEntero 
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:57:15'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:57:15'!
 multiplyWithEntero: aMultiplier
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:57:39'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:57:39'!
 multiplyWithFraccion: aMultiplier
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:57:58'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:57:58'!
 substractFromEntero: aMinuend
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:58:16'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:58:16'!
 substractFromFraccion: aMinuend
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:58:29'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:58:29'!
 sumWithEntero: anAdder
 
 	self subclassResponsibility ! !
 
-!Numero methodsFor: 'aux' stamp: 'goc 9/15/2021 15:58:43'!
+!Numero methodsFor: 'auxiliar operations' stamp: 'goc 9/15/2021 15:58:43'!
 sumWithFraccion: anAdder
 
 	self subclassResponsibility ! !
@@ -574,10 +574,6 @@ newFraccionWithNumerator: aDividend
 Entero class
 	instanceVariableNames: ''!
 
-!Entero class methodsFor: 'instance creation' stamp: 'Alejandro 9/15/2021 21:50:34'!
-es: aValue
-	self subclassResponsibility.! !
-
 !Entero class methodsFor: 'instance creation' stamp: 'NR 4/15/2021 16:42:24'!
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
@@ -591,6 +587,11 @@ with: aValue
 		new initalizeWith: aValue.
 
 	! !
+
+
+!Entero class methodsFor: 'value' stamp: 'Alejandro 9/15/2021 21:50:34'!
+es: aValue
+	self subclassResponsibility.! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -621,12 +622,13 @@ fibonacci
 	
 	^Entero with: 1.! !
 
-!Cero methodsFor: 'arithmetic operations' stamp: 'MS 9/16/2021 16:15:09'!
+
+!Cero methodsFor: 'fraccion creation' stamp: 'MS 9/16/2021 16:15:09'!
 newFraccionWithDenominator: aDividend
 	
 	^self.! !
 
-!Cero methodsFor: 'arithmetic operations' stamp: 'MS 9/16/2021 16:06:28'!
+!Cero methodsFor: 'fraccion creation' stamp: 'MS 9/16/2021 16:06:28'!
 newFraccionWithNumerator: aDividend
 	
 	^self error: Numero canNotDivideByZeroErrorDescription.! !
@@ -637,7 +639,7 @@ newFraccionWithNumerator: aDividend
 Cero class
 	instanceVariableNames: ''!
 
-!Cero class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:04'!
+!Cero class methodsFor: 'value' stamp: 'Alejandro 9/15/2021 21:35:04'!
 es: aValue
 
 	^aValue = 0.! !
@@ -680,7 +682,7 @@ fibonacci
 MayorA1 class
 	instanceVariableNames: ''!
 
-!MayorA1 class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:18'!
+!MayorA1 class methodsFor: 'value' stamp: 'Alejandro 9/15/2021 21:35:18'!
 es: aValue
 	^aValue > 1.! !
 
@@ -722,7 +724,7 @@ fibonacci
 Negativos class
 	instanceVariableNames: ''!
 
-!Negativos class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:32'!
+!Negativos class methodsFor: 'value' stamp: 'Alejandro 9/15/2021 21:35:32'!
 es: aValue
 	^aValue < 0.! !
 
@@ -740,9 +742,10 @@ fibonacci
 	^Entero with: 1.! !
 
 
-!Uno methodsFor: 'testing' stamp: 'MS 9/16/2021 16:10:47'!
+!Uno methodsFor: 'fraccion creation' stamp: 'MS 9/16/2021 16:10:47'!
 initializeFraccionWithNumerator: aNumerator
 	^aNumerator.! !
+
 
 !Uno methodsFor: 'testing' stamp: 'goc 9/15/2021 16:08:00'!
 isNegative
@@ -762,7 +765,7 @@ isZero
 Uno class
 	instanceVariableNames: ''!
 
-!Uno class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:48'!
+!Uno class methodsFor: 'value' stamp: 'Alejandro 9/15/2021 21:35:48'!
 es: aValue
 	^aValue = 1.! !
 
