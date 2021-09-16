@@ -266,7 +266,7 @@ test42SignIsCorrectlyAssignedToFractionWithNegativeDivisor
 	self assert: oneHalf negated equals: (one / negativeTwo)! !
 
 
-!NumeroTest methodsFor: 'setup' stamp: 'NR 9/23/2018 23:46:28'!
+!NumeroTest methodsFor: 'setup' stamp: 'Alejandro 9/15/2021 21:56:19'!
 setUp
 
 	zero := Entero with: 0.
@@ -550,21 +550,30 @@ isZero
 Entero class
 	instanceVariableNames: ''!
 
+!Entero class methodsFor: 'instance creation' stamp: 'Alejandro 9/15/2021 21:50:34'!
+es: aValue
+	self subclassResponsibility.! !
+
 !Entero class methodsFor: 'instance creation' stamp: 'NR 4/15/2021 16:42:24'!
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'MS 9/15/2021 11:03:16'!
+!Entero class methodsFor: 'instance creation' stamp: 'Alejandro 9/15/2021 22:08:49'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	
+	 
+	^ (Entero subclasses detect: [:aNumberClass| aNumberClass es: aValue]) new initalizeWith: aValue.
+	"
 	aValue = 0 ifTrue: [^Cero new initalizeWith: 0].
 	aValue = 1 ifTrue: [^Uno new initalizeWith: 1].
 	aValue < 0 ifTrue: [^Negativos new initalizeWith: aValue].
 	
-	^MayorA1 new initalizeWith: aValue.! !
+	^MayorA1 new initalizeWith: aValue."
+	
+	! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -593,6 +602,17 @@ isOne
 isZero
 	
 	^true.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Cero class' category: 'Numero-Exercise'!
+Cero class
+	instanceVariableNames: ''!
+
+!Cero class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:04'!
+es: aValue
+
+	^aValue = 0.! !
 
 
 !classDefinition: #MayorA1 category: 'Numero-Exercise'!
@@ -625,6 +645,16 @@ isOne
 isZero
 	^false.! !
 
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MayorA1 class' category: 'Numero-Exercise'!
+MayorA1 class
+	instanceVariableNames: ''!
+
+!MayorA1 class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:18'!
+es: aValue
+	^aValue > 1.! !
+
 
 !classDefinition: #Negativos category: 'Numero-Exercise'!
 Entero subclass: #Negativos
@@ -656,6 +686,16 @@ isZero
 	^false.
 	! !
 
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Negativos class' category: 'Numero-Exercise'!
+Negativos class
+	instanceVariableNames: ''!
+
+!Negativos class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:32'!
+es: aValue
+	^aValue < 0.! !
+
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
 Entero subclass: #Uno
@@ -680,6 +720,16 @@ isOne
 !Uno methodsFor: 'as yet unclassified' stamp: 'goc 9/15/2021 16:07:55'!
 isZero
 	^false.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Uno class' category: 'Numero-Exercise'!
+Uno class
+	instanceVariableNames: ''!
+
+!Uno class methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/15/2021 21:35:48'!
+es: aValue
+	^aValue = 1.! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
@@ -826,7 +876,7 @@ printOn: aStream
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'MS 9/15/2021 10:19:13'!
+!Fraccion class methodsFor: 'intance creation' stamp: 'Alejandro 9/15/2021 22:04:34'!
 with: aDividend over: aDivisor
 
 	| greatestCommonDivisor numerator denominator |
@@ -841,6 +891,5 @@ with: aDividend over: aDivisor
 	denominator := aDivisor // greatestCommonDivisor.
 		
 	denominator isOne ifTrue: [ ^numerator value ].
-
 	^self new initializeWith: numerator over: denominator
 	! !
