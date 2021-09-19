@@ -227,60 +227,47 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:54:53'!
+!OOStack methodsFor: 'initialization' stamp: 'goc 9/17/2021 13:54:53'!
 initialize
 	stack := OrderedCollection new.
 	! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/16/2021 21:24:09'!
+
+!OOStack methodsFor: 'state' stamp: 'Alejandro 9/16/2021 21:24:09'!
 isEmpty
 	^ stack isEmpty.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:54:27'!
+
+!OOStack methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 15:16:52'!
 pop
 	"stack isEmpty ifTrue:[^self error: OOStack stackEmptyErrorDescription] ifFalse:[^stack removeLast.]"
-	
+	"
 	| closure |
 	closure:=(OOStackStateHandler initialiaze: self size) stackPop.
 	
-	^ self perform:closure value asSymbol.
+	^ self perform:closure value asSymbol."
 	
-	! !
+	^(OOStackStateHandler new initializeWith: stack) popFrom: stack.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:43:07'!
+!OOStack methodsFor: 'operations' stamp: 'goc 9/17/2021 13:43:07'!
 push: aThing
 	stack addLast: aThing.
 	! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:26:34'!
-safePop
-	"stack isEmpty ifTrue:[^self error: OOStack stackEmptyErrorDescription] ifFalse:[^stack removeLast.]"
-	
-	^stack removeLast. 
-	
-	! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:57:52'!
-safeTop
-	"stack isEmpty ifTrue:[^self error: OOStack stackEmptyErrorDescription] ifFalse:[^stack removeLast.]"
-	
-	^stack at:1. 
-	
-	! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Alejandro 9/16/2021 21:33:06'!
+!OOStack methodsFor: 'operations' stamp: 'Alejandro 9/16/2021 21:33:06'!
 size
 	^stack size.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:56:43'!
+!OOStack methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 15:16:46'!
 top
 	"stack isEmpty ifTrue:[^self error: OOStack stackEmptyErrorDescription] ifFalse:[^stack at:1.]"
 	
-	| closure |
+	"| closure |
 	closure:=(OOStackStateHandler initialiaze: self size) stackTop.
 	
-	^ self perform:closure value asSymbol.
-	! !
+	^ self perform:closure value asSymbol."
+	
+	^(OOStackStateHandler new initializeWith: stack) getTheTopFrom: stack.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -301,12 +288,17 @@ Object subclass: #OOStackStateHandler
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStackStateHandler methodsFor: 'as yet unclassified' stamp: 'goc 9/16/2021 23:55:01'!
-stackPop
+!OOStackStateHandler methodsFor: 'initialization' stamp: 'Alejandro 9/19/2021 15:16:16'!
+initializeWith: aStack
+	^(OOStackStateHandler subclasses detect:[:aStackState | aStackState isEmpty =  aStack isEmpty]) new.! !
+
+
+!OOStackStateHandler methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 15:19:40'!
+getTheTopFrom: aStack
 	self subclassResponsibility.! !
 
-!OOStackStateHandler methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:56:56'!
-stackTop
+!OOStackStateHandler methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 15:19:52'!
+popFrom: aStack
 	self subclassResponsibility.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -315,14 +307,9 @@ stackTop
 OOStackStateHandler class
 	instanceVariableNames: ''!
 
-!OOStackStateHandler class methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:51:33'!
-initialiaze: aStackSize
-
-"aStackSize=0 ifTrue: [^ Empty new].
-
-^NotEmpty new."
-
-^(self subclasses detect:[ :aStackClass | aStackClass isFor:aStackSize]) new.! !
+!OOStackStateHandler class methodsFor: 'state' stamp: 'Alejandro 9/19/2021 15:18:20'!
+isEmpty
+	self subclassResponsibility.! !
 
 
 !classDefinition: #Empty category: 'Stack-Exercise'!
@@ -332,13 +319,13 @@ OOStackStateHandler subclass: #Empty
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!Empty methodsFor: 'as yet unclassified' stamp: 'goc 9/16/2021 23:55:10'!
-stackPop
-	^[self error: OOStack stackEmptyErrorDescription].! !
+!Empty methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 14:53:22'!
+getTheTopFrom: aStack
+	^OOStack error: OOStack stackEmptyErrorDescription.! !
 
-!Empty methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:57:06'!
-stackTop
-	^[self error: OOStack stackEmptyErrorDescription].! !
+!Empty methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 14:49:02'!
+popFrom: aStack
+	^OOStack error: OOStack stackEmptyErrorDescription.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -346,15 +333,9 @@ stackTop
 Empty class
 	instanceVariableNames: ''!
 
-!Empty class methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:45:19'!
-isEmpty: aSizeStack
-
-^aSizeStack =0! !
-
-!Empty class methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:46:47'!
-isFor: aSizeStack
-
-^aSizeStack =0! !
+!Empty class methodsFor: 'state' stamp: 'Alejandro 9/19/2021 15:04:58'!
+isEmpty
+	^true.! !
 
 
 !classDefinition: #NotEmpty category: 'Stack-Exercise'!
@@ -364,15 +345,13 @@ OOStackStateHandler subclass: #NotEmpty
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!NotEmpty methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:32:13'!
-stackPop
-	
-	^['safePop'].! !
+!NotEmpty methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 14:53:06'!
+getTheTopFrom: aStack
+	^aStack at:1! !
 
-!NotEmpty methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:57:21'!
-stackTop
-	
-	^['safeTop'].! !
+!NotEmpty methodsFor: 'operations' stamp: 'Alejandro 9/19/2021 14:49:12'!
+popFrom: aStack
+	^aStack removeLast.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -380,15 +359,9 @@ stackTop
 NotEmpty class
 	instanceVariableNames: ''!
 
-!NotEmpty class methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:46:34'!
-isEmpty: aSizeStack
-
-	^(aSizeStack = 0) not.! !
-
-!NotEmpty class methodsFor: 'as yet unclassified' stamp: 'goc 9/17/2021 13:46:39'!
-isFor: aSizeStack
-
-	^(aSizeStack = 0) not.! !
+!NotEmpty class methodsFor: 'state' stamp: 'Alejandro 9/19/2021 15:05:32'!
+isEmpty
+	^false.! !
 
 
 !classDefinition: #SentenceFinderByPrefix category: 'Stack-Exercise'!
