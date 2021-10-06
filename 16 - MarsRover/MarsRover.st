@@ -15,12 +15,12 @@ setUp
 	! !
 
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 11:02:55'!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 17:56:12'!
 assertThat: aMarsRover isIn: aPosition heading: aCardinalPoint
 
 	self assert: aPosition equals: aMarsRover position.
 		
-	self assert: aCardinalPoint equals: aMarsRover direction.! !
+	self assert: aCardinalPoint name equals: aMarsRover direction name.! !
 
 !MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:46:02'!
 test01
