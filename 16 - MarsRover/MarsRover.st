@@ -199,6 +199,32 @@ test15
 	
 	self assertThat: marsRover isIn: 1@6 heading: West.! !
 
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:20:22'!
+test16
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading: North.
+	
+	self
+		should: [marsRover process: 'c']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = MarsRover errorInvalidCommand]! !
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:32:56'!
+test17
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading: North.
+	
+	self
+		should: [marsRover process: 'ffc']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = MarsRover errorInvalidCommand]! !
+
 
 !classDefinition: #CardinalDirection category: 'MarsRover'!
 Object subclass: #CardinalDirection
@@ -401,15 +427,18 @@ moveToSouth
 moveToWest
 	^position := position - (1@0).! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:38:38'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:33:38'!
 pepito: aCommand
 	
 	
 	aCommand = $f ifTrue: [direction moveForward ].
 	aCommand = $b ifTrue: [direction moveBackwards ].
 	aCommand = $l ifTrue: [direction turnLeft ].
-	aCommand = $r ifTrue: [direction turnRight ].	
-	! !
+	aCommand = $r ifTrue: [direction turnRight ].
+	(aCommand = $f 
+	or: [aCommand = $b] 
+	or: [aCommand = $l] 
+	or: [aCommand = $r]) not ifTrue:  [MarsRover error: MarsRover errorInvalidCommand].! !
 
 !MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 11:35:02'!
 process: aSequenceOfCommands
@@ -478,6 +507,10 @@ position
 !classDefinition: 'MarsRover class' category: 'MarsRover'!
 MarsRover class
 	instanceVariableNames: ''!
+
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:21:16'!
+errorInvalidCommand
+	^'This is not a valid command.'! !
 
 !MarsRover class methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 10:36:40'!
 isAt: aPosition heading: aCardinalPoint.
