@@ -1,0 +1,1389 @@
+----STARTUP---- (6 October 2021 12:40:52) as /home/alex/Downloads/linux64/CuisUniversity-4532.image!
+
+
+TestCase subclass: #Rot13Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Rot13'!
+
+!classDefinition: #Rot13Test category: 'Rot13' stamp: 'Alejandro 10/6/2021 12:42:40'!
+TestCase subclass: #Rot13Test
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Rot13'!
+!Rot13Test methodsFor: 'nil' stamp: 'Alejandro 10/6/2021 12:49:05'!
+test01
+	self assert: '' equals: '' asRot13.! !
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:49:10'!
+ERROR!
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:49:10'!
+ERROR!
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 12:49:42'!
+asRot13
+	self shouldBeImplemented.! !
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 12:50:00' prior: 50870901!
+asRot13
+	^''.! !
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:50:01'!
+PASSED!
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:50:03'!
+PASSED!
+!Rot13Test methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 12:51:36'!
+test02
+	self assert: '#' equals: '#' asRot13.! !
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:51:38'!
+FAILURE!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:52:12'!
+FAILURE!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:52:12'!
+FAILURE!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:52:33'!
+FAILURE!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:52:33'!
+FAILURE!
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 12:53:03' prior: 50870905!
+asRot13
+	^self.! !
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:53:12'!
+PASSED!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:53:14'!
+PASSED!
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:53:18'!
+PASSED!
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 12:54:29' prior: 50870930!
+asRot13
+	^ self = '' ifTrue: [^''] ifFalse: [^'#'].! !
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:54:32'!
+PASSED!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:54:32'!
+PASSED!
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 12:57:55' prior: 50870941!
+asRot13
+	^ self = '' ifTrue: [^''] ifFalse: [^self].! !
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:58:09'!
+PASSED!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:58:09'!
+PASSED!
+!Rot13Test methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 12:58:34'!
+test03
+	self assert: 'n' equals: 'a' asRot13.! !
+
+!testRun: #Rot13Test #test03 stamp: 'Alejandro 10/6/2021 12:58:36'!
+FAILURE!
+
+!testRun: #Rot13Test #test03 stamp: 'Alejandro 10/6/2021 12:58:36'!
+FAILURE!
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 12:59:51' prior: 50870951!
+asRot13
+	self = '' ifTrue: [^''].
+	self = 'a' ifTrue: [^'n'].
+	^self.! !
+
+!testRun: #Rot13Test #test03 stamp: 'Alejandro 10/6/2021 12:59:53'!
+PASSED!
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 12:59:59'!
+PASSED!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 12:59:59'!
+PASSED!
+
+!testRun: #Rot13Test #test03 stamp: 'Alejandro 10/6/2021 12:59:59'!
+PASSED!
+!Rot13Test methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 13:01:58'!
+test04
+	self assert: 't' equals: 'g' asRot13.! !
+
+!testRun: #Rot13Test #test04 stamp: 'Alejandro 10/6/2021 13:02:01'!
+FAILURE!
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 13:03:13' prior: 50870971!
+asRot13
+	self = '' ifTrue: [^''].
+	self = 'a' ifTrue: [^'n'].
+	self = 'g' ifTrue: [^'g'].
+	^self.! !
+!String methodsFor: '*Rot13' stamp: 'Alejandro 10/6/2021 13:03:17' prior: 50870993!
+asRot13
+	self = '' ifTrue: [^''].
+	self = 'a' ifTrue: [^'n'].
+	self = 'g' ifTrue: [^'t'].
+	^self.! !
+
+!testRun: #Rot13Test #test04 stamp: 'Alejandro 10/6/2021 13:03:19'!
+PASSED!
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 13:03:19'!
+PASSED!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 13:03:19'!
+PASSED!
+
+!testRun: #Rot13Test #test03 stamp: 'Alejandro 10/6/2021 13:03:19'!
+PASSED!
+
+!testRun: #Rot13Test #test04 stamp: 'Alejandro 10/6/2021 13:03:19'!
+PASSED!
+
+!testRun: #Rot13Test #test01 stamp: 'Alejandro 10/6/2021 13:03:34'!
+PASSED!
+
+!testRun: #Rot13Test #test02 stamp: 'Alejandro 10/6/2021 13:03:34'!
+PASSED!
+
+!testRun: #Rot13Test #test03 stamp: 'Alejandro 10/6/2021 13:03:34'!
+PASSED!
+
+!testRun: #Rot13Test #test04 stamp: 'Alejandro 10/6/2021 13:03:34'!
+PASSED!
+
+----End fileIn of /home/alex/Downloads/linux64/MarsRover.st----!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:26:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 17:26:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 17:26:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 17:26:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 17:26:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 17:26:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 17:26:43'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:28:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 17:28:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 17:28:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 17:28:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 17:28:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 17:28:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 17:28:42'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 17:28:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:33:55'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:33:55'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:36:46'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:36:46'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:37:20'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:37:20'!
+FAILURE!
+
+aCardinalPoint!
+
+aMarsRover direction!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:38:35'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:38:35'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:39:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:39:55'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:39:55'!
+FAILURE!
+
+aPosition!
+
+aMarsRover position!
+
+aMarsRover direction!
+!MarsRover methodsFor: 'initialize' stamp: 'Alejandro 10/6/2021 17:42:34' prior: 50871364!
+initializeAt: aPosition heading: aCardinalPoint
+
+	position := aPosition.
+	direction := aCardinalPoint.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 17:42:37'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 17:42:37'!
+ERROR!
+!MarsRover methodsFor: 'initialize' stamp: 'MS 10/6/2021 12:44:15' prior: 50871594!
+initializeAt: aPosition heading: aCardinalPoint
+
+	position := aPosition.
+	direction := aCardinalPoint initializeFor: self.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 17:46:04' prior: 50871047!
+assertThat: aMarsRover isIn: aPosition heading: aCardinalPoint
+
+	self assert: aPosition equals: aMarsRover position.
+		
+	self assert: aCardinalPoint equals: (aMarsRover direction) self.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 17:46:19' prior: 50871646!
+assertThat: aMarsRover isIn: aPosition heading: aCardinalPoint
+
+	self assert: aPosition equals: aMarsRover position.
+		
+	self assert: aCardinalPoint equals: (aMarsRover direction) self.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 17:46:23'!
+ERROR!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 11:02:55' prior: 50871656!
+assertThat: aMarsRover isIn: aPosition heading: aCardinalPoint
+
+	self assert: aPosition equals: aMarsRover position.
+		
+	self assert: aCardinalPoint equals: aMarsRover direction.! !
+!MarsRoverTest methodsFor: 'setup' stamp: 'Alejandro 10/6/2021 17:49:15' prior: 50871040 overrides: 16927572!
+setUp
+	
+	| aMarsRoverInEast aMarsRoverInNorth aMarsRoverInSouth aMarsRoverInWest |
+	North := aMarsRoverInNorth direction.
+	South := aMarsRoverInSouth direction.
+	East := aMarsRoverInEast direction.
+	West := aMarsRoverInWest direction.	
+	! !
+!MarsRoverTest methodsFor: 'setup' stamp: 'Alejandro 10/6/2021 17:50:10' prior: 50871713 overrides: 16927572!
+setUp
+	
+	| aMarsRoverInEast aMarsRoverInNorth aMarsRoverInSouth aMarsRoverInWest |
+	aMarsRoverInNorth := MarsRover isAt: 0@0 heading: North.
+	North := aMarsRoverInNorth direction.
+	South := aMarsRoverInSouth direction.
+	East := aMarsRoverInEast direction.
+	West := aMarsRoverInWest direction.	
+	! !
+
+MarsRover isAt: 2@2 heading: 'North'!
+
+MarsRover isAt: 2@2 heading: NorthDirection new!
+!MarsRoverTest methodsFor: 'setup' stamp: 'MS 10/6/2021 12:45:24' prior: 50871724 overrides: 16927572!
+setUp
+	
+	North := NorthDirection new.
+	South := SouthDirection new.
+	East := EastDirection new.
+	West := WestDirection new.	
+	! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 17:53:58' prior: 50871703!
+assertThat: aMarsRover isIn: aPosition heading: aCardinalPoint
+
+	self assert: aPosition equals: aMarsRover position.
+		
+	self assert: aCardinalPoint typeName equals: aMarsRover direction typeName.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 17:54:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 17:54:05'!
+ERROR!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 17:56:12' prior: 50871748!
+assertThat: aMarsRover isIn: aPosition heading: aCardinalPoint
+
+	self assert: aPosition equals: aMarsRover position.
+		
+	self assert: aCardinalPoint name equals: aMarsRover direction name.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 17:56:15'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:07:52' prior: 50871389!
+pepito: aCommand
+	
+	
+	aCommand = $f ifTrue: [direction moveForward ].
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ].	
+	^ self errorInvalidCommand.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:09:24'!
+test16
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading: North.
+	
+	
+	
+	self assert: (marsRover process: 'c') equals: MarsRover errorInvalidCommand.! !
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:09:25'!
+ERROR!
+!MarsRover methodsFor: 'error' stamp: 'Alejandro 10/6/2021 18:09:50'!
+errorInvalidCommand
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'error' stamp: 'Alejandro 10/6/2021 18:10:25' prior: 50871867!
+errorInvalidCommand
+	self error: 'This is not a valid command.'! !
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:10:26'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:11:19'!
+errorInvalidCommand
+	self error: 'This is not a valid command.'! !
+
+!methodRemoval: MarsRover #errorInvalidCommand stamp: 'Alejandro 10/6/2021 18:11:26'!
+errorInvalidCommand
+	self error: 'This is not a valid command.'!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:11:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:11:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:11:30'!
+ERROR!
+
+	MarsRover errorInvalidCommand!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:13:36' prior: 50871846!
+pepito: aCommand
+	
+	
+	aCommand = $f ifTrue: [direction moveForward ].
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ].	
+	^ MarsRover errorInvalidCommand.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:13:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:13:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:13:41'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:14:08' prior: 50871934!
+pepito: aCommand
+	
+	
+	aCommand = $f ifTrue: [direction moveForward ].
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ].	
+	MarsRover errorInvalidCommand.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:14:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:14:10'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:14:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:14:18'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:14:58' prior: 50871988!
+pepito: aCommand
+	
+	
+	aCommand = $f ifTrue: [direction moveForward ].
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ]
+	ifFalse: [MarsRover errorInvalidCommand].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:15:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:15:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:15:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:15:00'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:15:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:16:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:16:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:16:37'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:17:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:17:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:17:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:17:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:17:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:17:50'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:17:50'!
+ERROR!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:20:08' prior: 50871857!
+test16
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading: North.
+	
+	self
+		should: [MarsRover process: 'c']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = MarsRover errorInvalidCommand]! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:20:22' prior: 50872189!
+test16
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading: North.
+	
+	self
+		should: [marsRover process: 'c']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = MarsRover errorInvalidCommand]! !
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:20:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:20:28'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:20:28'!
+ERROR!
+!MarsRover class methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:21:16' prior: 50871880!
+errorInvalidCommand
+	^'This is not a valid command.'! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:21:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:21:18'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:21:18'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:22:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:22:34'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:22:34'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:22:48'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:23:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:23:49'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:23:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:23:53'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:23:53'!
+FAILURE!
+
+ OOStack stackEmptyErrorDescription !
+
+!testRun: #OOStackTest #test10CanNotTopWhenThereAreNoObjectsInTheStack stamp: 'Alejandro 10/6/2021 18:25:17'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:25:53' prior: 50872079!
+pepito: aCommand
+	
+	
+	aCommand = $f ifTrue: [direction moveForward ].
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ]
+	ifFalse: [MarsRover error: MarsRover errorInvalidCommand].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:26:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:26:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:26:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:26:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:26:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:26:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:26:09'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:26:09'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:26:43'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:26:43'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:27:31'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:27:31'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:28:04'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:28:04'!
+ERROR!
+
+aSequenceOfCommands!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:28:33'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:28:33'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:28:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:28:46'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:29:09'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:29:09'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:32:17' prior: 50872332!
+pepito: aCommand
+	
+	
+	aCommand = $f ifTrue: [direction moveForward ].
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ].
+	(aCommand = $f or: [aCommand = $b] or: [aCommand = $l] or: [aCommand = $r]) not ifTrue:  [MarsRover error: MarsRover errorInvalidCommand].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:32:19'!
+PASSED!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:32:56'!
+test17
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading: North.
+	
+	self
+		should: [marsRover process: 'ffc']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = MarsRover errorInvalidCommand]! !
+
+!testRun: #MarsRoverTest #test17 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'Alejandro 10/6/2021 18:32:58'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:33:38' prior: 50872423!
+pepito: aCommand
+	
+	
+	aCommand = $f ifTrue: [direction moveForward ].
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ].
+	(aCommand = $f 
+	or: [aCommand = $b] 
+	or: [aCommand = $l] 
+	or: [aCommand = $r]) not ifTrue:  [MarsRover error: MarsRover errorInvalidCommand].! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 21:53:27'!
+PASSED!
+
+aCardinalPoint name !
+
+aMarsRover direction name!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test15 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test16 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test17 stamp: 'Alejandro 10/6/2021 21:54:34'!
+PASSED!
+
+----QUIT----(7 October 2021 12:17:04) CuisUniversity-4532.image priorSource: 17255208!
