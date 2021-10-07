@@ -15,28 +15,16 @@ setUp
 	! !
 
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 17:56:12'!
+!MarsRoverTest methodsFor: 'assertions' stamp: 'Alejandro 10/6/2021 17:56:12'!
 assertThat: aMarsRover isIn: aPosition heading: aCardinalPoint
 
 	self assert: aPosition equals: aMarsRover position.
 		
 	self assert: aCardinalPoint name equals: aMarsRover direction name.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:46:02'!
-test01
 
-	| marsRover |
-		
-	marsRover := MarsRover isAt: 1@2 heading:North.
-	
-	marsRover process: ''.
-	
-	self assertThat: marsRover isIn: 1@2 heading: North.
-
-! !
-
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:46:06'!
-test02
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 10:52:19'!
+test02MarsRoverMovesForwardCorrectlyWhenHeadingNorth
 
 	| marsRover |
 		
@@ -46,8 +34,8 @@ test02
 	
 	self assertThat: marsRover isIn: 1@3 heading: North.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:46:25'!
-test03
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 10:53:09'!
+test03MarsRoverMovesBackwardCorrectlyWhenHeadingNorth
 
 	| marsRover |
 	
@@ -57,8 +45,8 @@ test03
 	
 	self assertThat: marsRover isIn: 1@1 heading: North.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:46:42'!
-test04
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 10:53:22'!
+test04MarsRoverMovesForwardCorrectlyWhenHeadingSouth
 
 	| marsRover |
 	
@@ -68,8 +56,19 @@ test04
 	
 	self assertThat: marsRover isIn: 1@1 heading: South.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:47:03'!
-test05
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:01:33'!
+test05MarsRoverMovesBackwardsCorrectlyWhenHeadingSouth
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading:South.
+	
+	marsRover process: 'b'.
+	
+	self assertThat: marsRover isIn: 1@3 heading: South.! !
+
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:01:44'!
+test06MarsRoverMovesForwardCorrectlyWhenHeadingWest
 
 	| marsRover |
 	
@@ -79,8 +78,8 @@ test05
 	
 	self assertThat: marsRover isIn: 0@2 heading: West.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:47:16'!
-test06
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:02:40'!
+test07MarsRoverMovesBackwardsCorrectlyWhenHeadingWest
 
 	| marsRover |
 	
@@ -90,8 +89,8 @@ test06
 	
 	self assertThat: marsRover isIn: 2@2 heading: West.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:48:36'!
-test07
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:02:49'!
+test08MarsRoverMovesForwardCorrectlyWhenHeadingEast
 
 	| marsRover |
 	
@@ -101,8 +100,8 @@ test07
 	
 	self assertThat: marsRover isIn: 2@2 heading: East.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:48:02'!
-test08
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:03:34'!
+test09MarsRoverMovesBackwardsCorrectlyWhenHeadingEast
 
 	| marsRover |
 	
@@ -112,8 +111,8 @@ test08
 	
 	self assertThat: marsRover isIn: 0@2 heading: East.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:48:09'!
-test09
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:04:18'!
+test10MarsRoverTurnsLeftCorrectlyWhenHeadingNorth
 
 	| marsRover |
 	
@@ -125,8 +124,8 @@ test09
 
 ! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:48:22'!
-test10
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:04:56'!
+test11MarsRoverTurnsRightCorrectlyWhenHeadingNorth
 
 	| marsRover |
 	
@@ -138,8 +137,8 @@ test10
 
 ! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:47:50'!
-test11
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:05:26'!
+test12MarsRoverTurnsLeftCorrectlyWhenHeadingEast
 
 	| marsRover |
 	
@@ -151,8 +150,8 @@ test11
 
 ! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:47:28'!
-test12
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:05:55'!
+test13MarsRoverTurnsLeftCorrectlyWhenHeadingWest
 
 	| marsRover |
 	
@@ -164,12 +163,12 @@ test12
 
 ! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:47:33'!
-test13
+!MarsRoverTest methodsFor: 'single command' stamp: 'MS 10/7/2021 11:06:20'!
+test14MarsRoverTurnsRightCorrectlyWhenHeadingSouth
 
 	| marsRover |
 	
-	marsRover := MarsRover isAt: 1@2 heading:South.
+	marsRover := MarsRover isAt: 1@2 heading: South.
 	
 	marsRover process: 'r'.
 	
@@ -177,19 +176,20 @@ test13
 
 ! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:47:38'!
-test14
+
+!MarsRoverTest methodsFor: 'multiple commands' stamp: 'MS 10/7/2021 11:08:22'!
+test15MarsRoverMovesCorrectlyWithMultipleCommands
 
 	| marsRover |
 	
 	marsRover := MarsRover isAt: 1@2 heading: North.
 	
-	marsRover process: 'ff'.
+	marsRover process: 'fbffbbbfff'.
 	
 	self assertThat: marsRover isIn: 1@4 heading: North.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:47:42'!
-test15
+!MarsRoverTest methodsFor: 'multiple commands' stamp: 'MS 10/7/2021 11:08:31'!
+test16MarsRoverMovesAndTurnsCorrectlyWithMultipleCommands
 
 	| marsRover |
 	
@@ -199,8 +199,9 @@ test15
 	
 	self assertThat: marsRover isIn: 1@6 heading: West.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:20:22'!
-test16
+
+!MarsRoverTest methodsFor: 'error' stamp: 'MS 10/7/2021 11:09:09'!
+test17MarsRoverDoesNotDoAnythingWithInvalidCommand
 
 	| marsRover |
 	
@@ -210,10 +211,12 @@ test16
 		should: [marsRover process: 'c']
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = MarsRover errorInvalidCommand]! !
+			self assert: anError messageText = MarsRover errorInvalidCommand].
+	
+	self assertThat: marsRover isIn: 1@2 heading: North.! !
 
-!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:32:56'!
-test17
+!MarsRoverTest methodsFor: 'error' stamp: 'MS 10/7/2021 11:09:51'!
+test18MarsRoverMovesCorrectlyUntilInvalidCommand
 
 	| marsRover |
 	
@@ -223,7 +226,38 @@ test17
 		should: [marsRover process: 'ffc']
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [ :anError |
-			self assert: anError messageText = MarsRover errorInvalidCommand]! !
+			self assert: anError messageText = MarsRover errorInvalidCommand].
+		
+	self assertThat: marsRover isIn: 1@4 heading: North.! !
+
+!MarsRoverTest methodsFor: 'error' stamp: 'MS 10/7/2021 11:12:32'!
+test19MarsRoverDoesNotDoAnythingSinceInvalidCommand
+
+	| marsRover |
+	
+	marsRover := MarsRover isAt: 1@2 heading: North.
+	
+	self
+		should: [marsRover process: 'ffcff']
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = MarsRover errorInvalidCommand].
+		
+	self assertThat: marsRover isIn: 1@4 heading: North.! !
+
+
+!MarsRoverTest methodsFor: 'no commands' stamp: 'MS 10/7/2021 10:49:12'!
+test01ShouldStayInTheSamePositionWhenCommandStringIsEmpty
+
+	| marsRover |
+		
+	marsRover := MarsRover isAt: 1@2 heading:North.
+	
+	marsRover process: ''.
+	
+	self assertThat: marsRover isIn: 1@2 heading: North.
+
+! !
 
 
 !classDefinition: #CardinalDirection category: 'MarsRover'!
@@ -266,7 +300,7 @@ turnRight
 CardinalDirection class
 	instanceVariableNames: ''!
 
-!CardinalDirection class methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 11:51:26'!
+!CardinalDirection class methodsFor: 'instance creation' stamp: 'MS 10/6/2021 11:51:26'!
 for: aMarsRover
 
 	^ self new initializeFor: aMarsRover.
@@ -404,103 +438,86 @@ initializeAt: aPosition heading: aCardinalPoint
 	direction := aCardinalPoint initializeFor: self.! !
 
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:08:52'!
+!MarsRover methodsFor: 'proccessing' stamp: 'MS 10/7/2021 10:42:55'!
+process: aSequenceOfCommands
+	aSequenceOfCommands do: [:aCommand| 
+		(self isInvalidCommand: aCommand) ifTrue: [MarsRover error: MarsRover errorInvalidCommand].
+		self processSingleCommand: aCommand.].
+	! !
+
+!MarsRover methodsFor: 'proccessing' stamp: 'MS 10/7/2021 10:44:02'!
+processSingleCommand: aCommand
+	
+	aCommand = $f ifTrue: [direction moveForward ]	. 
+	aCommand = $b ifTrue: [direction moveBackwards ].
+	aCommand = $l ifTrue: [direction turnLeft ].
+	aCommand = $r ifTrue: [direction turnRight ].
+	! !
+
+
+!MarsRover methodsFor: 'testing' stamp: 'MS 10/7/2021 10:48:03'!
+isInvalidCommand: aCommand
+
+	^ aCommand ~= $l 
+		and: [aCommand ~= $r 
+			and: [	aCommand ~= $f 
+				and: [	aCommand ~= $b] ] ].! !
+
+
+!MarsRover methodsFor: 'moving private' stamp: 'MS 10/6/2021 12:08:52'!
 moveToEast
 	
 	^position := position + (1@0).! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:07:56'!
+!MarsRover methodsFor: 'moving private' stamp: 'MS 10/6/2021 12:07:56'!
 moveToNorth
 
 	^position := position + (0@1).
 	
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:08:14'!
+!MarsRover methodsFor: 'moving private' stamp: 'MS 10/6/2021 12:08:14'!
 moveToSouth
 
 	^position := position - (0@1).
 	
 	! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:08:39'!
+!MarsRover methodsFor: 'moving private' stamp: 'MS 10/6/2021 12:08:39'!
 moveToWest
 	^position := position - (1@0).! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:33:38'!
-pepito: aCommand
-	
-	
-	aCommand = $f ifTrue: [direction moveForward ].
-	aCommand = $b ifTrue: [direction moveBackwards ].
-	aCommand = $l ifTrue: [direction turnLeft ].
-	aCommand = $r ifTrue: [direction turnRight ].
-	(aCommand = $f 
-	or: [aCommand = $b] 
-	or: [aCommand = $l] 
-	or: [aCommand = $r]) not ifTrue:  [MarsRover error: MarsRover errorInvalidCommand].! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 11:35:02'!
-process: aSequenceOfCommands
-	aSequenceOfCommands do: [:aCommand| 
-		self pepito: aCommand].
-	" 
-	direction = #North ifTrue: [
-		aSequenceOfCommands = 'f' ifTrue: [^position := position + (0@1)].
-		aSequenceOfCommands = 'b' ifTrue: [^position := position - (0@1)].
-		aSequenceOfCommands = 'l' ifTrue: [^direction := #West].
-		aSequenceOfCommands = 'r' ifTrue: [^direction := #East].	
-	].
-	direction = #South ifTrue: [
-		aSequenceOfCommands = 'f' ifTrue: [^position := position - (0@1)].
-		aSequenceOfCommands = 'b' ifTrue: [^position := position + (0@1)].
-		aSequenceOfCommands = 'l' ifTrue: [^direction := #East].
-		aSequenceOfCommands = 'r' ifTrue: [^direction := #West].	
-	].
-	direction = #West ifTrue: [
-		aSequenceOfCommands = 'f' ifTrue: [^position := position - (1@0)].
-		aSequenceOfCommands = 'b' ifTrue: [^position := position + (1@0)].
-		aSequenceOfCommands = 'l' ifTrue: [^direction := #South].
-		aSequenceOfCommands = 'r' ifTrue: [^direction := #North].
-	].
-	direction = #East ifTrue: [
-		aSequenceOfCommands = 'f' ifTrue: [^position := position + (1@0)].
-		aSequenceOfCommands = 'b' ifTrue: [^position := position - (1@0)].
-		aSequenceOfCommands = 'l' ifTrue: [^direction := #North].
-		aSequenceOfCommands = 'r' ifTrue: [^direction := #South].
-].		
-"! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:53:20'!
-turnToEast
-	
-	^direction := EastDirection for: self.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:53:32'!
-turnToNorth
-	
-	^direction := NorthDirection for: self.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:53:42'!
-turnToSouth
-	
-	^direction := SouthDirection for: self.! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 12:53:55'!
-turnToWest
-	
-	^direction := WestDirection for: self.! !
-
-
-!MarsRover methodsFor: 'value' stamp: 'MS 10/6/2021 11:10:41'!
+!MarsRover methodsFor: 'accessing' stamp: 'MS 10/6/2021 11:10:41'!
 direction
 
 	^direction! !
 
-!MarsRover methodsFor: 'value' stamp: 'MS 10/6/2021 10:42:24'!
+!MarsRover methodsFor: 'accessing' stamp: 'MS 10/6/2021 10:42:24'!
 position
 
 	^position! !
+
+
+!MarsRover methodsFor: 'turning private' stamp: 'MS 10/6/2021 12:53:20'!
+turnToEast
+	
+	^direction := EastDirection for: self.! !
+
+!MarsRover methodsFor: 'turning private' stamp: 'MS 10/6/2021 12:53:32'!
+turnToNorth
+	
+	^direction := NorthDirection for: self.! !
+
+!MarsRover methodsFor: 'turning private' stamp: 'MS 10/6/2021 12:53:42'!
+turnToSouth
+	
+	^direction := SouthDirection for: self.! !
+
+!MarsRover methodsFor: 'turning private' stamp: 'MS 10/6/2021 12:53:55'!
+turnToWest
+	
+	^direction := WestDirection for: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -508,11 +525,12 @@ position
 MarsRover class
 	instanceVariableNames: ''!
 
-!MarsRover class methodsFor: 'as yet unclassified' stamp: 'Alejandro 10/6/2021 18:21:16'!
+!MarsRover class methodsFor: 'error' stamp: 'Alejandro 10/6/2021 18:21:16'!
 errorInvalidCommand
 	^'This is not a valid command.'! !
 
-!MarsRover class methodsFor: 'as yet unclassified' stamp: 'MS 10/6/2021 10:36:40'!
+
+!MarsRover class methodsFor: 'instance creation' stamp: 'MS 10/6/2021 10:36:40'!
 isAt: aPosition heading: aCardinalPoint.
 
 	^self new initializeAt: aPosition heading: aCardinalPoint. ! !
