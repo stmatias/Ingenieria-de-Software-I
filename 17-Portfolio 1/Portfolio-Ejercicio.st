@@ -5,16 +5,16 @@ TestCase subclass: #PortfolioTest
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 13:50:25'!
-test01
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:11:52'!
+test01EmptyPortfolioHasCeroBalance
 
 	| portfolio |
 	portfolio := Portfolio new.
 	self assert: 0 equals: (portfolio balance).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:27:29'!
-test02
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:12:40'!
+test02aPortfolioWithOneAccountHas100Balance
 
 	| portfolio account1 |
 	portfolio := Portfolio new.
@@ -24,8 +24,8 @@ test02
 	self assert: 100 equals: (portfolio balance).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:27:29'!
-test03
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:13:00'!
+test03aPortfolioWithTwoAccountsHas200Balance
 
 	| portfolio account1 account2 |
 	
@@ -40,8 +40,8 @@ test03
 	self assert: 200 equals: (portfolio balance).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:27:29'!
-test04
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:13:33'!
+test04aPortfolioWithThreeAccountsHas300Balance
 
 	| portfolio account1 account2 account3 |
 	
@@ -59,8 +59,8 @@ test04
 	self assert: 300 equals: (portfolio balance).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 00:02:29'!
-test05
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:14:33'!
+test05cannontAddTheSameAccountToAPortfolioTwice
 
 	|portfolio account|
 	
@@ -77,8 +77,8 @@ test05
 	raise: Error 
 	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:29:07'!
-test06
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:15:29'!
+test06aChildPortfolioHasTheSameBalaceAsItsParentPortfolio
 
 	|portfolioParent portfolioChild account |
 	
@@ -94,8 +94,8 @@ test06
 	self assert: portfolioChild balance equals: 	portfolioParent balance.
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:27:29'!
-test07
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:17:50'!
+test07aPortfolioHasRegisteredATransactionMadeByItsAccount
 
 	|portfolio account transaction |
 	
@@ -110,34 +110,25 @@ test07
 	self assert: (portfolio hasRegistered: transaction).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:27:29'!
-test08
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:23:15'!
+test08aPortfolioWithNoAccountsHasNotRegisterATransaction
 
-	|rootPortfolio childPortfolio account1 account2 transaction1 transaction2 |
+	|portfolio account transaction |
 	
-	rootPortfolio := Portfolio new.
-	childPortfolio := Portfolio new.
+	portfolio := Portfolio new.
 	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
+	account := ReceptiveAccount new.
 	
-	transaction1 := (Deposit for: 100).
-	transaction2 := (Withdraw for: 50).
-	
-	account1 register: transaction1.
-	account2 register: transaction2.
-	
-	rootPortfolio add: account1.
-	childPortfolio add: account2 .
-	
-	self assert: (rootPortfolio hasRegistered: transaction1).
-	self assert: (childPortfolio hasRegistered: transaction2 ).
-	self deny: (rootPortfolio hasRegistered: transaction2).
-	self deny: (childPortfolio hasRegistered: transaction1 ).
+	transaction := (Deposit for: 100).
+
+	account register: transaction.
+
+	self deny: (portfolio hasRegistered: transaction).
+
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:41:06'!
-test09
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:24:35'!
+test09AnAccountCanBeInTwoPortfolios
 
 	|portfolio1 portfolio2 account |
 	
@@ -152,8 +143,8 @@ test09
 	self assert: (portfolio1 has: account).
 	self assert: (portfolio2 has: account).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:42:04'!
-test10
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:25:21'!
+test10AChildPortfolioCanBeInTwoParentPortfolios
 
 	|rootPortfolio1 rootPortfolio2 childPortfolio |
 	
@@ -167,8 +158,8 @@ test10
 	self assert: (rootPortfolio1 has: childPortfolio ).
 	self assert: (rootPortfolio2 has: childPortfolio ).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:59:58'!
-test11
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:26:24'!
+test11APortfolioCannotAddItself
 
 	|portfolio |
 	
@@ -180,33 +171,33 @@ test11
 		
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:59:58'!
-test12
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:28:11'!
+test12CannotAddAChildPortfolioTwiceToTheSameParentPortfolio
 
-	|rootPortfolio childPortfolio |
+	|parentPortfolio childPortfolio |
 	
-	rootPortfolio := Portfolio new.
+	parentPortfolio := Portfolio new.
 	childPortfolio := Portfolio new.
 	
-	rootPortfolio add: childPortfolio.
+	parentPortfolio add: childPortfolio.
 	self 
-	should: [rootPortfolio add: childPortfolio ]
+	should: [parentPortfolio add: childPortfolio ]
 	raise: Error 
 	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
 		
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 23:59:58'!
-test13
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:28:55'!
+test13AChildPortfolioCannotAddItsParent
 
-	|rootPortfolio childPortfolio |
+	|parentPortfolio childPortfolio |
 	
-	rootPortfolio := Portfolio new.
+	parentPortfolio := Portfolio new.
 	childPortfolio := Portfolio new.
 	
-	rootPortfolio add: childPortfolio.
+	parentPortfolio add: childPortfolio.
 	self 
-	should: [childPortfolio add: rootPortfolio]
+	should: [childPortfolio add: parentPortfolio]
 	raise: Error 
 	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
 		

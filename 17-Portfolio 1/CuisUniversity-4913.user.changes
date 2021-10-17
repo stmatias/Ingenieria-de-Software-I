@@ -5175,3 +5175,671 @@ PASSED!
 PASSED!
 
 ----QUIT----(17 October 2021 00:29:33) CuisUniversity-4913.image priorSource: 18795271!
+
+----STARTUP---- (17 October 2021 18:10:21) as /home/alex/Downloads/linux64-Portfolio/CuisUniversity-4913.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:11:11'!
+test01emptyPortfolioHasCeroBalance
+
+	| portfolio |
+	portfolio := Portfolio new.
+	self assert: 0 equals: (portfolio balance).
+	! !
+
+!methodRemoval: PortfolioTest #test01emptyPortfolioHasCeroBalance stamp: 'Ch.A 10/17/2021 18:11:17'!
+test01emptyPortfolioHasCeroBalance
+
+	| portfolio |
+	portfolio := Portfolio new.
+	self assert: 0 equals: (portfolio balance).
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:11:52'!
+test01EmptyPortfolioHasCeroBalance
+
+	| portfolio |
+	portfolio := Portfolio new.
+	self assert: 0 equals: (portfolio balance).
+	! !
+
+!methodRemoval: PortfolioTest #test01 stamp: 'Ch.A 10/17/2021 18:11:52'!
+test01
+
+	| portfolio |
+	portfolio := Portfolio new.
+	self assert: 0 equals: (portfolio balance).
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:12:40'!
+test02aPortfolioWithOneAccountHas100Balance
+
+	| portfolio account1 |
+	portfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	portfolio add: account1.
+	self assert: 100 equals: (portfolio balance).
+	! !
+
+!methodRemoval: PortfolioTest #test02 stamp: 'Ch.A 10/17/2021 18:12:40'!
+test02
+
+	| portfolio account1 |
+	portfolio := Portfolio new.
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	portfolio add: account1.
+	self assert: 100 equals: (portfolio balance).
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:13:00'!
+test03aPortfolioWithTwoAccountsHas200Balance
+
+	| portfolio account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio add: account1.
+	portfolio add: account2.
+	self assert: 200 equals: (portfolio balance).
+	! !
+
+!methodRemoval: PortfolioTest #test03 stamp: 'Ch.A 10/17/2021 18:13:00'!
+test03
+
+	| portfolio account1 account2 |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	
+	portfolio := Portfolio new.
+	portfolio add: account1.
+	portfolio add: account2.
+	self assert: 200 equals: (portfolio balance).
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:13:33'!
+test04aPortfolioWithThreeAccountsHas300Balance
+
+	| portfolio account1 account2 account3 |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	account3 := ReceptiveAccount new.
+	Deposit register: 100 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio add: account1.
+	portfolio add: account2.
+	portfolio add: account3.
+	self assert: 300 equals: (portfolio balance).
+	! !
+
+!methodRemoval: PortfolioTest #test04 stamp: 'Ch.A 10/17/2021 18:13:33'!
+test04
+
+	| portfolio account1 account2 account3 |
+	
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100 on: account2.
+	account3 := ReceptiveAccount new.
+	Deposit register: 100 on: account3.
+	
+	portfolio := Portfolio new.
+	portfolio add: account1.
+	portfolio add: account2.
+	portfolio add: account3.
+	self assert: 300 equals: (portfolio balance).
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:14:18'!
+test05cannontAddTheSameAccountInAPortfolioTwice
+
+	|portfolio account|
+	
+	
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self 
+	should: [portfolio add: account.]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.! !
+
+!methodRemoval: PortfolioTest #test05 stamp: 'Ch.A 10/17/2021 18:14:18'!
+test05
+
+	|portfolio account|
+	
+	
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self 
+	should: [portfolio add: account.]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:14:33'!
+test05cannontAddTheSameAccountToAPortfolioTwice
+
+	|portfolio account|
+	
+	
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self 
+	should: [portfolio add: account.]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.! !
+
+!methodRemoval: PortfolioTest #test05cannontAddTheSameAccountInAPortfolioTwice stamp: 'Ch.A 10/17/2021 18:14:33'!
+test05cannontAddTheSameAccountInAPortfolioTwice
+
+	|portfolio account|
+	
+	
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self 
+	should: [portfolio add: account.]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:15:29'!
+test06aChildPortfolioHasTheSameBalaceAsItsParentPortfolio
+
+	|portfolioParent portfolioChild account |
+	
+	portfolioParent := Portfolio new.
+	portfolioChild := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolioChild add: account.
+	portfolioParent add: portfolioChild.
+	
+	self assert: portfolioChild balance equals: 	portfolioParent balance.
+	! !
+
+!methodRemoval: PortfolioTest #test06 stamp: 'Ch.A 10/17/2021 18:15:29'!
+test06
+
+	|portfolioParent portfolioChild account |
+	
+	portfolioParent := Portfolio new.
+	portfolioChild := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	
+	portfolioChild add: account.
+	portfolioParent add: portfolioChild.
+	
+	self assert: portfolioChild balance equals: 	portfolioParent balance.
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:17:50'!
+test07aPortfolioHasRegisteredATransactionMadeByItsAccount
+
+	|portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	transaction := (Deposit for: 100).
+	account register: transaction.
+	
+	portfolio add: account.
+	
+	self assert: (portfolio hasRegistered: transaction).
+	! !
+
+!methodRemoval: PortfolioTest #test07 stamp: 'Ch.A 10/17/2021 18:17:50'!
+test07
+
+	|portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	transaction := (Deposit for: 100).
+	account register: transaction.
+	
+	portfolio add: account.
+	
+	self assert: (portfolio hasRegistered: transaction).
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:19:07' prior: 50918166!
+test08
+
+	|portfolio1 childPortfolio account1 account2 transaction1 transaction2 |
+	
+	portfolio1 := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transaction1 := (Deposit for: 100).
+	transaction2 := (Withdraw for: 50).
+	
+	account1 register: transaction1.
+	account2 register: transaction2.
+	
+	portfolio1 add: account1.
+	childPortfolio add: account2 .
+	
+	self assert: (portfolio1 hasRegistered: transaction1).
+	self assert: (childPortfolio hasRegistered: transaction2 ).
+	self deny: (portfolio1 hasRegistered: transaction2).
+	self deny: (childPortfolio hasRegistered: transaction1 ).
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:19:16' prior: 50919282!
+test08
+
+	|portfolio1 portfolio2 account1 account2 transaction1 transaction2 |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transaction1 := (Deposit for: 100).
+	transaction2 := (Withdraw for: 50).
+	
+	account1 register: transaction1.
+	account2 register: transaction2.
+	
+	portfolio1 add: account1.
+	portfolio2 add: account2 .
+	
+	self assert: (portfolio1 hasRegistered: transaction1).
+	self assert: (portfolio2 hasRegistered: transaction2 ).
+	self deny: (portfolio1 hasRegistered: transaction2).
+	self deny: (portfolio2 hasRegistered: transaction1 ).
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:21:17' prior: 50919306!
+test08
+
+	|portfolio account transaction transaction1 |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	transaction := (Deposit for: 100).
+
+	account register: transaction1.
+
+	self deny: (portfolio hasRegistered: transaction).
+
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:21:28' prior: 50919330!
+test08
+
+	|portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	transaction := (Deposit for: 100).
+
+	account register: transaction.
+
+	self deny: (portfolio hasRegistered: transaction).
+
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:23:15'!
+test08aPortfolioWithNoAccountsHasNotRegisterATransaction
+
+	|portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	transaction := (Deposit for: 100).
+
+	account register: transaction.
+
+	self deny: (portfolio hasRegistered: transaction).
+
+	! !
+
+!methodRemoval: PortfolioTest #test08 stamp: 'Ch.A 10/17/2021 18:23:15'!
+test08
+
+	|portfolio account transaction |
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	transaction := (Deposit for: 100).
+
+	account register: transaction.
+
+	self deny: (portfolio hasRegistered: transaction).
+
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:24:35'!
+test09AnAccountCanBeInTwoPortfolios
+
+	|portfolio1 portfolio2 account |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account := ReceptiveAccount new.
+
+	portfolio1 add: account.
+	portfolio2 add: account.
+	
+	self assert: (portfolio1 has: account).
+	self assert: (portfolio2 has: account).! !
+
+!methodRemoval: PortfolioTest #test09 stamp: 'Ch.A 10/17/2021 18:24:35'!
+test09
+
+	|portfolio1 portfolio2 account |
+	
+	portfolio1 := Portfolio new.
+	portfolio2 := Portfolio new.
+	
+	account := ReceptiveAccount new.
+
+	portfolio1 add: account.
+	portfolio2 add: account.
+	
+	self assert: (portfolio1 has: account).
+	self assert: (portfolio2 has: account).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:25:21'!
+test10AChildPortfolioCanBeInTwoParentPortfolios
+
+	|rootPortfolio1 rootPortfolio2 childPortfolio |
+	
+	rootPortfolio1 := Portfolio new.
+	rootPortfolio2 := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	rootPortfolio1 add: childPortfolio .
+	rootPortfolio2 add: childPortfolio .
+	
+	self assert: (rootPortfolio1 has: childPortfolio ).
+	self assert: (rootPortfolio2 has: childPortfolio ).! !
+
+!methodRemoval: PortfolioTest #test10 stamp: 'Ch.A 10/17/2021 18:25:21'!
+test10
+
+	|rootPortfolio1 rootPortfolio2 childPortfolio |
+	
+	rootPortfolio1 := Portfolio new.
+	rootPortfolio2 := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	rootPortfolio1 add: childPortfolio .
+	rootPortfolio2 add: childPortfolio .
+	
+	self assert: (rootPortfolio1 has: childPortfolio ).
+	self assert: (rootPortfolio2 has: childPortfolio ).!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:26:24'!
+test11APortfolioCannotAddItself
+
+	|portfolio |
+	
+	portfolio := Portfolio new.
+	self 
+	should: [portfolio add: portfolio]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	! !
+
+!methodRemoval: PortfolioTest #test11 stamp: 'Ch.A 10/17/2021 18:26:24'!
+test11
+
+	|portfolio |
+	
+	portfolio := Portfolio new.
+	self 
+	should: [portfolio add: portfolio]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:27:08'!
+test12CannotAddAChildPortfolioTwiceToTheSameParentPortfolio
+
+	|rootPortfolio childPortfolio |
+	
+	rootPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	rootPortfolio add: childPortfolio.
+	self 
+	should: [rootPortfolio add: childPortfolio ]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	! !
+
+!methodRemoval: PortfolioTest #test12 stamp: 'Ch.A 10/17/2021 18:27:08'!
+test12
+
+	|rootPortfolio childPortfolio |
+	
+	rootPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	rootPortfolio add: childPortfolio.
+	self 
+	should: [rootPortfolio add: childPortfolio ]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:28:11' prior: 50919446!
+test12CannotAddAChildPortfolioTwiceToTheSameParentPortfolio
+
+	|parentPortfolio childPortfolio |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	parentPortfolio add: childPortfolio.
+	self 
+	should: [parentPortfolio add: childPortfolio ]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:28:40'!
+test13AChildPortfolioCannotAddItsParent
+
+	|rootPortfolio childPortfolio |
+	
+	rootPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	rootPortfolio add: childPortfolio.
+	self 
+	should: [childPortfolio add: rootPortfolio]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	! !
+
+!methodRemoval: PortfolioTest #test13 stamp: 'Ch.A 10/17/2021 18:28:40'!
+test13
+
+	|rootPortfolio childPortfolio |
+	
+	rootPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	rootPortfolio add: childPortfolio.
+	self 
+	should: [childPortfolio add: rootPortfolio]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/17/2021 18:28:55' prior: 50919486!
+test13AChildPortfolioCannotAddItsParent
+
+	|parentPortfolio childPortfolio |
+	
+	parentPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	parentPortfolio add: childPortfolio.
+	self 
+	should: [childPortfolio add: parentPortfolio]
+	raise: Error 
+	withMessageText: Portfolio duplicatePortfolioEntryErrorDescription.
+		
+	! !
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasCeroBalance stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02aPortfolioWithOneAccountHas100Balance stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03aPortfolioWithTwoAccountsHas200Balance stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04aPortfolioWithThreeAccountsHas300Balance stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05cannontAddTheSameAccountToAPortfolioTwice stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06aChildPortfolioHasTheSameBalaceAsItsParentPortfolio stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test07aPortfolioHasRegisteredATransactionMadeByItsAccount stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08aPortfolioWithNoAccountsHasNotRegisterATransaction stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09AnAccountCanBeInTwoPortfolios stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10AChildPortfolioCanBeInTwoParentPortfolios stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test11APortfolioCannotAddItself stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAChildPortfolioTwiceToTheSameParentPortfolio stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test13AChildPortfolioCannotAddItsParent stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ch.A 10/17/2021 18:29:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test01EmptyPortfolioHasCeroBalance stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02aPortfolioWithOneAccountHas100Balance stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03aPortfolioWithTwoAccountsHas200Balance stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04aPortfolioWithThreeAccountsHas300Balance stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05cannontAddTheSameAccountToAPortfolioTwice stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06aChildPortfolioHasTheSameBalaceAsItsParentPortfolio stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07aPortfolioHasRegisteredATransactionMadeByItsAccount stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08aPortfolioWithNoAccountsHasNotRegisterATransaction stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09AnAccountCanBeInTwoPortfolios stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10AChildPortfolioCanBeInTwoParentPortfolios stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11APortfolioCannotAddItself stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12CannotAddAChildPortfolioTwiceToTheSameParentPortfolio stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13AChildPortfolioCannotAddItsParent stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ch.A 10/17/2021 18:29:02'!
+PASSED!
