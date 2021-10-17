@@ -5,90 +5,79 @@ TestCase subclass: #PortfolioTest
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/14/2021 21:25:49'!
-test01EmptyPortfolioHasZeroBalance
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 13:50:25'!
+test01
 
-	|portfolio|
-	
+	| portfolio |
 	portfolio := Portfolio new.
-	
-	self assert: 0 equals: (portfolio balance).! !
+	self assert: 0 equals: (portfolio balance).
+	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/14/2021 21:43:40'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test02
 
-	|portfolio account balance|
-	
+	| portfolio account1 |
 	portfolio := Portfolio new.
-	
-	account := ReceptiveAccount new.
-	Deposit register: 100 on: account.
-	
-	portfolio add: account.
-	
-	balance := portfolio balance.
-	
-	self assert: 100 equals: 	balance.! !
+	account1 := ReceptiveAccount new.
+	Deposit register: 100 on: account1.
+	portfolio addAccount: account1.
+	self assert: 100 equals: (portfolio balance).
+	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/14/2021 21:44:02'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test03
 
-	|portfolio account1 account2|
-	
-	portfolio := Portfolio new.
+	| portfolio account1 account2 |
 	
 	account1 := ReceptiveAccount new.
 	Deposit register: 100 on: account1.
-	
 	account2 := ReceptiveAccount new.
 	Deposit register: 100 on: account2.
 	
-	portfolio add: account1.
-	portfolio add: account2.
-		
-	self assert: 200 equals: 	portfolio balance.! !
+	portfolio := Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+	self assert: 200 equals: (portfolio balance).
+	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/14/2021 21:44:23'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test04
 
-	|portfolio account1 account2 account3|
-	
-	portfolio := Portfolio new.
+	| portfolio account1 account2 account3 |
 	
 	account1 := ReceptiveAccount new.
 	Deposit register: 100 on: account1.
-	
 	account2 := ReceptiveAccount new.
 	Deposit register: 100 on: account2.
-	
 	account3 := ReceptiveAccount new.
 	Deposit register: 100 on: account3.
 	
-	portfolio add: account1.
-	portfolio add: account2.
-	portfolio add: account3.
-		
-	self assert: 300 equals: 	portfolio balance.! !
+	portfolio := Portfolio new.
+	portfolio addAccount: account1.
+	portfolio addAccount: account2.
+	portfolio addAccount: account3.
+	self assert: 300 equals: (portfolio balance).
+	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/14/2021 22:11:51'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test05
 
 	|portfolio account|
 	
-	portfolio := Portfolio new.
+	
 	
 	account := ReceptiveAccount new.
 	Deposit register: 100 on: account.
 	
-	portfolio add: account.
+	portfolio := Portfolio new.
+	portfolio addAccount: account.
 	
 	self 
-	should: [portfolio add: account.]
+	should: [portfolio addAccount: account.]
 	raise: Error 
-	withMessageText: Portfolio duplicateAccountErrorDescription.
-	! !
+	withMessageText: Portfolio duplicateAccountErrorDescription.! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 16:25:02'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test06
 
 	|portfolioParent portfolioChild account |
@@ -99,14 +88,13 @@ test06
 	account := ReceptiveAccount new.
 	Deposit register: 100 on: account.
 	
-	portfolioChild add: account.
-	
+	portfolioChild addAccount: account.
 	portfolioParent addPortfolio: portfolioChild.
 	
 	self assert: portfolioChild balance equals: 	portfolioParent balance.
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 16:32:13'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test07
 
 	|portfolio account transaction |
@@ -117,12 +105,12 @@ test07
 	transaction := (Deposit for: 100).
 	account register: transaction.
 	
-	portfolio add: account.
+	portfolio addAccount: account.
 	
 	self assert: (portfolio hasRegistered: transaction).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 16:40:32'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test08
 
 	|rootPortfolio childPortfolio account1 account2 transaction1 transaction2 |
@@ -139,8 +127,8 @@ test08
 	account1 register: transaction1.
 	account2 register: transaction2.
 	
-	rootPortfolio add: account1.
-	childPortfolio add: account2 .
+	rootPortfolio addAccount: account1.
+	childPortfolio addAccount: account2 .
 	
 	self assert: (rootPortfolio hasRegistered: transaction1).
 	self assert: (childPortfolio hasRegistered: transaction2 ).
@@ -148,7 +136,7 @@ test08
 	self deny: (childPortfolio hasRegistered: transaction1 ).
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 16:48:21'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:23:05'!
 test09
 
 	|portfolio1 portfolio2 account |
@@ -158,13 +146,13 @@ test09
 	
 	account := ReceptiveAccount new.
 
-	portfolio1 add: account.
-	portfolio2 add: account.
+	portfolio1 addAccount: account.
+	portfolio2 addAccount: account.
 	
-	self assert: (portfolio1 has: account).
-	self assert: (portfolio2 has: account).! !
+	self assert: (portfolio1 hasAccount: account).
+	self assert: (portfolio2 hasAccount: account).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 16:56:24'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 18:56:53'!
 test10
 
 	|rootPortfolio1 rootPortfolio2 childPortfolio |
@@ -179,7 +167,7 @@ test10
 	self assert: (rootPortfolio1 hasPortfolio: childPortfolio ).
 	self assert: (rootPortfolio2 hasPortfolio: childPortfolio ).! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:08:58'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:00:27'!
 test11
 
 	|portfolio |
@@ -192,7 +180,7 @@ test11
 		
 	! !
 
-!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:25:42'!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 19:15:04'!
 test12
 
 	|rootPortfolio childPortfolio |
@@ -203,6 +191,22 @@ test12
 	rootPortfolio addPortfolio: childPortfolio.
 	self 
 	should: [rootPortfolio addPortfolio: childPortfolio ]
+	raise: Error 
+	withMessageText: Portfolio cantAddPortfolioErrorDescription.
+		
+	! !
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/16/2021 21:31:41'!
+test13
+
+	|rootPortfolio childPortfolio |
+	
+	rootPortfolio := Portfolio new.
+	childPortfolio := Portfolio new.
+	
+	rootPortfolio addPortfolio: childPortfolio.
+	self 
+	should: [childPortfolio addPortfolio: rootPortfolio]
 	raise: Error 
 	withMessageText: Portfolio cantAddPortfolioErrorDescription.
 		
@@ -404,68 +408,61 @@ for: aValue
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Object subclass: #Portfolio
-	instanceVariableNames: 'accounts childrenPortfolios parentPortfolios'
+	instanceVariableNames: 'accounts childrenPortfolios parentPortfolio'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/14/2021 22:27:53'!
-add: anAccount
+!Portfolio methodsFor: 'balance' stamp: 'Ch.A 10/16/2021 21:17:52'!
+balance
+	|res|
+	
+	res := accounts sum: [:anAccount | anAccount balance] ifEmpty: [0].
+
+	res := res + (childrenPortfolios sum: [:aPortfolio | aPortfolio balance] ifEmpty: [0]).
+	
+	^res.! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'Ch.A 10/16/2021 21:41:13'!
+initialize
+	accounts := OrderedCollection new.
+	childrenPortfolios := OrderedCollection new.
+	parentPortfolio := nil.! !
+
+
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 19:26:14'!
+addAccount: anAccount
 
 	(accounts includes: anAccount) ifTrue: [^self error: self class duplicateAccountErrorDescription.].
-	accounts add: anAccount.
-	! !
+	accounts add: anAccount.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:50:10'!
-addParentPortfolio: aPortfolio 
-	
-	parentPortfolios add: aPortfolio.! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:28:30'!
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:43:48'!
 addPortfolio: aPortfolio 
 	
 	self = aPortfolio ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	
 	(self hasPortfolio: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
-	childrenPortfolios add: aPortfolio .
-	aPortfolio addParentPortfolio: self.! !
+	
+	childrenPortfolios add: aPortfolio.
+	
+	parentPortfolio := self. "falta implementar para que pase el test13"! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:16:54'!
-balance
-	|res|
-	res :=accounts sum: [:anAccount | anAccount balance]
-	ifEmpty: [ 0 ].	
-	res := res +  (childrenPortfolios sum: [:aPortfolio | aPortfolio balance]
-	ifEmpty: [ 0 ]).	
-	^res.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 16:53:16'!
-has: anAccount 
+!Portfolio methodsFor: 'unclassified' stamp: 'Ch.A 10/16/2021 19:19:34'!
+hasAccount: anAccount 
 	accounts detect: [:account | account = anAccount ] ifNone: [^false].
 	^true.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:16:54'!
+!Portfolio methodsFor: 'unclassified' stamp: 'Ch.A 10/16/2021 19:18:21'!
 hasPortfolio: aPortfolio 
 	childrenPortfolios detect: [:portfolio | portfolio = aPortfolio  ] ifNone: [^false].
 	^true.! !
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 16:33:42'!
-hasRegistered: aTransaction 
-	
-	accounts detect: [:anAccount | anAccount hasRegistered: aTransaction] ifNone: [^false].
+!Portfolio methodsFor: 'unclassified' stamp: 'Ch.A 10/16/2021 18:51:12'!
+hasRegistered: aTransaction
+	accounts detect: [:anAccount | anAccount hasRegistered: aTransaction] ifNone:[^false].
 	^true.! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/14/2021 22:23:19'!
-includes: anAccount
-
-	accounts detect: [:element | element = anAccount] ifNone: [^false].
-	^true.! !
-
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:17:14'!
-initialize
-	
-	accounts := OrderedCollection new.
-	childrenPortfolios := OrderedCollection new.
-	parentPortfolios := OrderedCollection new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -473,14 +470,13 @@ initialize
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'error messages' stamp: 'MS 10/14/2021 22:10:20'!
-duplicateAccountErrorDescription
-	^'Account is duplicate'.! !
-
-
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'MS 10/16/2021 17:05:58'!
+!Portfolio class methodsFor: 'error messages' stamp: 'Ch.A 10/16/2021 19:01:01'!
 cantAddPortfolioErrorDescription
 	^'Porfolio cant be added'.! !
+
+!Portfolio class methodsFor: 'error messages' stamp: 'Ch.A 10/16/2021 18:28:08'!
+duplicateAccountErrorDescription
+	^'Account is duplicate'.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -496,7 +492,7 @@ initialize
 	transactions := OrderedCollection new.! !
 
 
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'Ch.A 10/16/2021 19:26:41'!
 register: aTransaction
 
 	transactions add: aTransaction 
