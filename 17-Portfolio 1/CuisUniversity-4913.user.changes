@@ -2353,3 +2353,208 @@ addPortfolio: aPortfolio
 	childrenPortfolios add: aPortfolio.
 	
 	parentPortfolio := self. "falta implementar para que pase el test13"! !
+!Portfolio methodsFor: 'initialization' stamp: 'Ch.A 10/16/2021 21:47:12' prior: 50915617 overrides: 16896425!
+initialize
+	accounts := OrderedCollection new.
+	childrenPortfolios := OrderedCollection new.
+	parentPortfolio := OrderedCollection new.! !
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:47:24' prior: 50915661!
+addPortfolio: aPortfolio 
+	
+	self = aPortfolio ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	
+	(self hasPortfolio: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	
+	childrenPortfolios add: aPortfolio.
+	
+	parentPortfolio add: self.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ch.A 10/16/2021 21:47:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ch.A 10/16/2021 21:47:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ch.A 10/16/2021 21:47:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ch.A 10/16/2021 21:47:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ch.A 10/16/2021 21:47:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ch.A 10/16/2021 21:47:26'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ch.A 10/16/2021 21:47:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'Ch.A 10/16/2021 21:47:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'Ch.A 10/16/2021 21:47:29'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13 stamp: 'Ch.A 10/16/2021 21:47:29'!
+FAILURE!
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:48:15' prior: 50915683!
+addPortfolio: aPortfolio 
+	
+	self = aPortfolio ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	
+	(self hasPortfolio: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	
+	childrenPortfolios add: aPortfolio.
+	
+	aPortfolio addParentPortfolio: self.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'Ch.A 10/16/2021 21:48:48'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts childrenPortfolios parentPortfolio parentPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:48:44'!
+addParentPortfolio: aPortfolio 
+	
+	parentPortfolios add: aPortfolio.! !
+!Portfolio methodsFor: 'initialization' stamp: 'Ch.A 10/16/2021 21:49:01' prior: 50915675 overrides: 16896425!
+initialize
+	accounts := OrderedCollection new.
+	childrenPortfolios := OrderedCollection new.
+	parentPortfolios := OrderedCollection new.! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts childrenPortfolios parentPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'Ch.A 10/16/2021 21:49:10'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts childrenPortfolios parentPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test13 stamp: 'Ch.A 10/16/2021 21:49:17'!
+FAILURE!
+
+!testRun: #PortfolioTest #test13 stamp: 'Ch.A 10/16/2021 21:49:17'!
+FAILURE!
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:52:45' prior: 50915756!
+addPortfolio: aPortfolio 
+	
+	self = aPortfolio ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	
+	(self hasPortfolio: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	parentPortfolios.
+	
+	childrenPortfolios add: aPortfolio.
+	
+	aPortfolio addParentPortfolio: self.! !
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:54:48' prior: 50915811!
+addPortfolio: aPortfolio 
+	
+	self = aPortfolio ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	
+	(self hasPortfolio: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	(parentPortfolios includes: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription].
+	
+	childrenPortfolios add: aPortfolio.
+	
+	aPortfolio addParentPortfolio: self.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'Ch.A 10/16/2021 21:54:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'Ch.A 10/16/2021 21:54:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'Ch.A 10/16/2021 21:54:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'Ch.A 10/16/2021 21:54:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'Ch.A 10/16/2021 21:54:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'Ch.A 10/16/2021 21:54:50'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'Ch.A 10/16/2021 21:54:50'!
+PASSED!
+
+!testRun: #PortfolioTest #test01 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'Ch.A 10/16/2021 21:54:52'!
+PASSED!

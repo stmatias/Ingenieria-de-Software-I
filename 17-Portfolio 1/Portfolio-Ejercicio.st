@@ -408,7 +408,7 @@ for: aValue
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Object subclass: #Portfolio
-	instanceVariableNames: 'accounts childrenPortfolios parentPortfolio'
+	instanceVariableNames: 'accounts childrenPortfolios parentPortfolios'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
@@ -424,11 +424,11 @@ balance
 	^res.! !
 
 
-!Portfolio methodsFor: 'initialization' stamp: 'Ch.A 10/16/2021 21:41:13'!
+!Portfolio methodsFor: 'initialization' stamp: 'Ch.A 10/16/2021 21:49:01'!
 initialize
 	accounts := OrderedCollection new.
 	childrenPortfolios := OrderedCollection new.
-	parentPortfolio := nil.! !
+	parentPortfolios := OrderedCollection new.! !
 
 
 !Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 19:26:14'!
@@ -437,16 +437,22 @@ addAccount: anAccount
 	(accounts includes: anAccount) ifTrue: [^self error: self class duplicateAccountErrorDescription.].
 	accounts add: anAccount.! !
 
-!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:43:48'!
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:48:44'!
+addParentPortfolio: aPortfolio 
+	
+	parentPortfolios add: aPortfolio.! !
+
+!Portfolio methodsFor: 'addingAccountsOrPortfolios' stamp: 'Ch.A 10/16/2021 21:54:48'!
 addPortfolio: aPortfolio 
 	
 	self = aPortfolio ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
 	
 	(self hasPortfolio: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription ].
+	(parentPortfolios includes: aPortfolio) ifTrue: [self error: self class cantAddPortfolioErrorDescription].
 	
 	childrenPortfolios add: aPortfolio.
 	
-	parentPortfolio := self. "falta implementar para que pase el test13"! !
+	aPortfolio addParentPortfolio: self.! !
 
 
 !Portfolio methodsFor: 'unclassified' stamp: 'Ch.A 10/16/2021 19:19:34'!
