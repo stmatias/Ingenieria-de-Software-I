@@ -312,39 +312,61 @@ TestCase subclass: #TransferTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/18/2021 20:46:00'!
-test01
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:55:21'!
+test01canNotTransferZeroAsAmount
 	| account1 account2 |
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
-
 	
 		self 
-		should: [Transfer transfer: 0 from: account1 to: account2. ]
+		should: [account1 transfer: 0 to: account2. ]
 		raise: Error - MessageNotUnderstood 
 		withExceptionDo: [ :anError |
 			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/18/2021 20:12:36'!
-test02
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:20'!
+test02canNotTransferANegativeValueAsAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+		
+		self 
+		should: [account1 transfer: -1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:29'!
+test03canNotTransferToSameAccount
+	| account1  |
+	account1 := ReceptiveAccount new.
+		self 
+		should: [account1 transfer:50  to: account1]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToSourceAccountErrorMesssage equals: anError messageText.]! !
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:34'!
+test04aTransferMustAffectBothBalances
 	| account1 account2 |
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
 	
-	Transfer transfer: 5 from: account1 to: account2.
-	
+	account1 transfer:5  to: account2.
+		
 	self assert: -5 equals: account1 balance.
 	self assert: 5 equals: account2 balance.! !
 
-!TransferTest methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/18/2021 21:51:34'!
-test03
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:38'!
+test05canNavigateThroughTransfer
 	| account1 account2 transfer |
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
 	
-	transfer := Transfer transfer: 5 from: account1 to: account2.
+	transfer := account1 transfer:5  to: account2.	
 	
-	self assert: transfer pataDeposit value equals: transfer pataWithdraw value! !
+	self assert: transfer destination equals: transfer source other.
+	self assert: transfer source equals: transfer destination other.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -583,6 +605,12 @@ addedTo: aPortfolio
 	
 	! !
 
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:54:44'!
+transfer: aValue to: aReceptiveAccount
+ 
+	^Transfer transfer: aValue from: self to: aReceptiveAccount.! !
+
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
@@ -693,24 +721,35 @@ for: aValue
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
 Object subclass: #Transfer
-	instanceVariableNames: 'value pataWithdraw pataDeposit'
+	instanceVariableNames: 'value source destination'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/18/2021 21:47:52'!
-initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:35'!
+destination
+
+	^destination! !
+
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:11:05'!
+initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	
 	value := anAmount.
-	pataWithdraw := withdraw.
-	pataDeposit := deposit.! !
+	source := TransferSource for: self.
+	destination :=  TransferDestination for: self.
+	
+	aSourceReceptiveAccount register: source.
+	aDestinationReceptiveAccount register: destination.! !
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/18/2021 21:51:02'!
-pataDeposit
-	^pataDeposit! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:42'!
+source
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'Ch.A 10/18/2021 21:51:51'!
-pataWithdraw
-	^pataWithdraw! !
+	^source! !
+
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:20:39'!
+value
+
+	^value.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -718,14 +757,14 @@ pataWithdraw
 Transfer class
 	instanceVariableNames: ''!
 
-!Transfer class methodsFor: 'instance creation' stamp: 'Ch.A 10/18/2021 21:48:43'!
-transfer: anAmount from: aReceptiveAccount1 to: aReceptiveAccount2
-	| deposit withdraw |
-	anAmount > 0 ifFalse: [self error: self transferCannotBeNull].
-	withdraw := Withdraw register: anAmount on: aReceptiveAccount1.
-	deposit :=Deposit register: anAmount on: aReceptiveAccount2.
+!Transfer class methodsFor: 'instance creation' stamp: 'MS 10/20/2021 16:25:15'!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
 	
-	^self new initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit.
+	anAmount <= 0 ifTrue: [self error: self transferCannotBeNull].
+	(aSourceReceptiveAccount = aDestinationReceptiveAccount) ifTrue: [self error: self cannotTransferToSourceAccountErrorMesssage].
+	
+	
+	^self new initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount .
 ! !
 
 
@@ -733,3 +772,78 @@ transfer: anAmount from: aReceptiveAccount1 to: aReceptiveAccount2
 transferCannotBeNull
 	^ 'Transfer cannot be null'! !
 
+
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:13:25'!
+cannotTransferToSourceAccountErrorMesssage
+	^'An account cannot transfer to himself'.! !
+
+
+!classDefinition: #TransferParts category: 'Portfolio-Solucion'!
+Object subclass: #TransferParts
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:48:13'!
+initializeFor: aTransfer
+
+	transfer := aTransfer ! !
+
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:03:48'!
+other
+	self subclassResponsibility.! !
+
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:48:31'!
+transfer
+
+	^transfer.! !
+
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:17:44'!
+value
+	
+	^transfer value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferParts class' category: 'Portfolio-Solucion'!
+TransferParts class
+	instanceVariableNames: ''!
+
+!TransferParts class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:46:44'!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer! !
+
+
+!classDefinition: #TransferDestination category: 'Portfolio-Solucion'!
+TransferParts subclass: #TransferDestination
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:22:18'!
+affectBalance: aBalance 
+	^aBalance + transfer value.! !
+
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:05:34'!
+other
+	^transfer source.! !
+
+
+!classDefinition: #TransferSource category: 'Portfolio-Solucion'!
+TransferParts subclass: #TransferSource
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:21:24'!
+affectBalance: aBalance 
+	
+	^aBalance - self value.! !
+
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:04:15'!
+other
+	^transfer destination .! !

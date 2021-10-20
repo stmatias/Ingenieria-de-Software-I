@@ -677,3 +677,1395 @@ PASSED!
 PASSED!
 
 ----QUIT----(18 October 2021 21:54:11) CuisUniversity-4913.image priorSource: 18888366!
+
+----STARTUP---- (20 October 2021 13:22:17) as /home/matias/Downloads/linux64/CuisUniversity-4532.image!
+
+
+----End fileIn of /home/matias/Downloads/Inge-TPs/Ingenieria-de-Software-I/18-Portfolio 2/Portfolio-Solucion.st----!
+
+!classRemoval: #Transfer stamp: 'MS 10/20/2021 13:23:58'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value pataWithdraw pataDeposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'MS 10/20/2021 13:23:59'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'MS 10/20/2021 13:23:59'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'MS 10/20/2021 13:24:00'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'MS 10/20/2021 13:24:01'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions tranfers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'MS 10/20/2021 13:24:01'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'MS 10/20/2021 13:24:02'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferTest stamp: 'MS 10/20/2021 13:24:03'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'MS 10/20/2021 13:24:03'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'MS 10/20/2021 13:24:04'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioEntry stamp: 'MS 10/20/2021 13:24:07'!
+Object subclass: #PortfolioEntry
+	instanceVariableNames: 'services'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----End fileIn of /home/matias/Downloads/Inge-TPs/Ingenieria-de-Software-I/18-Portfolio 2/Portfolio-Solucion.st----!
+
+----SNAPSHOT----(20 October 2021 13:24:48) CuisUniversity-4532.image priorSource: 19271615!
+
+----STARTUP---- (20 October 2021 13:27:31) as /home/matias/Downloads/newcuis/linux64/CuisUniversity-4913.image!
+
+
+!testRun: #TransferTest #test01 stamp: 'MS 10/20/2021 13:37:12'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'MS 10/20/2021 13:37:12'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 13:37:12'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 13:37:49' prior: 50935180!
+test01
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		self 
+		should: [Transfer transfer: 0 from: account1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 13:38:12'!
+test01canNotTransferZeroAsAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		self 
+		should: [Transfer transfer: 0 from: account1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!methodRemoval: TransferTest #test01 stamp: 'MS 10/20/2021 13:38:12'!
+test01
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		self 
+		should: [Transfer transfer: 0 from: account1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]!
+!Transfer class methodsFor: 'instance creation' stamp: 'MS 10/20/2021 14:51:52' prior: 50935603!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	| deposit withdraw |
+	anAmount = 0 ifTrue: [self error: self transferCannotBeNull].
+	withdraw := Withdraw register: anAmount on: aSourceReceptiveAccount.
+	deposit :=Deposit register: anAmount on: aDestinationReceptiveAccount.
+	
+	^self new initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit.
+! !
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 14:51:54'!
+PASSED!
+
+!testRun: #TransferTest #test02 stamp: 'MS 10/20/2021 14:51:54'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 14:51:54'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 14:52:13'!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer pataDeposit value equals: transfer pataWithdraw value! !
+
+!methodRemoval: TransferTest #test03 stamp: 'MS 10/20/2021 14:52:13'!
+test03
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer pataDeposit value equals: transfer pataWithdraw value!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 14:52:19'!
+test03
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.! !
+
+!methodRemoval: TransferTest #test02 stamp: 'MS 10/20/2021 14:52:19'!
+test02
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 14:52:37'!
+test01canNotTransferANegativeAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		self 
+		should: [Transfer transfer: -1 from: account1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!testRun: #TransferTest #test01canNotTransferANegativeAmount stamp: 'MS 10/20/2021 14:52:38'!
+FAILURE!
+
+!testRun: #TransferTest #test01canNotTransferANegativeAmount stamp: 'MS 10/20/2021 14:52:56'!
+FAILURE!
+
+!methodRemoval: TransferTest #test01canNotTransferANegativeAmount stamp: 'MS 10/20/2021 14:53:34'!
+test01canNotTransferANegativeAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		self 
+		should: [Transfer transfer: -1 from: account1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 14:53:40'!
+test02
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.! !
+
+!methodRemoval: TransferTest #test03 stamp: 'MS 10/20/2021 14:53:40'!
+test03
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 14:53:45'!
+test03
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer pataDeposit value equals: transfer pataWithdraw value! !
+
+!methodRemoval: TransferTest #test04 stamp: 'MS 10/20/2021 14:53:45'!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer pataDeposit value equals: transfer pataWithdraw value!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:05:42'!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer pataDeposit value equals: transfer pataWithdraw value! !
+
+!methodRemoval: TransferTest #test03 stamp: 'MS 10/20/2021 15:05:42'!
+test03
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer pataDeposit value equals: transfer pataWithdraw value!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:05:51'!
+test03
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.! !
+
+!methodRemoval: TransferTest #test02 stamp: 'MS 10/20/2021 15:05:51'!
+test02
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.!
+!TransferTest methodsFor: 'nil' stamp: 'MS 10/20/2021 15:05:53'!
+test02
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.! !
+
+!methodRemoval: TransferTest #test02 stamp: 'MS 10/20/2021 15:06:07'!
+test02
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:06:09'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:06:12'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:06:12'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:06:12'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:06:48'!
+test02canNotTransferToSameAccount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		self 
+		should: [Transfer transfer: 0 from: account1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:07:04' prior: 50935892!
+test02canNotTransferToSameAccount
+	| account1  |
+	account1 := ReceptiveAccount new.
+	
+		self 
+		should: [Transfer transfer: 10 from: account1 to: account1. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:07:10' prior: 50935906!
+test02canNotTransferToSameAccount
+	| account  |
+	account := ReceptiveAccount new.
+	
+		self 
+		should: [Transfer transfer: 10 from: account to: account. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:07:11'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:09:16' prior: 50935919!
+test02canNotTransferToSameAccount
+	| account  |
+	account := ReceptiveAccount new.
+	
+		self 
+		should: [Transfer transfer: 10 from: account to: account. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToSourceAccountErrorMesssage equals: anError messageText.]! !
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:09:19'!
+FAILURE!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:09:31'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:10:48' prior: 50935935!
+test02canNotTransferToSameAccount
+	| account1 account2  |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Transfer transfer: 10  from:account1  to:account2 .
+		self 
+		should: [Transfer transfer: 10 from: account1 to: account1. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToSourceAccountErrorMesssage equals: anError messageText.]! !
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:10:48'!
+FAILURE!
+!Transfer class methodsFor: 'instance creation' stamp: 'MS 10/20/2021 15:12:23' prior: 50935680!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	| deposit withdraw |
+	anAmount = 0 ifTrue: [self error: self transferCannotBeNull].
+	(aSourceReceptiveAccount = aDestinationReceptiveAccount) ifTrue: [self error: self cannotTransferToSourceAccountErrorMesssage].
+	withdraw := Withdraw register: anAmount on: aSourceReceptiveAccount.
+	deposit :=Deposit register: anAmount on: aDestinationReceptiveAccount.
+	
+	^self new initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit.
+! !
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:12:31'!
+ERROR!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:12:56'!
+cannotTransferToSourceAccountErrorMesssage
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:13:25' prior: 50935998!
+cannotTransferToSourceAccountErrorMesssage
+	^'An account cannot transfer to himself'.! !
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:13:26'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:13:26'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:13:26'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:13:26'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:13:26'!
+PASSED!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:28:46' prior: 50935587!
+pataDeposit
+
+	^pataDeposit! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:28:50' prior: 50935591!
+pataWithdraw
+
+	^pataWithdraw! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'MS 10/20/2021 15:31:15'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value source pataDeposit'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:15' prior: 50936028!
+pataWithdraw
+
+	^source! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:15' prior: 50935579!
+initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit
+	value := anAmount.
+	source := withdraw.
+	pataDeposit := deposit.! !
+
+!classDefinition: #Transfer category: 'Portfolio-Solucion' stamp: 'MS 10/20/2021 15:31:21'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value source destination'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:21' prior: 50936024!
+pataDeposit
+
+	^destination! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:21' prior: 50936044!
+initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit
+	value := anAmount.
+	source := withdraw.
+	destination := deposit.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:35'!
+destination
+
+	^destination! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:35' prior: 50935821!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer destination value equals: transfer pataWithdraw value! !
+
+!methodRemoval: Transfer #pataDeposit stamp: 'MS 10/20/2021 15:31:35'!
+pataDeposit
+
+	^destination!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:31:42'!
+source
+
+	^source! !
+
+!methodRemoval: Transfer #pataWithdraw stamp: 'MS 10/20/2021 15:31:42'!
+pataWithdraw
+
+	^source!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:32:11'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:32:11'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:32:11'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:32:11'!
+ERROR!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:32:11'!
+ERROR!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:32:26' prior: 50936076!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 5 from: account1 to: account2.
+	
+	self assert: transfer destination value equals: transfer source value! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:32:27'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:32:27'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:32:27'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:32:27'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:32:27'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:35:23'!
+test05
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 100 from: account1 to: account2.
+	
+	self assert: transfer source equals: transfer destination other.
+	self assert: transfer destination equals: transfer source other.
+	! !
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:35:24'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:42:14' prior: 50936064!
+initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit
+	
+	value := anAmount.
+	"source := "
+		destination :=  deposit.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:42:24' prior: 50936150!
+initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit
+	
+	value := anAmount.
+	"source := "
+	destination :=  deposit.! !
+
+Object subclass: #TransferParts
+	instanceVariableNames: 'value source destination'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferParts category: 'Portfolio-Solucion' stamp: 'MS 10/20/2021 15:42:32'!
+Object subclass: #TransferParts
+	instanceVariableNames: 'value source destination'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #TransferParts
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferParts category: 'Portfolio-Solucion' stamp: 'MS 10/20/2021 15:42:39'!
+Object subclass: #TransferParts
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TransferParts subclass: #TransferSource
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferSource category: 'Portfolio-Solucion' stamp: 'MS 10/20/2021 15:42:56'!
+TransferParts subclass: #TransferSource
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TransferParts subclass: #TransferDestination
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferDestination category: 'Portfolio-Solucion' stamp: 'MS 10/20/2021 15:42:59'!
+TransferParts subclass: #TransferDestination
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:43:41' prior: 50936158!
+initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit
+	
+	value := anAmount.
+	source := TransferSource for: self.
+	destination :=  TransferDestination for: self.! !
+!TransferParts class methodsFor: 'no messages' stamp: 'MS 10/20/2021 15:46:44'!
+for: aTransfer
+
+	^ self new initializeFor: aTransfer! !
+
+!classDefinition: #TransferParts category: 'Portfolio-Solucion' stamp: 'MS 10/20/2021 15:48:16'!
+Object subclass: #TransferParts
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferParts methodsFor: 'no messages' stamp: 'MS 10/20/2021 15:48:13'!
+initializeFor: aTransfer
+
+	transfer := aTransfer ! !
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:48:31'!
+transfer
+
+	^transfer.! !
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:48:39'!
+ERROR!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:48:39'!
+ERROR!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:51:33' prior: 50936134!
+test05
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 100 from: account1 to: account2.
+	
+	self assert: transfer source equals: transfer destination .
+	self assert: transfer destination equals: transfer source .
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:53:03' prior: 50935653!
+test01canNotTransferZeroAsAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+
+	
+		self 
+		should: [account1 transfer: 0 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:53:06'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:53:16'!
+transfer: aSmallInteger to: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:54:44' prior: 50936281!
+transfer: aValue to: aReceptiveAccount
+ 
+	^Transfer transfer: aValue from: self to: aReceptiveAccount.! !
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:54:47'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:54:47'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:54:47'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:54:47'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:54:47'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:54:47'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:54:48'!
+ERROR!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:54:52'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:54:52'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:54:52'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:54:52'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:54:52'!
+FAILURE!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:54:55'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:55:12'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:55:21' prior: 50936264!
+test01canNotTransferZeroAsAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+		self 
+		should: [account1 transfer: 0 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:55:25'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:55:54' prior: 50935955!
+test02canNotTransferToSameAccount
+	| account1 account2  |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+		self 
+		should: [account1 transfer:50  to: account1]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToSourceAccountErrorMesssage equals: anError messageText.]! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:56:03' prior: 50936349!
+test02canNotTransferToSameAccount
+	| account1  |
+	account1 := ReceptiveAccount new.
+		self 
+		should: [account1 transfer:50  to: account1]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToSourceAccountErrorMesssage equals: anError messageText.]! !
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:56:04'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:56:04'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:56:04'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:56:04'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:56:04'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:56:04'!
+FAILURE!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:56:09'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:56:25' prior: 50935842!
+test03
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	account1 transfer:5  to: account2.
+		
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.! !
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:56:26'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:56:26'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:56:26'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:56:26'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:56:26'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:56:26'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:57:34' prior: 50936110!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination value equals: transfer source value! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:57:35'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:58:17' prior: 50936422!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination transfer equals: transfer source transfer.! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:58:17'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:58:17'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:58:17'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:58:17'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:58:17'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:58:17'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:58:17'!
+FAILURE!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:59:48'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 15:59:48'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 15:59:48'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 15:59:48'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 15:59:48'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:59:48'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 15:59:48'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:03:03' prior: 50936435!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination equals: transfer source other.! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:03:03'!
+ERROR!
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:03:40'!
+other
+	self shouldBeImplemented.! !
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:03:48' prior: 50936495!
+other
+	self subclassResponsibility.! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:03:51'!
+ERROR!
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:04:00' overrides: 50936500!
+other
+	self shouldBeImplemented.! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:04:15' prior: 50936507 overrides: 50936500!
+other
+	^transfer destination .! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:04:17'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:04:17'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:04:17'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 16:04:17'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:04:17'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:04:17'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:04:17'!
+FAILURE!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:04:53'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:04:56'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:04:59'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:04:59'!
+FAILURE!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:05:13' prior: 50936482!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination equals: transfer source other.
+	self assert: transfer source equals: transfer destination other.! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:05:14'!
+ERROR!
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:05:20' overrides: 50936500!
+other
+	self shouldBeImplemented.! !
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:05:34' prior: 50936559 overrides: 50936500!
+other
+	^transfer source.! !
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:05:35'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:05:35'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:05:35'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 16:05:35'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:05:35'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:05:35'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:05:35'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:05:40'!
+FAILURE!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:05:47'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:05:47'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:05:47'!
+PASSED!
+
+!testRun: #TransferTest #test03 stamp: 'MS 10/20/2021 16:05:47'!
+PASSED!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:05:47'!
+PASSED!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:05:47'!
+FAILURE!
+
+!testRun: #TransferTest #test05 stamp: 'MS 10/20/2021 16:05:47'!
+FAILURE!
+
+!testRun: #TransferTest #test04 stamp: 'MS 10/20/2021 16:05:50'!
+PASSED!
+
+!methodRemoval: TransferTest #test05 stamp: 'MS 10/20/2021 16:06:03'!
+test05
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := Transfer transfer: 100 from: account1 to: account2.
+	
+	self assert: transfer source equals: transfer destination .
+	self assert: transfer destination equals: transfer source .
+	!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:06:32'!
+test03aTransferMustAffectBothBalances
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	account1 transfer:5  to: account2.
+		
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.! !
+
+!methodRemoval: TransferTest #test03 stamp: 'MS 10/20/2021 16:06:32'!
+test03
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	account1 transfer:5  to: account2.
+		
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:07:29'!
+test04canNavigateThroughTransfer
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination equals: transfer source other.
+	self assert: transfer source equals: transfer destination other.! !
+
+!methodRemoval: TransferTest #test04 stamp: 'MS 10/20/2021 16:07:29'!
+test04
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination equals: transfer source other.
+	self assert: transfer source equals: transfer destination other.!
+!Transfer class methodsFor: 'instance creation' stamp: 'MS 10/20/2021 16:09:33' prior: 50935975!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	| deposit withdraw |
+	anAmount = 0 ifTrue: [self error: self transferCannotBeNull].
+	(aSourceReceptiveAccount = aDestinationReceptiveAccount) ifTrue: [self error: self cannotTransferToSourceAccountErrorMesssage].
+	
+	
+	^self new initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit.
+! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:09:59'!
+initializeFor: anAmount from: withdraw to: deposit
+	
+	value := anAmount.
+	source := TransferSource for: self.
+	destination :=  TransferDestination for: self.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:09:59' prior: 50936665!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	| deposit withdraw |
+	anAmount = 0 ifTrue: [self error: self transferCannotBeNull].
+	(aSourceReceptiveAccount = aDestinationReceptiveAccount) ifTrue: [self error: self cannotTransferToSourceAccountErrorMesssage].
+	
+	
+	^self new initializeFor: anAmount from: withdraw to: deposit.
+! !
+
+!methodRemoval: Transfer #initializeTransferWith:withPataWithdraw:withPataDeposit: stamp: 'MS 10/20/2021 16:09:59'!
+initializeTransferWith: anAmount withPataWithdraw: withdraw withPataDeposit: deposit
+	
+	value := anAmount.
+	source := TransferSource for: self.
+	destination :=  TransferDestination for: self.!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:10:29' prior: 50936680!
+initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	
+	value := anAmount.
+	source := TransferSource for: self.
+	destination :=  TransferDestination for: self.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:11:05' prior: 50936714!
+initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	
+	value := anAmount.
+	source := TransferSource for: self.
+	destination :=  TransferDestination for: self.
+	
+	aSourceReceptiveAccount register: source.
+	aDestinationReceptiveAccount register: destination.! !
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:11:15'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:11:15'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:11:15'!
+ERROR!
+
+!testRun: #TransferTest #test04canNavigateThroughTransfer stamp: 'MS 10/20/2021 16:11:15'!
+ERROR!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:14:25'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:14:27'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:14:28'!
+ERROR!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:14:28'!
+ERROR!
+!Transfer class methodsFor: 'instance creation' stamp: 'MS 10/20/2021 16:15:31' prior: 50936689!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	
+	anAmount = 0 ifTrue: [self error: self transferCannotBeNull].
+	(aSourceReceptiveAccount = aDestinationReceptiveAccount) ifTrue: [self error: self cannotTransferToSourceAccountErrorMesssage].
+	
+	
+	^self new initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount .
+! !
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:15:46'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:15:46'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:15:46'!
+ERROR!
+
+!testRun: #TransferTest #test04canNavigateThroughTransfer stamp: 'MS 10/20/2021 16:15:46'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:15:46'!
+ERROR!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:15:57'!
+PASSED!
+
+!testRun: #TransferTest #test04canNavigateThroughTransfer stamp: 'MS 10/20/2021 16:16:00'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:16:02'!
+ERROR!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:16:02'!
+ERROR!
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:16:18'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:16:48' prior: 50936806!
+affectBalance: aBalance 
+	
+	^aBalance + self value.! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:17:01' prior: 50936811!
+affectBalance: aBalance 
+	
+	^aBalance + transfer value.! !
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:17:03'!
+ERROR!
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:17:37' overrides: 16881508!
+value
+	
+	transfer value.! !
+!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:17:44' prior: 50936825 overrides: 16881508!
+value
+	
+	^transfer value.! !
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:17:48'!
+ERROR!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:17:48'!
+ERROR!
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:18:05' prior: 50936816!
+affectBalance: aBalance 
+	
+	^aBalance + self value.! !
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:18:07'!
+ERROR!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:18:47'!
+ERROR!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:20:39' overrides: 16881508!
+value
+
+	^value.! !
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:20:42'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:20:42'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:20:42'!
+FAILURE!
+
+!testRun: #TransferTest #test04canNavigateThroughTransfer stamp: 'MS 10/20/2021 16:20:42'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:20:42'!
+FAILURE!
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:21:24' prior: 50936841!
+affectBalance: aBalance 
+	
+	^aBalance - self value.! !
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:21:28'!
+ERROR!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:21:28'!
+ERROR!
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:21:38'!
+affectBalance: aSmallInteger 
+	self shouldBeImplemented.! !
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:21:53' prior: 50936884!
+affectBalance: aBalance 
+	aBalance + transfer value.! !
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:21:54'!
+FAILURE!
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:22:18' prior: 50936890!
+affectBalance: aBalance 
+	^aBalance + transfer value.! !
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:22:19'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:22:19'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:22:19'!
+PASSED!
+
+!testRun: #TransferTest #test04canNavigateThroughTransfer stamp: 'MS 10/20/2021 16:22:19'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:23:57'!
+test02canNotTransferANegativeValueAsAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+		self 
+		should: [account1 transfer: -1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'MS 10/20/2021 16:23:59'!
+FAILURE!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'MS 10/20/2021 16:24:23'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:24:42' prior: 50936916!
+test02canNotTransferANegativeValueAsAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	account1 transfer: 50  to: account2.
+	
+		self 
+		should: [account1 transfer: -1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'MS 10/20/2021 16:24:43'!
+FAILURE!
+!Transfer class methodsFor: 'instance creation' stamp: 'MS 10/20/2021 16:25:07' prior: 50936762!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	
+	anAmount < 0 ifTrue: [self error: self transferCannotBeNull].
+	(aSourceReceptiveAccount = aDestinationReceptiveAccount) ifTrue: [self error: self cannotTransferToSourceAccountErrorMesssage].
+	
+	
+	^self new initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount .
+! !
+!Transfer class methodsFor: 'instance creation' stamp: 'MS 10/20/2021 16:25:15' prior: 50936956!
+transfer: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
+	
+	anAmount <= 0 ifTrue: [self error: self transferCannotBeNull].
+	(aSourceReceptiveAccount = aDestinationReceptiveAccount) ifTrue: [self error: self cannotTransferToSourceAccountErrorMesssage].
+	
+	
+	^self new initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount .
+! !
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'MS 10/20/2021 16:25:17'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/20/2021 16:25:17'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'MS 10/20/2021 16:25:17'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:25:17'!
+PASSED!
+
+!testRun: #TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:25:17'!
+PASSED!
+
+!testRun: #TransferTest #test04canNavigateThroughTransfer stamp: 'MS 10/20/2021 16:25:17'!
+PASSED!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:20' prior: 50936937!
+test02canNotTransferANegativeValueAsAmount
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+		
+		self 
+		should: [account1 transfer: -1 to: account2. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer transferCannotBeNull equals: anError messageText.]! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:29'!
+test03canNotTransferToSameAccount
+	| account1  |
+	account1 := ReceptiveAccount new.
+		self 
+		should: [account1 transfer:50  to: account1]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToSourceAccountErrorMesssage equals: anError messageText.]! !
+
+!methodRemoval: TransferTest #test02canNotTransferToSameAccount stamp: 'MS 10/20/2021 16:25:29'!
+test02canNotTransferToSameAccount
+	| account1  |
+	account1 := ReceptiveAccount new.
+		self 
+		should: [account1 transfer:50  to: account1]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToSourceAccountErrorMesssage equals: anError messageText.]!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:34'!
+test04aTransferMustAffectBothBalances
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	account1 transfer:5  to: account2.
+		
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.! !
+
+!methodRemoval: TransferTest #test03aTransferMustAffectBothBalances stamp: 'MS 10/20/2021 16:25:34'!
+test03aTransferMustAffectBothBalances
+	| account1 account2 |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	account1 transfer:5  to: account2.
+		
+	self assert: -5 equals: account1 balance.
+	self assert: 5 equals: account2 balance.!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:25:38'!
+test05canNavigateThroughTransfer
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination equals: transfer source other.
+	self assert: transfer source equals: transfer destination other.! !
+
+!methodRemoval: TransferTest #test04canNavigateThroughTransfer stamp: 'MS 10/20/2021 16:25:38'!
+test04canNavigateThroughTransfer
+	| account1 account2 transfer |
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	transfer := account1 transfer:5  to: account2.	
+	
+	self assert: transfer destination equals: transfer source other.
+	self assert: transfer source equals: transfer destination other.!
+
+----QUIT----(20 October 2021 16:38:59) CuisUniversity-4913.image priorSource: 19327210!
