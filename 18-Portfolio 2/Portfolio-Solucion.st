@@ -305,6 +305,83 @@ test07AccountKnowsItsTransactions
 ! !
 
 
+!classDefinition: #ReportTest category: 'Portfolio-Solucion'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:17:32'!
+test01
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: account accountSummary.
+	! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:23:32'!
+test02
+
+	|account|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+		
+	self assert: (OrderedCollection with:'Deposito por 100.' with: 'Balance = 100') equals: account accountSummary.
+	! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:23:54'!
+test03
+
+	|account|
+	
+	account := ReceptiveAccount new.
+	Withdraw register:100 on:account .
+		
+	self assert: (OrderedCollection with:'Extraccion por 100.' with: 'Balance = -100') equals: account accountSummary.
+	! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:25:43'!
+test04
+
+	|sourceAccount destinationAccount |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+		
+	self assert: (OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100') equals: sourceAccount accountSummary.
+	! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:27:10'!
+test05
+
+	|sourceAccount destinationAccount |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+		
+	self assert: (OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100') equals: destinationAccount accountSummary.
+	! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:29:03'!
+test06
+
+	|sourceAccount destinationAccount |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 100 to: destinationAccount .
+		
+	self assert: (OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100') equals: destinationAccount accountSummary.
+	! !
+
+
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferTest
 	instanceVariableNames: ''
@@ -606,6 +683,19 @@ addedTo: aPortfolio
 	! !
 
 
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:28:02'!
+accountSummary
+	|accountSummary |
+	accountSummary := OrderedCollection new.
+	transactions do: [:aTransaction |
+		(aTransaction isKindOf: Deposit) ifTrue: [accountSummary add: 'Deposito por ', aTransaction value asString , '.'].
+		(aTransaction isKindOf: Withdraw) ifTrue: [accountSummary add: 'Extraccion por ', aTransaction value asString , '.'].
+		(aTransaction isKindOf: TransferSource ) ifTrue: [accountSummary add: 'Salida por transferencia de ', aTransaction value asString , '.'].
+		(aTransaction isKindOf: TransferDestination ) ifTrue: [accountSummary add: 'Entrada por transferencia de ', aTransaction value asString , '.'].
+	].
+	accountSummary add: 'Balance = ', self balance asString.
+	^accountSummary.! !
+
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:54:44'!
 transfer: aValue to: aReceptiveAccount
  
@@ -847,3 +937,11 @@ affectBalance: aBalance
 !TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:04:15'!
 other
 	^transfer destination .! !
+
+
+!classDefinition: #TypeOfReports category: 'Portfolio-Solucion'!
+Object subclass: #TypeOfReports
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
