@@ -3115,3 +3115,1183 @@ Smalltalk renameClassNamed: #TypeOfTransaccions as: #TypeOfReports!
 ----SNAPSHOT----(21 October 2021 21:50:41) CuisUniversity-4913.image priorSource: 19374383!
 
 ----QUIT----(21 October 2021 21:51:04) CuisUniversity-4913.image priorSource: 19384605!
+
+----STARTUP---- (22 October 2021 15:50:51) as /home/matias/Downloads/newcuis/linux64/CuisUniversity-4913.image!
+
+
+!classRenamed: #TypeOfReports as: #AccountSummar stamp: 'MS 10/22/2021 15:51:49'!
+Smalltalk renameClassNamed: #TypeOfReports as: #AccountSummar!
+
+!classRenamed: #AccountSummar as: #AccountSummary stamp: 'MS 10/22/2021 15:51:55'!
+Smalltalk renameClassNamed: #AccountSummar as: #AccountSummary!
+
+!classRemoval: #AccountSummary stamp: 'MS 10/22/2021 16:18:10'!
+Object subclass: #AccountSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'MS 10/22/2021 16:19:48'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Report subclass: #AccountSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'MS 10/22/2021 16:21:43'!
+Report subclass: #AccountSummary
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummary methodsFor: 'no messages' stamp: 'MS 10/22/2021 16:25:10'!
+for: anAccount
+
+	^self new initializeFor: anAccount.! !
+!AccountSummary class methodsFor: 'no messages' stamp: 'MS 10/22/2021 16:25:18'!
+for: anAccount
+
+	^self new initializeFor: anAccount.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:25:31'!
+initializeFor: anAccount.! !
+
+!methodRemoval: AccountSummary #for: stamp: 'MS 10/22/2021 16:25:34'!
+for: anAccount
+
+	^self new initializeFor: anAccount.!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'MS 10/22/2021 16:26:48'!
+Report subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:26:47' prior: 50937477!
+initializeFor: anAccount
+
+	report := OrderedCollection new.
+	anAccount accountSummary: self.
+	report add: 'Balance = ', anAccount balance asString.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:28:13'!
+accountSummary: aReport
+
+
+	transactions do: [:aTransaction | aTransaction affectReport: aReport.].! !
+!Deposit methodsFor: 'balance' stamp: 'MS 10/22/2021 16:29:48'!
+affectReport: aReport
+	
+	^aReport addFromDeposit: value.! !
+!Withdraw methodsFor: 'balance' stamp: 'MS 10/22/2021 16:30:08'!
+affectReport: aReport
+	
+	^aReport addFromWithdraw: value.! !
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:30:51'!
+affectReport: aReport
+	
+	^aReport addFromTransferDestination: transfer value ! !
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:02'!
+affectReport: aReport
+	
+	^aReport addFromTransferSource: transfer value ! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:31'!
+addFromDeposit: anAmount
+	
+	^report add: 'Depósito por ', anAmount asString, '.'.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:45'!
+addFromDepositTransfer: anAmount
+	
+	^report add: 'Entrada por transferencia de ', anAmount value asString, '.'.
+	! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:51' prior: 50937527!
+addFromDeposit: anAmount
+	
+	^report add: 'Deposito por ', anAmount asString, '.'.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:10'!
+addFromWithdraw: anAmount
+	
+	^report add: 'Extracción por ', anAmount asString, '.'.
+	! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:28' prior: 50937540!
+addFromDeposit: anAmount
+	
+	^report add: 'Depósito por ', anAmount asString, '.'.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:55' prior: 50937533!
+addFromDepositTransfer: anAmount
+	
+	^report add: 'Entrada por transferencia de ', anAmount value asString, '.'.
+	! !
+
+!methodRemoval: AccountSummary #addFromDepositTransfer: stamp: 'MS 10/22/2021 16:32:57'!
+addFromDepositTransfer: anAmount
+	
+	^report add: 'Entrada por transferencia de ', anAmount value asString, '.'.
+	!
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:33:57'!
+addFromTransferDestination: anAmount
+
+	^report add: 'Entrada por transferencia de ', anAmount value asString, '.'
+
+! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:34:12'!
+addFromTransferSource: anAmount
+
+	^report add: 'Salida por transferencia de ', anAmount value asString, '.'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:34:58' prior: 50937128!
+test01
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummary from: account).! !
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:34:59'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:35:05' prior: 50937585!
+test01
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummary for: account).! !
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:35:06'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:36:07' prior: 50937595!
+test01
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummary for: account report).! !
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:36:08'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:36:42' prior: 50937605!
+test01
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (AccountSummary for: account).! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:36:49' prior: 50937616!
+test01
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:36:50'!
+ERROR!
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:37:02'!
+report
+
+	^report	! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:37:04' prior: 50937638!
+report
+
+	^report.	! !
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:37:04'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:37:04'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:37:04'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:37:04'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:37:04'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:37:04'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:37:10'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:37:10'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:37:10'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:37:10'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:37:10'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:37:10'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:37:43' prior: 50937195!
+test02
+
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+		
+	self assert: (OrderedCollection with:'Deposito por 100.' with: 'Balance = 100') equals: account accountSummary.
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:38:29' prior: 50937673!
+test02
+
+	|account accountSummary expectiveReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectiveReport := OrderedCollection with:'Deposito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectiveReport equals: accountSummary report.
+	! !
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:38:30'!
+FAILURE!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:38:37'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:39:06' prior: 50937685!
+test02
+
+	|account accountSummary expectiveReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectiveReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectiveReport equals: accountSummary report.
+	! !
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:39:07'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:39:07'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:39:07'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:39:07'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:39:07'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:39:07'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:39:07'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:41:39' prior: 50937211!
+test03
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Withdraw register:100 on:account.
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: accountSummary balance.
+	! !
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:41:40'!
+ERROR!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:41:46' prior: 50937732!
+test03
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Withdraw register:100 on:account.
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:41:46'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:41:46'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:41:46'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:41:46'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:41:46'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:41:46'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:41:46'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:41:54' prior: 50937703!
+test02
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:42:40' prior: 50937249!
+test04
+
+	|sourceAccount destinationAccount summarySourceAccount expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+		
+	self assert: (OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100') equals: sourceAccount accountSummary.
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:43:43' prior: 50937790!
+test04
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report.
+	! !
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:43:44'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:43:44'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:43:44'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:43:44'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:43:44'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:43:44'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:43:44'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:45:51' prior: 50937297!
+test05
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	! !
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:45:51'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:45:51'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:45:51'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:45:51'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:45:51'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:45:51'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:45:51'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:46:48' prior: 50937371!
+test06
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 100 to: destinationAccount .
+		
+	self assert: (OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100') equals: destinationAccount accountSummary.
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:47:36' prior: 50937872!
+test06
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: destinationAccountSummary report .
+	! !
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:47:37'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 16:47:37'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 16:47:37'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 16:47:37'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 16:47:37'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 16:47:37'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 16:47:37'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:49:31'!
+test07
+	|portfolio accountSummary expectedReport|
+	
+	portfolio := Portfolio new.
+	accountSummary := AccountSummary for: portfolio.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:50:07' prior: 50937926!
+test07
+	|portfolio accountSummary expectedReport|
+	
+	portfolio := Portfolio new.
+	accountSummary := AccountSummary for: portfolio.
+	
+	expectedReport := OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: accountSummary report.! !
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 16:50:10'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:09:50'!
+accountSummary: anAccountSummary 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:09:54' prior: 50937949!
+accountSummary: anAccountSummary 
+	! !
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 17:09:54'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:11:20'!
+test08
+	|portfolio account accountSummary expectedReport|
+	
+	portfolio := Portfolio new.
+	account := ReceptiveAccount new.
+	Deposit register:100  on: account.
+	accountSummary := AccountSummary for: portfolio.
+	
+	expectedReport := OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: accountSummary report.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:12:50' prior: 50937976!
+test08
+	|portfolio account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new. 
+	
+	portfolio := Portfolio with: account .
+	accountSummary := AccountSummary for: portfolio.
+	
+	expectedReport := OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: accountSummary report.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:15:00' prior: 50937990!
+test08
+	|portfolio sourceAccount  accountSummary expectedReport|
+		
+	sourceAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+	portfolio := Portfolio with: sourceAccount.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:15:20' prior: 50938003!
+test08
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:16:15' prior: 50937890!
+test06
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection 
+		with:'Entrada por transferencia de 100.' 
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: destinationAccountSummary report .
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:16:33' prior: 50938038!
+test06
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: destinationAccountSummary report .
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:16:57' prior: 50938059!
+test06
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: destinationAccountSummary report .
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:18:16' prior: 50938080!
+test06
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: destinationAccountSummary report .
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:18:39' prior: 50938102!
+test06
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: destinationAccountSummary report .
+	! !
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:18:40'!
+FAILURE!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:18:45'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:19:02' prior: 50938127!
+test06
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	sourceAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:19:10' prior: 50938157!
+test06
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	sourceAccountSummary := AccountSummary for: sourceAccount .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .
+	! !
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 17:19:11'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:19:11'!
+FAILURE!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:19:11'!
+FAILURE!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 17:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:19:26'!
+FAILURE!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:19:26'!
+FAILURE!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:19:40'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:19:57'!
+FAILURE!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:19:57'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:20:13' prior: 50937954!
+accountSummary: anAccountSummary 
+
+	^12.
+	! !
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:20:27'!
+FAILURE!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:20:27'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:22:24' prior: 50938259!
+accountSummary: aReport 
+
+	accounts do: [:anAccount | anAccount accountSummary: aReport .].
+	^aReport.
+	! !
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:22:26'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:23:07' prior: 50938021!
+test08
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection with:'Dep' with: 'Balance = 100'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:23:48' prior: 50938277!
+test08
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection 
+		with:'Depósito por 100.' 
+		with: 'Extracción por 50'
+		with: 'Balance = 50'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:23:49'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:24:17' prior: 50938293!
+test08
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection 
+		with:'Depósito por 100.' 
+		with: 'Extracción por 50.'
+		with: 'Balance = 50'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:24:27'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:30:36'!
+test09
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection 
+		with:'Depósito por 100.' 
+		with: 'Extracción por 50.'
+		with: 'Balance = 50'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:30:51' prior: 50938350!
+test09
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	sourceAccountSummary := AccountSummary for: sourceAccount .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:32:45' prior: 50938367!
+test09
+	|portfolio sourceAccount destinationAccount sourceAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	portfolio := Portfolio with: sourceAccount.
+	
+	sourceAccountSummary := AccountSummary for: sourceAccount .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:32:52' prior: 50938392!
+test09
+	|portfolio account1 destinationAccount sourceAccountSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	Withdraw register: 50 on: account1.
+	account1 transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	
+	sourceAccountSummary := AccountSummary for: account1 .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:33:16' prior: 50938419!
+test09
+	|portfolio account1 account2 sourceAccountSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	Withdraw register: 50 on: account1.
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	
+	sourceAccountSummary := AccountSummary for: account1 .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:33:28' prior: 50938445!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	Withdraw register: 50 on: account1.
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	
+	portfolioSummary := AccountSummary for: account1 .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:33:44' prior: 50938469!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	Withdraw register: 50 on: account1.
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:35:18' prior: 50938493!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	Withdraw register: 50 on: account1.
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with:'Entrada por transferencia de 20.'
+		with:'Salida por transferencia de 30.' 
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:35:20' prior: 50938518!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	Withdraw register: 50 on: account1.
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with:'Entrada por transferencia de 20.'
+		with:'Salida por transferencia de 30.' 
+		with: 'Balance = 1000'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/22/2021 17:35:21'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:35:27' prior: 50938545!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	Withdraw register: 50 on: account1.
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with:'Entrada por transferencia de 20.'
+		with:'Salida por transferencia de 30.' 
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/22/2021 17:35:27'!
+FAILURE!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/22/2021 17:35:47'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:35:53' prior: 50938574!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with:'Entrada por transferencia de 20.'
+		with:'Salida por transferencia de 30.' 
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/22/2021 17:35:55'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/22/2021 17:38:05'!
+PASSED!
+
+----QUIT----(22 October 2021 17:38:14) CuisUniversity-4913.image priorSource: 19384698!

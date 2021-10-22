@@ -312,74 +312,140 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:17:32'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:36:49'!
 test01
-	|account|
+	|account accountSummary|
 	
 	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
 	
-	self assert: (OrderedCollection with: 'Balance = 0') equals: account accountSummary.
-	! !
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:23:32'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:41:54'!
 test02
 
-	|account|
+	|account accountSummary expectedReport|
 	
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
 		
-	self assert: (OrderedCollection with:'Deposito por 100.' with: 'Balance = 100') equals: account accountSummary.
+	self assert: expectedReport equals: accountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:23:54'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:41:46'!
 test03
 
-	|account|
+	|account accountSummary expectedReport|
 	
 	account := ReceptiveAccount new.
-	Withdraw register:100 on:account .
+	Withdraw register:100 on:account.
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
 		
-	self assert: (OrderedCollection with:'Extraccion por 100.' with: 'Balance = -100') equals: account accountSummary.
+	self assert: expectedReport equals: accountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:25:43'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:43:43'!
 test04
 
-	|sourceAccount destinationAccount |
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
 	
 	sourceAccount := ReceptiveAccount new.
 	destinationAccount := ReceptiveAccount new.
 	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
 		
-	self assert: (OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100') equals: sourceAccount accountSummary.
+	self assert: expectedReport equals: sourceAccountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:27:10'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:45:51'!
 test05
 
-	|sourceAccount destinationAccount |
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
 	
 	sourceAccount := ReceptiveAccount new.
 	destinationAccount := ReceptiveAccount new.
 	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
 		
-	self assert: (OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100') equals: destinationAccount accountSummary.
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:29:03'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:19:10'!
 test06
 
-	|sourceAccount destinationAccount |
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport |
 	
 	sourceAccount := ReceptiveAccount new.
 	destinationAccount := ReceptiveAccount new.
 	Deposit register: 100  on: sourceAccount .
 	Withdraw register: 50 on: sourceAccount.
-	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	sourceAccountSummary := AccountSummary for: sourceAccount .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
 		
-	self assert: (OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100') equals: destinationAccount accountSummary.
+	self assert: expectedReport equals: sourceAccountSummary report .
 	! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:50:07'!
+test07
+	|portfolio accountSummary expectedReport|
+	
+	portfolio := Portfolio new.
+	accountSummary := AccountSummary for: portfolio.
+	
+	expectedReport := OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: accountSummary report.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:24:17'!
+test08
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection 
+		with:'Depósito por 100.' 
+		with: 'Extracción por 50.'
+		with: 'Balance = 50'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:35:53'!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with:'Entrada por transferencia de 20.'
+		with:'Salida por transferencia de 30.' 
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
@@ -598,6 +664,14 @@ signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:22:24'!
+accountSummary: aReport 
+
+	accounts do: [:anAccount | anAccount accountSummary: aReport .].
+	^aReport.
+	! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -696,6 +770,12 @@ accountSummary
 	accountSummary add: 'Balance = ', self balance asString.
 	^accountSummary.! !
 
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:28:13'!
+accountSummary: aReport
+
+
+	transactions do: [:aTransaction | aTransaction affectReport: aReport.].! !
+
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:54:44'!
 transfer: aValue to: aReceptiveAccount
  
@@ -761,6 +841,11 @@ affectBalance: aBalance
 
 	^aBalance + value ! !
 
+!Deposit methodsFor: 'balance' stamp: 'MS 10/22/2021 16:29:48'!
+affectReport: aReport
+	
+	^aReport addFromDeposit: value.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
@@ -797,6 +882,11 @@ affectBalance: aBalance
 
 	^aBalance - value! !
 
+!Withdraw methodsFor: 'balance' stamp: 'MS 10/22/2021 16:30:08'!
+affectReport: aReport
+	
+	^aReport addFromWithdraw: value.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
@@ -807,6 +897,69 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Report category: 'Portfolio-Solucion'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
+Report subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:28'!
+addFromDeposit: anAmount
+	
+	^report add: 'Depósito por ', anAmount asString, '.'.! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:33:57'!
+addFromTransferDestination: anAmount
+
+	^report add: 'Entrada por transferencia de ', anAmount value asString, '.'
+
+! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:34:12'!
+addFromTransferSource: anAmount
+
+	^report add: 'Salida por transferencia de ', anAmount value asString, '.'.
+! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:10'!
+addFromWithdraw: anAmount
+	
+	^report add: 'Extracción por ', anAmount asString, '.'.
+	! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:26:47'!
+initializeFor: anAccount
+
+	report := OrderedCollection new.
+	anAccount accountSummary: self.
+	report add: 'Balance = ', anAccount balance asString.! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:37:04'!
+report
+
+	^report.	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
+AccountSummary class
+	instanceVariableNames: ''!
+
+!AccountSummary class methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:25:18'!
+for: anAccount
+
+	^self new initializeFor: anAccount.! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
@@ -917,6 +1070,11 @@ TransferParts subclass: #TransferDestination
 affectBalance: aBalance 
 	^aBalance + transfer value.! !
 
+!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:30:51'!
+affectReport: aReport
+	
+	^aReport addFromTransferDestination: transfer value ! !
+
 !TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:05:34'!
 other
 	^transfer source.! !
@@ -934,14 +1092,11 @@ affectBalance: aBalance
 	
 	^aBalance - self value.! !
 
+!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:02'!
+affectReport: aReport
+	
+	^aReport addFromTransferSource: transfer value ! !
+
 !TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:04:15'!
 other
 	^transfer destination .! !
-
-
-!classDefinition: #TypeOfReports category: 'Portfolio-Solucion'!
-Object subclass: #TypeOfReports
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
