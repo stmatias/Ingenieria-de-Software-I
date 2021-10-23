@@ -11688,3 +11688,1204 @@ PASSED!
 
 !testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 15:18:32'!
 PASSED!
+
+----STARTUP---- (23 October 2021 15:49:00) as /home/alex/Downloads/linux64-Ejercitacion/CuisUniversity-4913.image!
+
+
+!classRemoval: #ReceptiveAccount stamp: 'AC 10/23/2021 15:49:07'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Portfolio stamp: 'AC 10/23/2021 15:49:07'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'accounts childrenPortfolios parentPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Withdraw stamp: 'AC 10/23/2021 15:49:08'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #Deposit stamp: 'AC 10/23/2021 15:49:08'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #AccountTransaction stamp: 'AC 10/23/2021 15:49:08'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'AC 10/23/2021 15:49:08'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classRemoval: #PortfolioTest stamp: 'AC 10/23/2021 15:49:08'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+----End fileIn of /home/alex/Downloads/linux64-Ejercitacion/Portfolio-Solucion.st----!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 15:50:24'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!methodRemoval: Deposit class #for: stamp: 'AC 10/23/2021 15:50:27'!
+for: aValue
+
+	^ self new initializeFor: aValue !
+
+!methodRemoval: Withdraw class #for: stamp: 'AC 10/23/2021 15:50:30'!
+for: aValue
+
+	^ self new initializeFor: aValue !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithNoTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+
+!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 15:50:32'!
+PASSED!
+!TransferNet methodsFor: 'initialization' stamp: 'AC 10/23/2021 15:53:28' prior: 50919358 overrides: 50919259!
+addFromTransferSource: aTransferFromSource
+
+	transferNet := transferNet - aTransferFromSource value.! !
+!TransferNet methodsFor: 'initialization' stamp: 'AC 10/23/2021 15:53:34' prior: 50919351 overrides: 50919254!
+addFromTransferDestination: anTransferToDestination
+
+	transferNet := transferNet + anTransferToDestination value.! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithNoTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+
+!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 15:53:39'!
+PASSED!
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:53:51' prior: 50919282 overrides: 50919249!
+addFromDeposit: aDeposit
+	
+	report add: 'Depósito por ', aDeposit value asString, '.'.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:53:56' prior: 50919289 overrides: 50919254!
+addFromTransferDestination: anAmount
+
+	report add: 'Entrada por transferencia de ', anAmount value asString, '.'
+
+! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:54:00' prior: 50919296 overrides: 50919259!
+addFromTransferSource: anAmount
+
+	report add: 'Salida por transferencia de ', anAmount value asString, '.'.
+! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:54:03' prior: 50919303 overrides: 50919264!
+addFromWithdraw: aWithdraw
+	
+	report add: 'Extracción por ', aWithdraw value asString, '.'.
+	! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:56:19'!
+test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 15:56:31'!
+test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:56:37'!
+test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test02 stamp: 'AC 10/23/2021 15:56:37'!
+test02
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:57:45'!
+test01anAccountWithNoTransactionsReturnsAccountSummaryWithCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
+
+!methodRemoval: ReportTest #test01anAccountWithNoTransactionsReturnsAccountSummaryWithCeroBalance stamp: 'AC 10/23/2021 15:57:55'!
+test01anAccountWithNoTransactionsReturnsAccountSummaryWithCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:58:18'!
+test01anAccountWithNoTransactionsReturnsAccountSummaryWithCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
+
+!methodRemoval: ReportTest #test01anAccountWithNoTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 15:58:18'!
+test01anAccountWithNoTransactionsReturnsCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:58:56'!
+test02anAccountWithOneTransactionReturnsAccountSummaryWithThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 15:58:56'!
+test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:00:07'!
+test02anAccountWithOneDepositReturnsAccountSummaryWithThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test02anAccountWithOneTransactionReturnsAccountSummaryWithThatTransactionAndItsBalance stamp: 'AC 10/23/2021 16:00:07'!
+test02anAccountWithOneTransactionReturnsAccountSummaryWithThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:00:50'!
+test03anAccountWithOneWithdrawReturnsAccountSummaryWithThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Withdraw register:100 on:account.
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test03 stamp: 'AC 10/23/2021 16:00:50'!
+test03
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Withdraw register:100 on:account.
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:03:03'!
+test04anSourceAccountWithOneTransferReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test04 stamp: 'AC 10/23/2021 16:03:03'!
+test04
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:03:34'!
+test05anDestinationAccountTransferReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test05 stamp: 'AC 10/23/2021 16:03:34'!
+test05
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:04:08'!
+test05anDestinationAccountWithOneTransferOutReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test05anDestinationAccountTransferReturnsAccountSummaryWithThatTransferAndItsBalance stamp: 'AC 10/23/2021 16:04:08'!
+test05anDestinationAccountTransferReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:04:26'!
+test04anSourceAccountWithOneTransferOutReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test04anSourceAccountWithOneTransferReturnsAccountSummaryWithThatTransferAndItsBalance stamp: 'AC 10/23/2021 16:04:26'!
+test04anSourceAccountWithOneTransferReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:04:36'!
+test05anDestinationAccountWithOneTransferInReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test05anDestinationAccountWithOneTransferOutReturnsAccountSummaryWithThatTransferAndItsBalance stamp: 'AC 10/23/2021 16:04:36'!
+test05anDestinationAccountWithOneTransferOutReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:05:47'!
+test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalance
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	sourceAccountSummary := AccountSummary for: sourceAccount .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .
+	! !
+
+!methodRemoval: ReportTest #test06 stamp: 'AC 10/23/2021 16:05:47'!
+test06
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	Deposit register: 100  on: sourceAccount .
+	Withdraw register: 50 on: sourceAccount.
+	sourceAccount transfer: 20 to: destinationAccount .
+	destinationAccount transfer: 30 to: sourceAccount.
+	sourceAccountSummary := AccountSummary for: sourceAccount .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with: 'Extracción por 50.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with: 'Balance = 60'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report .
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:06:35'!
+test07anEmptyPortfolioReturnsCeroBalance
+	|portfolio accountSummary expectedReport|
+	
+	portfolio := Portfolio new.
+	accountSummary := AccountSummary for: portfolio.
+	
+	expectedReport := OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: accountSummary report.! !
+
+!methodRemoval: ReportTest #test07 stamp: 'AC 10/23/2021 16:06:35'!
+test07
+	|portfolio accountSummary expectedReport|
+	
+	portfolio := Portfolio new.
+	accountSummary := AccountSummary for: portfolio.
+	
+	expectedReport := OrderedCollection with: 'Balance = 0'.
+	
+	self assert: expectedReport equals: accountSummary report.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:06:45'!
+test01anAccountWithNoTransactionsReturnsCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
+
+!methodRemoval: ReportTest #test01anAccountWithNoTransactionsReturnsAccountSummaryWithCeroBalance stamp: 'AC 10/23/2021 16:06:45'!
+test01anAccountWithNoTransactionsReturnsAccountSummaryWithCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:06:58'!
+test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test02anAccountWithOneDepositReturnsAccountSummaryWithThatTransactionAndItsBalance stamp: 'AC 10/23/2021 16:06:58'!
+test02anAccountWithOneDepositReturnsAccountSummaryWithThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Deposit register:100 on:account .
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:07:05'!
+test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Withdraw register:100 on:account.
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test03anAccountWithOneWithdrawReturnsAccountSummaryWithThatTransactionAndItsBalance stamp: 'AC 10/23/2021 16:07:05'!
+test03anAccountWithOneWithdrawReturnsAccountSummaryWithThatTransactionAndItsBalance
+
+	|account accountSummary expectedReport|
+	
+	account := ReceptiveAccount new.
+	Withdraw register:100 on:account.
+	accountSummary := AccountSummary for: account.
+	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: accountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:07:15'!
+test04anSourceAccountWithOneTransferOutReturnsThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test04anSourceAccountWithOneTransferOutReturnsAccountSummaryWithThatTransferAndItsBalance stamp: 'AC 10/23/2021 16:07:15'!
+test04anSourceAccountWithOneTransferOutReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	sourceAccountSummary := AccountSummary for: sourceAccount.
+	expectedReport := OrderedCollection with:'Salida por transferencia de 100.' with: 'Balance = -100'.
+		
+	self assert: expectedReport equals: sourceAccountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:07:26'!
+test05anDestinationAccountWithOneTransferInReturnsThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	! !
+
+!methodRemoval: ReportTest #test05anDestinationAccountWithOneTransferInReturnsAccountSummaryWithThatTransferAndItsBalance stamp: 'AC 10/23/2021 16:07:26'!
+test05anDestinationAccountWithOneTransferInReturnsAccountSummaryWithThatTransferAndItsBalance
+
+	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
+	
+	sourceAccount := ReceptiveAccount new.
+	destinationAccount := ReceptiveAccount new.
+	sourceAccount transfer: 100 to: destinationAccount .
+	destinationAccountSummary := AccountSummary for: destinationAccount.
+	expectedReport := OrderedCollection with:'Entrada por transferencia de 100.' with: 'Balance = 100'.
+		
+	self assert: (expectedReport ) equals: destinationAccountSummary report.
+	!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:09:27'!
+test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection 
+		with:'Depósito por 100.' 
+		with: 'Extracción por 50.'
+		with: 'Balance = 50'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .! !
+
+!methodRemoval: ReportTest #test08 stamp: 'AC 10/23/2021 16:09:27'!
+test08
+	|portfolio account  accountSummary expectedReport|
+		
+	account := ReceptiveAccount new.
+	Deposit register: 100  on: account .
+	Withdraw register: 50 on: account.
+	expectedReport := OrderedCollection 
+		with:'Depósito por 100.' 
+		with: 'Extracción por 50.'
+		with: 'Balance = 50'.
+	portfolio := Portfolio with: account.
+	accountSummary := AccountSummary for: portfolio.
+		
+	self assert: expectedReport equals: accountSummary report .!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 16:10:48'!
+test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with:'Entrada por transferencia de 20.'
+		with:'Salida por transferencia de 30.' 
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: portfolioSummary report .! !
+
+!methodRemoval: ReportTest #test09 stamp: 'AC 10/23/2021 16:10:48'!
+test09
+	|portfolio account1 account2 portfolioSummary expectedReport |
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	Deposit register: 100  on: account1 .
+	account1 transfer: 20 to: account2 .
+	account2 transfer: 30 to: account1.
+	portfolio := Portfolio with: account1.
+	portfolio add: account2.
+	
+	portfolioSummary := AccountSummary for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Depósito por 100.'
+		with:'Salida por transferencia de 20.' 
+		with:'Entrada por transferencia de 30.'
+		with:'Entrada por transferencia de 20.'
+		with:'Salida por transferencia de 30.' 
+		with: 'Balance = 100'.
+		
+	self assert: expectedReport equals: portfolioSummary report .!
+
+TestCase subclass: #AccountSummaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryTest category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 16:11:52'!
+TestCase subclass: #AccountSummaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountSummaryTest stamp: 'AC 10/23/2021 16:12:00'!
+TestCase subclass: #AccountSummaryTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRenamed: #ReportTest as: #AccountSummaryTest stamp: 'AC 10/23/2021 16:12:09'!
+Smalltalk renameClassNamed: #ReportTest as: #AccountSummaryTest!
+
+!classRenamed: #AccountSummaryTest as: #ReportTest stamp: 'AC 10/23/2021 16:12:32'!
+Smalltalk renameClassNamed: #AccountSummaryTest as: #ReportTest!
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:16:22'!
+test01anAccountWithoutTransactionsReturnCero
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransferNet for: account).! !
+
+!methodRemoval: ReportTest #test10 stamp: 'AC 10/23/2021 16:16:22'!
+test10
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransferNet for: account).!
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:16:32'!
+test01anAccountWithoutTransactionsReturnsCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
+
+!methodRemoval: ReportTest #test01anAccountWithNoTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 16:16:32'!
+test01anAccountWithNoTransactionsReturnsCeroBalance
+	|account accountSummary|
+	
+	account := ReceptiveAccount new.
+	accountSummary := AccountSummary for: account.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.!
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:18:14'!
+test02anAccountWithOneTransferInReturnsIsTransferValue
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).! !
+
+!methodRemoval: ReportTest #test11 stamp: 'AC 10/23/2021 16:18:14'!
+test11
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).!
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:18:51'!
+test03anAccountWithOneTransferOutReturnIsTransferNetValue
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	 
+	self assert: -100 equals: (TransferNet for: account2).! !
+
+!methodRemoval: ReportTest #test12 stamp: 'AC 10/23/2021 16:18:51'!
+test12
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	 
+	self assert: -100 equals: (TransferNet for: account2).!
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:19:06'!
+test02anAccountWithOneTransferInReturnsIsTransferNetValue
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).! !
+
+!methodRemoval: ReportTest #test02anAccountWithOneTransferInReturnsIsTransferValue stamp: 'AC 10/23/2021 16:19:06'!
+test02anAccountWithOneTransferInReturnsIsTransferValue
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).!
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:19:37'!
+test03anAccountWithOneTransferOutReturnNegativeTransferNet
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	 
+	self assert: -100 equals: (TransferNet for: account2).! !
+
+!methodRemoval: ReportTest #test03anAccountWithOneTransferOutReturnIsTransferNetValue stamp: 'AC 10/23/2021 16:19:37'!
+test03anAccountWithOneTransferOutReturnIsTransferNetValue
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	 
+	self assert: -100 equals: (TransferNet for: account2).!
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:19:51'!
+test02anAccountWithOneTransferInReturnsPositiveTransferNet
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).! !
+
+!methodRemoval: ReportTest #test02anAccountWithOneTransferInReturnsIsTransferNetValue stamp: 'AC 10/23/2021 16:19:51'!
+test02anAccountWithOneTransferInReturnsIsTransferNetValue
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).!
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:20:52'!
+test04depositAndWithdrawShouldntAffectAccountTransferNet
+	
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	Deposit register:1000  on: account1.
+	Withdraw register: 500 on: account1.
+	 
+	self assert: 100 equals: (TransferNet for: account1).! !
+
+!methodRemoval: ReportTest #test13 stamp: 'AC 10/23/2021 16:20:52'!
+test13
+	
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	Deposit register:1000  on: account1.
+	Withdraw register: 500 on: account1.
+	 
+	self assert: 100 equals: (TransferNet for: account1).!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnCero stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneTransferInReturnsPositiveTransferNet stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneTransferOutReturnNegativeTransferNet stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test04anSourceAccountWithOneTransferOutReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test04depositAndWithdrawShouldntAffectAccountTransferNet stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test05anDestinationAccountWithOneTransferInReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test07anEmptyPortfolioReturnsCeroBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #ReportTest #test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
+
+!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 16:20:55'!
+PASSED!
