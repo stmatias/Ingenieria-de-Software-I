@@ -447,6 +447,50 @@ test09
 		
 	self assert: expectedReport equals: portfolioSummary report .! !
 
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:28:40'!
+test10
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransferNet for: account).! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:34:31'!
+test11
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:57:43'!
+test12
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	 
+	self assert: -100 equals: (TransferNet for: account2).! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:06:30'!
+test13
+	
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	Deposit register:1000  on: account1.
+	Withdraw register: 500 on: account1.
+	 
+	self assert: 100 equals: (TransferNet for: account1).! !
+
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferTest
@@ -757,24 +801,16 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/21/2021 21:28:02'!
-accountSummary
-	|accountSummary |
-	accountSummary := OrderedCollection new.
-	transactions do: [:aTransaction |
-		(aTransaction isKindOf: Deposit) ifTrue: [accountSummary add: 'Deposito por ', aTransaction value asString , '.'].
-		(aTransaction isKindOf: Withdraw) ifTrue: [accountSummary add: 'Extraccion por ', aTransaction value asString , '.'].
-		(aTransaction isKindOf: TransferSource ) ifTrue: [accountSummary add: 'Salida por transferencia de ', aTransaction value asString , '.'].
-		(aTransaction isKindOf: TransferDestination ) ifTrue: [accountSummary add: 'Entrada por transferencia de ', aTransaction value asString , '.'].
-	].
-	accountSummary add: 'Balance = ', self balance asString.
-	^accountSummary.! !
-
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:28:13'!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:39:13'!
 accountSummary: aReport
 
-
 	transactions do: [:aTransaction | aTransaction affectReport: aReport.].! !
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:37:51'!
+tranferNet: aTransferNet 
+	
+	transactions do: [:aTransaction| aTransaction affectReport: aTransferNet].
+	! !
 
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:54:44'!
 transfer: aValue to: aReceptiveAccount
@@ -906,6 +942,26 @@ Object subclass: #Report
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:28'!
+addFromDeposit: anAmount
+	
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:39'!
+addFromTransferDestination: anAmount
+	
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:47'!
+addFromTransferSource: anAmount
+	
+	self subclassResponsibility.! !
+
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:58'!
+addFromWithdraw: anAmount
+	
+	self subclassResponsibility.! !
+
 
 !classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
 Report subclass: #AccountSummary
@@ -960,6 +1016,46 @@ AccountSummary class
 for: anAccount
 
 	^self new initializeFor: anAccount.! !
+
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion'!
+Report subclass: #TransferNet
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:26:03'!
+addFromDeposit: anAmount! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:23:47'!
+addFromTransferDestination: anAmount
+
+	^transferNet := transferNet + anAmount.! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:23:58'!
+addFromTransferSource: anAmount
+
+	^transferNet := transferNet - anAmount.! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:26:15'!
+addFromWithdraw: anAmount! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:29:31'!
+initializeWith: anAccount 
+	transferNet := 0.
+	anAccount tranferNet: self.
+	^transferNet.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
+TransferNet class
+	instanceVariableNames: ''!
+
+!TransferNet class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:30:26'!
+for: anAccount
+	^self new initializeWith: anAccount .! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!

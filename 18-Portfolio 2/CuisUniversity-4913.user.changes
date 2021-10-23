@@ -4295,3 +4295,843 @@ PASSED!
 PASSED!
 
 ----QUIT----(22 October 2021 17:38:14) CuisUniversity-4913.image priorSource: 19384698!
+
+----STARTUP---- (23 October 2021 10:24:08) as /home/matias/Downloads/newcuis/linux64/CuisUniversity-4913.image!
+
+
+Report subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 10:26:55'!
+Report subclass: #TransferNet
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:28:40'!
+test10
+	|account|
+	
+	account := ReceptiveAccount new.
+	
+	self assert: 0 equals: (TransferNet for: account).! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:28:42'!
+ERROR!
+!TransferNet class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:28:56'!
+for: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!TransferNet class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:29:51' prior: 50938700!
+for: anAccount
+	^self new initialize with: anAccount .! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:29:53'!
+ERROR!
+!TransferNet methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:30:11'!
+with: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!TransferNet class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:30:26' prior: 50938705!
+for: anAccount
+	^self new initializeWith: anAccount .! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:30:27'!
+ERROR!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 10:31:06'!
+Report subclass: #TransferNet
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 10:31:06'!
+initializeWith: anAccount 
+	self shouldBeImplemented.
+	account := anAccount.! !
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 10:31:37' prior: 50938731!
+initializeWith: anAccount 
+	account := anAccount.
+	^0.! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:31:39'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:32:37'!
+test11
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	 
+	self assert: 0 equals: (TransferNet for: account1).! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:33:57' prior: 50938767!
+test11
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 0 equals: (TransferNet for: account1).! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:34:31' prior: 50938775!
+test11
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1  to: account2.
+	 
+	self assert: 100 equals: (TransferNet for: account2).! !
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:34:44'!
+FAILURE!
+
+!methodRemoval: ReceptiveAccount #accountSummary stamp: 'MS 10/23/2021 10:36:02'!
+accountSummary
+	|accountSummary |
+	accountSummary := OrderedCollection new.
+	transactions do: [:aTransaction |
+		(aTransaction isKindOf: Deposit) ifTrue: [accountSummary add: 'Deposito por ', aTransaction value asString , '.'].
+		(aTransaction isKindOf: Withdraw) ifTrue: [accountSummary add: 'Extraccion por ', aTransaction value asString , '.'].
+		(aTransaction isKindOf: TransferSource ) ifTrue: [accountSummary add: 'Salida por transferencia de ', aTransaction value asString , '.'].
+		(aTransaction isKindOf: TransferDestination ) ifTrue: [accountSummary add: 'Entrada por transferencia de ', aTransaction value asString , '.'].
+	].
+	accountSummary add: 'Balance = ', self balance asString.
+	^accountSummary.!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:36:15'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:36:15'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:36:15'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:39:13' prior: 50937501!
+accountSummary: aReport
+
+	transactions do: [:aTransaction | aTransaction affectReport: aReport.].! !
+
+!methodRemoval: TransferNet #with: stamp: 'MS 10/23/2021 10:41:07'!
+with: aReceptiveAccount 
+	self shouldBeImplemented.!
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 10:41:29' prior: 50938737!
+initializeWith: anAccount 
+	account := anAccount.
+	anAccount tranferNet: self.
+	^0.! !
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 10:41:43' prior: 50938860!
+initializeWith: anAccount 
+	account := anAccount.
+	anAccount tranferNet: self.
+! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:41:50'!
+ERROR!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:41:50'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:42:39'!
+tranferNet: aTransferNet 
+	self shouldBeImplemented.! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:47:59'!
+ERROR!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:47:59'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:48:19' prior: 50938876!
+tranferNet: aTransferNet 
+	^0.! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:48:20'!
+FAILURE!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:48:45'!
+FAILURE!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:48:45'!
+FAILURE!
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 10:48:59' prior: 50938866!
+initializeWith: anAccount 
+	account := anAccount.
+	^anAccount tranferNet: self.
+! !
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:49:00'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:49:04'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:49:28'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:51:06' prior: 50938886!
+tranferNet: aTransferNet 
+	
+	^transactions sum: [:aTransaction| aTransaction value]
+	ifEmpty: [^0].! !
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:51:21'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:51:50'!
+test12
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	 
+	self assert: -100 equals: (TransferNet for: account1).! !
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 10:51:51'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:53:10' prior: 50938910!
+tranferNet: aTransferNet 
+	
+	^transactions sum: [:aTransaction| aTransaction value]
+	ifEmpty: [^0].! !
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 10:54:38'!
+FAILURE!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 10:54:38'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:57:08' prior: 50938956!
+tranferNet: aTransferNet 
+	|aBalance|
+	aBalance := 0.
+	transactions sum: [:aTransaction| 
+		aTransaction affectBalance: aBalance ]
+	ifEmpty: [^0].
+	^aBalance.! !
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 10:57:10'!
+FAILURE!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:57:43' prior: 50938943!
+test12
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	 
+	self assert: -100 equals: (TransferNet for: account2).! !
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 10:57:45'!
+FAILURE!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:57:56'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:57:58'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:57:58'!
+FAILURE!
+
+transactions!
+
+transactions!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:59:42' prior: 50938967!
+tranferNet: aTransferNet 
+	|aBalance|
+	aBalance := 0.
+	transactions sum: [:aTransaction| 
+		aTransaction affectBalance: aBalance ].
+	^aBalance.! !
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 10:59:44'!
+FAILURE!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:59:48'!
+ERROR!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 10:59:48'!
+ERROR!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:00:02'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:00:02'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:00:32' prior: 50938998!
+tranferNet: aTransferNet 
+	|aBalance|
+	aBalance := 0.
+	transactions sum: [:aTransaction| 
+		aTransaction affectBalance: aBalance ]
+	ifEmpty: [^0].
+	^aBalance.! !
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:00:33'!
+FAILURE!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 11:00:37'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:00:41'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:00:41'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:01:50' prior: 50939018!
+tranferNet: aTransferNet 
+	
+	^transactions do: [:aTransaction| aTransaction value ].
+! !
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:01:54'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:01:59'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:03:08' prior: 50939036!
+tranferNet: aTransferNet 
+	|balance|
+	balance := 0.
+	^transactions do: [:aTransaction| balance:= aTransaction value ].
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:03:18' prior: 50939047!
+tranferNet: aTransferNet 
+	|balance|
+	balance := 0.
+	transactions do: [:aTransaction| balance:= aTransaction value ].
+	^balance.! !
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:03:20'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:03:20'!
+FAILURE!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:03:20'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:03:25'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:03:31'!
+FAILURE!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:03:31'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:04:04' prior: 50939054!
+tranferNet: aTransferNet 
+	|balance|
+	balance := 0.
+	transactions do: [:aTransaction| aTransaction affectBalance: balance].
+	^balance.! !
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:04:06'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:04:12'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:04:12'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:04:40'!
+FAILURE!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:04:40'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:05:05' prior: 50939100!
+tranferNet: aTransferNet 
+	|balance|
+	balance := 0.
+	transactions do: [:aTransaction| balance := aTransaction affectBalance: balance].
+	^balance.! !
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:05:06'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:05:09'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:05:11'!
+PASSED!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:06:30'!
+test13
+	
+	|account1 account2|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	Deposit register:1000  on: account1.
+	Withdraw register: 500 on: account1.
+	 
+	self assert: 100 equals: (TransferNet for: account1).! !
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:06:53'!
+FAILURE!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:06:53'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:09:16' prior: 50939119!
+tranferNet: aTransferNet 
+	|balance|
+	balance := 0.
+	transactions do: [:aTransaction|
+		(aTransaction isKindOf: TransferParts) ifTrue: [balance := aTransaction affectBalance: balance].
+			].
+	^balance.! !
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:09:17'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:09:20'!
+PASSED!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:19:30' prior: 50939150!
+tranferNet: aTransferNet 
+	|balance|
+	balance := 0.
+	transactions do: [:aTransaction|
+		(aTransaction isKindOf: TransferParts) ifTrue: [balance := aTransaction affectReport: balance].
+			].
+	^balance.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:20:00' prior: 50939194!
+tranferNet: aTransferNet 
+	|balance|
+	balance := 0.
+	transactions do: [:aTransaction|
+		(aTransaction isKindOf: TransferParts) ifTrue: [balance := aTransaction affectReport: aTransferNet].
+			].
+	^balance.! !
+
+Report subclass: #TransferNet
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 11:22:29'!
+Report subclass: #TransferNet
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:23:08' prior: 50938897!
+initializeWith: anAccount 
+	account := anAccount.
+	transferNet := 0.
+	^anAccount tranferNet: self.
+! !
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:23:47'!
+addFromTransferDestination: anAmount
+
+	^transferNet := transferNet + anAmount.! !
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:23:58'!
+addFromTransferSource: anAmount
+
+	^transferNet := transferNet - anAmount.! !
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:24:00'!
+PASSED!
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:26:03'!
+addFromDeposit: anAmount! !
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:26:15'!
+addFromWithdraw: anAmount! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:27:31' prior: 50939204!
+tranferNet: aTransferNet 
+	|xxxx|
+	xxxx := 0.
+	transactions do: [:aTransaction|
+		xxxx := aTransaction affectReport: aTransferNet].
+	
+	^xxxx.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'MS 10/23/2021 11:27:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'MS 10/23/2021 11:27:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'MS 10/23/2021 11:27:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'MS 10/23/2021 11:27:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'MS 10/23/2021 11:27:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'MS 10/23/2021 11:27:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'MS 10/23/2021 11:27:33'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:27:39'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:27:39'!
+FAILURE!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:27:39'!
+FAILURE!
+
+xxxx!
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:29:31' prior: 50939227!
+initializeWith: anAccount 
+	transferNet := 0.
+	anAccount tranferNet: self.
+	^transferNet.! !
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:29:32'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 11:29:46'!
+PASSED!
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:29:48'!
+PASSED!
+!Report methodsFor: 'no messages' stamp: 'MS 10/23/2021 11:31:26'!
+addFromDeposit: anAmount
+	
+	self sub! !
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:28' prior: 50939386!
+addFromDeposit: anAmount
+	
+	self subclassResponsibility.! !
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:39'!
+addFromTransferDestination: anAmount
+	
+	self subclassResponsibility.! !
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:47'!
+addFromTransferSource: anAmount
+	
+	self subclassResponsibility.! !
+!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:58'!
+addFromWithdraw: anAmount
+	
+	self subclassResponsibility.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:37:31' prior: 50939281!
+tranferNet: aTransferNet 
+	
+	"|xxxx|
+	xxxx := 0.
+	"
+	
+	transactions do: [:aTransaction| aTransaction affectReport: aTransferNet].
+	
+	"^xxxx."! !
+
+!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 11:37:36'!
+PASSED!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:37:51' prior: 50939412!
+tranferNet: aTransferNet 
+	
+	transactions do: [:aTransaction| aTransaction affectReport: aTransferNet].
+	! !
