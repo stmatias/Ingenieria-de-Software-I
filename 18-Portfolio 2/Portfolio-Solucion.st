@@ -447,40 +447,41 @@ test09
 		
 	self assert: expectedReport equals: portfolioSummary report .! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:28:40'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:07:18'!
 test10
-	|account|
+	|account accountTransferNet|
 	
 	account := ReceptiveAccount new.
-	
-	self assert: 0 equals: (TransferNet for: account).! !
+	accountTransferNet := TransferNet for:account.
+	self assert: 0 equals: accountTransferNet report.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:34:31'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:08:04'!
 test11
-	|account1 account2|
+	|account1 account2 account2TransferNet|
 	
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
 	
 	Transfer transfer: 100 from: account1  to: account2.
-	 
-	self assert: 100 equals: (TransferNet for: account2).! !
+	account2TransferNet := TransferNet for: account2 .
+	self assert: 100 equals: account2TransferNet report.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:57:43'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:08:44'!
 test12
-	|account1 account2|
+	|account1 account2 account2TransferNet|
 	
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
 	
 	Transfer transfer: 100 from: account2  to: account1.
+	account2TransferNet := TransferNet for: account2.
 	 
-	self assert: -100 equals: (TransferNet for: account2).! !
+	self assert: -100 equals: account2TransferNet report.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:06:30'!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:09:21'!
 test13
 	
-	|account1 account2|
+	|account1 account2 account1TransferNet|
 	
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
@@ -488,8 +489,62 @@ test13
 	Transfer transfer: 100 from: account2  to: account1.
 	Deposit register:1000  on: account1.
 	Withdraw register: 500 on: account1.
-	 
-	self assert: 100 equals: (TransferNet for: account1).! !
+	
+	account1TransferNet := TransferNet for: account1.
+	self assert: 100 equals: account1TransferNet report.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:11:34'!
+test14
+	
+	|account1 account2 account1TransferNet|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account2  to: account1.
+	Transfer transfer: 100 from: account2  to: account1.
+	Transfer transfer: 100 from: account2  to: account1.
+	Transfer transfer: 100 from: account2  to: account1.
+	Deposit register:1000  on: account1.
+	Withdraw register: 500 on: account1.
+	
+	account1TransferNet := TransferNet for: account1.
+	self assert: 400 equals: account1TransferNet report.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:10:59'!
+test15
+	
+	|portfolio portfolioTransferNet|
+	
+	portfolio := Portfolio new.
+	portfolioTransferNet := TransferNet for: portfolio.
+	self assert: 0 equals: portfolioTransferNet report.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:11:56'!
+test16
+	
+	|portfolio account1 account2 portfolioTransferNet|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1 to: account2.
+	portfolio := Portfolio with: account2.
+	portfolioTransferNet := TransferNet for: portfolio.
+	self assert: 100 equals: portfolioTransferNet report.! !
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:09:58'!
+test17
+	
+	|portfolio account1 account2 portfolioTransferNet|
+	
+	account1 := ReceptiveAccount new.
+	account2 := ReceptiveAccount new.
+	
+	Transfer transfer: 100 from: account1 to: account2.
+	portfolio := Portfolio with: account1 with: account2 .
+	portfolioTransferNet := TransferNet for: portfolio.
+	self assert: 0 equals: portfolioTransferNet report.! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
@@ -556,6 +611,147 @@ test05canNavigateThroughTransfer
 	self assert: transfer source equals: transfer destination other.! !
 
 
+!classDefinition: #TreeStructureTest category: 'Portfolio-Solucion'!
+TestCase subclass: #TreeStructureTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:12:30'!
+test01
+	|portfolio treeStructure expectedReport|
+	
+	portfolio :=  Portfolio named: 'Portfolio' .
+	treeStructure := TreeStructure for: portfolio .
+	expectedReport := OrderedCollection with: 'Portfolio'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:24:46'!
+test02
+	|portfolio account treeStructure expectedReport|
+	
+	portfolio :=  Portfolio named: 'Portfolio' .
+	account := ReceptiveAccount named: 'Account'.
+	portfolio add: account.
+	treeStructure := TreeStructure for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Portfolio'
+		with: '   Account'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:27:27'!
+test03
+	|portfolio account1 account2 treeStructure expectedReport|
+	
+	portfolio :=  Portfolio named: 'Portfolio' .
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+	treeStructure := TreeStructure for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Portfolio'
+		with: '   Account1'
+		with: '   Account2'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:29:42'!
+test04
+	|portfolio1 account portfolio2  treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	account := ReceptiveAccount named: 'Account'.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2 .
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   Account'
+		with: '   PortfolioSon'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:39:57'!
+test05
+	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	portfolio1 add: account1.
+	portfolio1 add: portfolio2.
+	portfolio2 add: account2.
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   Account1'
+		with: '   PortfolioSon'
+		with: '      Account2'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:47:16'!
+test06
+	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	portfolio2 add: account2.
+	portfolio1 add: portfolio2.
+	portfolio1 add: account1.
+	
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   PortfolioSon'
+		with: '      Account2'
+		with: '   Account1'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 18:03:32'!
+test07
+	|portfolio1  portfolio2 portfolio3 account1 account2 account3 treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	portfolio3 := Portfolio named: 'PortfolioGrandson'.
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	account3 := ReceptiveAccount named: 'Account3'.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: account3.
+	portfolio2 add: portfolio3.
+	portfolio2 add: account1.
+	portfolio2 add: account2.
+	
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   PortfolioSon'
+		with: '      PortfolioGrandson'
+		with: '      Account1'
+		with: '      Account2' 
+		with: '   Account3'
+		.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+
 !classDefinition: #Account category: 'Portfolio-Solucion'!
 Object subclass: #Account
 	instanceVariableNames: ''
@@ -599,7 +795,7 @@ addedTo: aPortfolio
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
-	instanceVariableNames: 'accounts parents'
+	instanceVariableNames: 'accounts parents name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -644,6 +840,11 @@ initialize
 
 	accounts := OrderedCollection new.
 	parents := OrderedCollection new.! !
+
+!Portfolio methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:14:24'!
+initializeWithName: aName 
+	name := aName.
+	self initialize .! !
 
 
 !Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36'!
@@ -716,6 +917,22 @@ accountSummary: aReport
 	^aReport.
 	! !
 
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:23:07'!
+name
+
+	^name copy.! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:31:38'!
+tranferNet: aTransferNet 
+	aTransferNet printPortfolio: self.
+	accounts do: [:anAccount| anAccount tranferNet: aTransferNet ].! !
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:34:48'!
+treeStructure: aTreeStructure 
+
+	aTreeStructure printPortfolio: self.	
+	accounts do: [:anAccount| anAccount treeStructure: aTreeStructure ].! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Portfolio class' category: 'Portfolio-Solucion'!
@@ -726,6 +943,11 @@ Portfolio class
 canNotAddAccountErrorMessage
 	
 	^'Can not add repeated account to a portfolio'! !
+
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:13:23'!
+named: aName 
+	
+	^self new initializeWithName: aName.! !
 
 !Portfolio class methodsFor: 'as yet unclassified' stamp: 'HAW 5/25/2019 11:18:21'!
 with: anAccount
@@ -745,7 +967,7 @@ with: anAccount with: anotherAccount
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions tranfers'
+	instanceVariableNames: 'transactions tranfers name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -756,6 +978,11 @@ initialize
 	super initialize.
 	transactions := OrderedCollection new.
 	tranfers := OrderedCollection new.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:25:49'!
+initializeWithName: aName 
+	name := aName.
+	self initialize.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:52'!
@@ -806,6 +1033,11 @@ accountSummary: aReport
 
 	transactions do: [:aTransaction | aTransaction affectReport: aReport.].! !
 
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:49:18'!
+name
+
+	^name copy.! !
+
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:37:51'!
 tranferNet: aTransferNet 
 	
@@ -816,6 +1048,23 @@ tranferNet: aTransferNet
 transfer: aValue to: aReceptiveAccount
  
 	^Transfer transfer: aValue from: self to: aReceptiveAccount.! !
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:32:00'!
+treeStructure: aTreeStructure 
+	
+	aTreeStructure printReceptiveAccount: self.
+	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReceptiveAccount class' category: 'Portfolio-Solucion'!
+ReceptiveAccount class
+	instanceVariableNames: ''!
+
+!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:25:30'!
+named: aName 
+	
+	^self new initializeWithName: aName! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -962,6 +1211,16 @@ addFromWithdraw: anAmount
 	
 	self subclassResponsibility.! !
 
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+Report class
+	instanceVariableNames: ''!
+
+!Report class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:15:32'!
+for: anAccount
+	^self new initializeWith: anAccount .! !
+
 
 !classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
 Report subclass: #AccountSummary
@@ -994,8 +1253,8 @@ addFromWithdraw: anAmount
 	^report add: 'Extracción por ', anAmount asString, '.'.
 	! !
 
-!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:26:47'!
-initializeFor: anAccount
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:16:35'!
+initializeWith: anAccount
 
 	report := OrderedCollection new.
 	anAccount accountSummary: self.
@@ -1006,21 +1265,10 @@ report
 
 	^report.	! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
-AccountSummary class
-	instanceVariableNames: ''!
-
-!AccountSummary class methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:25:18'!
-for: anAccount
-
-	^self new initializeFor: anAccount.! !
-
 
 !classDefinition: #TransferNet category: 'Portfolio-Solucion'!
 Report subclass: #TransferNet
-	instanceVariableNames: 'account transferNet'
+	instanceVariableNames: 'transferNet'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -1041,21 +1289,76 @@ addFromTransferSource: anAmount
 !TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:26:15'!
 addFromWithdraw: anAmount! !
 
-!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:29:31'!
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:05:23'!
 initializeWith: anAccount 
 	transferNet := 0.
 	anAccount tranferNet: self.
+	! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:05:38'!
+report
 	^transferNet.! !
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: #TreeStructure category: 'Portfolio-Solucion'!
+Report subclass: #TreeStructure
+	instanceVariableNames: 'report indentation sizeOfLevels'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
 
-!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
-TransferNet class
-	instanceVariableNames: ''!
+!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 16:52:35'!
+initializeWith: aPortfolio 
+	
+	sizeOfLevels := OrderedCollection with: 1.
+	report := OrderedCollection new.
+	indentation := ''.
+	aPortfolio treeStructure: self.
 
-!TransferNet class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:30:26'!
-for: anAccount
-	^self new initializeWith: anAccount .! !
+	
+	! !
+
+
+!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 18:02:20'!
+printPortfolio: aPortfolio
+
+	report add: indentation , aPortfolio name.
+	(aPortfolio accountsSize = 0) ifFalse: [indentation := indentation , '   '].
+	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
+	sizeOfLevels addLast: aPortfolio accountsSize.
+	
+	(sizeOfLevels last = 0) ifTrue: [
+		sizeOfLevels removeLast.
+	].
+
+	sizeOfLevels isEmpty ifFalse: [
+		(sizeOfLevels last = 0) ifTrue: [
+			indentation := indentation copyFrom: 1 to: (indentation size -3).
+			sizeOfLevels removeLast.
+		].
+	].! !
+
+!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:57:15'!
+printReceptiveAccount: aReceptiveAccount
+
+	report add: indentation, aReceptiveAccount name.
+	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
+	
+	(sizeOfLevels last = 0) ifTrue: [
+		indentation := indentation copyFrom: 1 to: (indentation size -3).
+		sizeOfLevels removeLast.
+	].
+
+	sizeOfLevels isEmpty ifFalse: [
+		(sizeOfLevels last = 0) ifTrue: [
+			indentation := indentation copyFrom: 1 to: (indentation size -3).
+			sizeOfLevels removeLast.
+		].
+	].! !
+
+!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:21:46'!
+report
+	^report.! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
