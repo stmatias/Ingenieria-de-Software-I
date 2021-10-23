@@ -312,8 +312,8 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:36:49'!
-test01
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:16:32'!
+test01anAccountWithoutTransactionsReturnsCeroBalance
 	|account accountSummary|
 	
 	account := ReceptiveAccount new.
@@ -321,8 +321,8 @@ test01
 	
 	self assert: (OrderedCollection with: 'Balance = 0') equals: accountSummary report.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:41:54'!
-test02
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:06:58'!
+test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance
 
 	|account accountSummary expectedReport|
 	
@@ -334,8 +334,8 @@ test02
 	self assert: expectedReport equals: accountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:41:46'!
-test03
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:07:05'!
+test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance
 
 	|account accountSummary expectedReport|
 	
@@ -347,8 +347,8 @@ test03
 	self assert: expectedReport equals: accountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:43:43'!
-test04
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:07:15'!
+test04anSourceAccountWithOneTransferOutReturnsThatTransferAndItsBalance
 
 	|sourceAccount destinationAccount sourceAccountSummary expectedReport|
 	
@@ -361,8 +361,8 @@ test04
 	self assert: expectedReport equals: sourceAccountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:45:51'!
-test05
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:07:26'!
+test05anDestinationAccountWithOneTransferInReturnsThatTransferAndItsBalance
 
 	|sourceAccount destinationAccount destinationAccountSummary expectedReport |
 	
@@ -375,8 +375,8 @@ test05
 	self assert: (expectedReport ) equals: destinationAccountSummary report.
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:19:10'!
-test06
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:05:47'!
+test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalance
 
 	|sourceAccount destinationAccount sourceAccountSummary expectedReport |
 	
@@ -397,8 +397,8 @@ test06
 	self assert: expectedReport equals: sourceAccountSummary report .
 	! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:50:07'!
-test07
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:06:35'!
+test07anEmptyPortfolioReturnsCeroBalance
 	|portfolio accountSummary expectedReport|
 	
 	portfolio := Portfolio new.
@@ -408,8 +408,8 @@ test07
 	
 	self assert: expectedReport equals: accountSummary report.! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:24:17'!
-test08
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:09:27'!
+test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary
 	|portfolio account  accountSummary expectedReport|
 		
 	account := ReceptiveAccount new.
@@ -424,8 +424,8 @@ test08
 		
 	self assert: expectedReport equals: accountSummary report .! !
 
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:35:53'!
-test09
+!ReportTest methodsFor: 'accountSummaryTest' stamp: 'AC 10/23/2021 16:10:48'!
+test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance
 	|portfolio account1 account2 portfolioSummary expectedReport |
 	
 	account1 := ReceptiveAccount new.
@@ -447,17 +447,30 @@ test09
 		
 	self assert: expectedReport equals: portfolioSummary report .! !
 
+<<<<<<< HEAD
 !ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:07:18'!
 test10
 	|account accountTransferNet|
+=======
+
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:16:22'!
+test01anAccountWithoutTransactionsReturnCero
+	|account|
+>>>>>>> f13b8e25ad9d5e52e057018391322afbd43c04b2
 	
 	account := ReceptiveAccount new.
 	accountTransferNet := TransferNet for:account.
 	self assert: 0 equals: accountTransferNet report.! !
 
+<<<<<<< HEAD
 !ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:08:04'!
 test11
 	|account1 account2 account2TransferNet|
+=======
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:19:51'!
+test02anAccountWithOneTransferInReturnsPositiveTransferNet
+	|account1 account2|
+>>>>>>> f13b8e25ad9d5e52e057018391322afbd43c04b2
 	
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
@@ -466,9 +479,15 @@ test11
 	account2TransferNet := TransferNet for: account2 .
 	self assert: 100 equals: account2TransferNet report.! !
 
+<<<<<<< HEAD
 !ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:08:44'!
 test12
 	|account1 account2 account2TransferNet|
+=======
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:19:37'!
+test03anAccountWithOneTransferOutReturnNegativeTransferNet
+	|account1 account2|
+>>>>>>> f13b8e25ad9d5e52e057018391322afbd43c04b2
 	
 	account1 := ReceptiveAccount new.
 	account2 := ReceptiveAccount new.
@@ -478,8 +497,13 @@ test12
 	 
 	self assert: -100 equals: account2TransferNet report.! !
 
+<<<<<<< HEAD
 !ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:09:21'!
 test13
+=======
+!ReportTest methodsFor: 'transferNetTest' stamp: 'AC 10/23/2021 16:20:52'!
+test04depositAndWithdrawShouldntAffectAccountTransferNet
+>>>>>>> f13b8e25ad9d5e52e057018391322afbd43c04b2
 	
 	|account1 account2 account1TransferNet|
 	
@@ -781,14 +805,12 @@ addTransactionsTo: aCollectionOfTransactions
 
 	self subclassResponsibility ! !
 
-!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:15'!
-transactions
-
+!Account methodsFor: 'transactions' stamp: 'AC 10/23/2021 15:17:28'!
+addedTo: anAccount
 	self subclassResponsibility ! !
 
-
-!Account methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:24:04'!
-addedTo: aPortfolio
+!Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:15'!
+transactions
 
 	self subclassResponsibility ! !
 
@@ -910,12 +932,9 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 17:22:24'!
-accountSummary: aReport 
-
-	accounts do: [:anAccount | anAccount accountSummary: aReport .].
-	^aReport.
-	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:14:01'!
+affectReport: anAccountReporter
+	accounts do: [:anAccount | anAccount affectReport: anAccountReporter].! !
 
 !Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:23:07'!
 name
@@ -990,6 +1009,10 @@ addTransactionsTo: aCollectionOfTransactions
 
 	aCollectionOfTransactions addAll: transactions ! !
 
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'AC 10/23/2021 15:17:42'!
+addedTo: anAccount
+! !
+
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 register: aTransaction
 
@@ -1022,17 +1045,71 @@ isComposedBy: anAccount
 	^self = anAccount ! !
 
 
-!ReceptiveAccount methodsFor: 'composition' stamp: 'HAW 5/25/2019 12:03:32'!
-addedTo: aPortfolio 
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:14:25'!
+affectReport: anAccountReporter
+
+	transactions do: [:aTransaction | aTransaction affectReport: anAccountReporter].! !
+
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:54:44'!
+transfer: aValue to: aReceptiveAccount
+ 
+	^Transfer transfer: aValue from: self to: aReceptiveAccount.! !
+
+
+!classDefinition: #AccountReporter category: 'Portfolio-Solucion'!
+Object subclass: #AccountReporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountReporter methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:28'!
+addFromDeposit: anAmount
 	
-	! !
+	self subclassResponsibility.! !
 
+!AccountReporter methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:39'!
+addFromTransferDestination: anAmount
+	
+	self subclassResponsibility.! !
 
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:39:13'!
-accountSummary: aReport
+!AccountReporter methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:47'!
+addFromTransferSource: anAmount
+	
+	self subclassResponsibility.! !
 
-	transactions do: [:aTransaction | aTransaction affectReport: aReport.].! !
+!AccountReporter methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:58'!
+addFromWithdraw: anAmount
+	
+	self subclassResponsibility.! !
 
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
+AccountReporter subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:53:51'!
+addFromDeposit: aDeposit
+	
+	report add: 'Depósito por ', aDeposit value asString, '.'.! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:53:56'!
+addFromTransferDestination: anAmount
+
+	report add: 'Entrada por transferencia de ', anAmount value asString, '.'
+
+! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:54:00'!
+addFromTransferSource: anAmount
+
+	report add: 'Salida por transferencia de ', anAmount value asString, '.'.
+! !
+
+<<<<<<< HEAD
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:49:18'!
 name
 
@@ -1040,14 +1117,76 @@ name
 
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:37:51'!
 tranferNet: aTransferNet 
+=======
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:54:03'!
+addFromWithdraw: aWithdraw
+>>>>>>> f13b8e25ad9d5e52e057018391322afbd43c04b2
 	
-	transactions do: [:aTransaction| aTransaction affectReport: aTransferNet].
+	report add: 'Extracción por ', aWithdraw value asString, '.'.
 	! !
 
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:54:44'!
-transfer: aValue to: aReceptiveAccount
- 
-	^Transfer transfer: aValue from: self to: aReceptiveAccount.! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:14:01'!
+initializeFor: anAccount
+	
+	report := OrderedCollection new.
+	anAccount affectReport: self.
+	report add: 'Balance = ', anAccount balance asString.! !
+
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:37:04'!
+report
+
+	^report.	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
+AccountSummary class
+	instanceVariableNames: ''!
+
+!AccountSummary class methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:25:18'!
+for: anAccount
+
+	^self new initializeFor: anAccount.! !
+
+
+!classDefinition: #TransferNet category: 'Portfolio-Solucion'!
+AccountReporter subclass: #TransferNet
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:26:03'!
+addFromDeposit: anAmount! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'AC 10/23/2021 15:53:34'!
+addFromTransferDestination: anTransferToDestination
+
+	transferNet := transferNet + anTransferToDestination value.! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'AC 10/23/2021 15:53:28'!
+addFromTransferSource: aTransferFromSource
+
+	transferNet := transferNet - aTransferFromSource value.! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 11:26:15'!
+addFromWithdraw: anAmount! !
+
+!TransferNet methodsFor: 'initialization' stamp: 'AC 10/23/2021 15:14:01'!
+initializeWith: anAccount 
+	transferNet := 0.
+	anAccount affectReport: self.
+	^transferNet.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferNet class' category: 'Portfolio-Solucion'!
+TransferNet class
+	instanceVariableNames: ''!
+
+!TransferNet class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 10:30:26'!
+for: anAccount
+	^self new initializeWith: anAccount .! !
 
 !ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:32:00'!
 treeStructure: aTreeStructure 
@@ -1085,11 +1224,20 @@ affectBalance: aBalance
 
 	self subclassResponsibility ! !
 
+!AccountTransaction methodsFor: 'balance' stamp: 'AC 10/23/2021 15:14:25'!
+affectReport: anAccountReporter
+	self subclassResponsibility! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion'!
 AccountTransaction class
 	instanceVariableNames: ''!
+
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 15:50:24'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
 
 !AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
 register: aValue on: account
@@ -1115,32 +1263,46 @@ initializeFor: aValue
 	value := aValue ! !
 
 
-!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38'!
+!Deposit methodsFor: 'value' stamp: 'AC 10/23/2021 13:38:32'!
 value
 
 	^ value! !
 
 
-!Deposit methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:02'!
+!Deposit methodsFor: 'balance' stamp: 'AC 10/23/2021 13:38:58'!
 affectBalance: aBalance
 
-	^aBalance + value ! !
+	^aBalance + self value ! !
 
-!Deposit methodsFor: 'balance' stamp: 'MS 10/22/2021 16:29:48'!
-affectReport: aReport
+!Deposit methodsFor: 'balance' stamp: 'AC 10/23/2021 15:14:25'!
+affectReport: anAccountReporter
+	anAccountReporter addFromDeposit: self! !
+
+
+!classDefinition: #TransferToDestination category: 'Portfolio-Solucion'!
+Deposit subclass: #TransferToDestination
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferToDestination methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:14:25'!
+affectReport: anAccountReporter
+	anAccountReporter addFromTransferDestination: self! !
+
+!TransferToDestination methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 13:31:28'!
+initializeFor: aTransfer
+
+	transfer := aTransfer ! !
+
+!TransferToDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:05:34'!
+other
+	^transfer source.! !
+
+!TransferToDestination methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 13:31:57'!
+value
 	
-	^aReport addFromDeposit: value.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Deposit class' category: 'Portfolio-Solucion'!
-Deposit class
-	instanceVariableNames: ''!
-
-!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
-for: aValue
-
-	^ self new initializeFor: aValue ! !
+	^transfer value.! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -1162,54 +1324,14 @@ value
 	^ value! !
 
 
-!Withdraw methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:15'!
+!Withdraw methodsFor: 'balance' stamp: 'AC 10/23/2021 13:39:06'!
 affectBalance: aBalance
 
-	^aBalance - value! !
+	^aBalance - self value! !
 
-!Withdraw methodsFor: 'balance' stamp: 'MS 10/22/2021 16:30:08'!
-affectReport: aReport
-	
-	^aReport addFromWithdraw: value.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Withdraw class' category: 'Portfolio-Solucion'!
-Withdraw class
-	instanceVariableNames: ''!
-
-!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
-for: aValue
-
-	^ self new initializeFor: aValue ! !
-
-
-!classDefinition: #Report category: 'Portfolio-Solucion'!
-Object subclass: #Report
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:28'!
-addFromDeposit: anAmount
-	
-	self subclassResponsibility.! !
-
-!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:39'!
-addFromTransferDestination: anAmount
-	
-	self subclassResponsibility.! !
-
-!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:47'!
-addFromTransferSource: anAmount
-	
-	self subclassResponsibility.! !
-
-!Report methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 11:31:58'!
-addFromWithdraw: anAmount
-	
-	self subclassResponsibility.! !
+!Withdraw methodsFor: 'balance' stamp: 'AC 10/23/2021 15:14:25'!
+affectReport: anAccountReporter
+	anAccountReporter addFromWithdraw: self! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1222,34 +1344,30 @@ for: anAccount
 	^self new initializeWith: anAccount .! !
 
 
-!classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
-Report subclass: #AccountSummary
-	instanceVariableNames: 'report'
+!classDefinition: #TransferFromSource category: 'Portfolio-Solucion'!
+Withdraw subclass: #TransferFromSource
+	instanceVariableNames: 'transfer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:28'!
-addFromDeposit: anAmount
+!TransferFromSource methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:14:25'!
+affectReport: anAccountReporter
+	anAccountReporter addFromTransferSource: self! !
+
+!TransferFromSource methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 13:31:28'!
+initializeFor: aTransfer
+
+	transfer := aTransfer ! !
+
+!TransferFromSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:04:15'!
+other
+	^transfer destination .! !
+
+!TransferFromSource methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 13:31:57'!
+value
 	
-	^report add: 'Depósito por ', anAmount asString, '.'.! !
-
-!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:33:57'!
-addFromTransferDestination: anAmount
-
-	^report add: 'Entrada por transferencia de ', anAmount value asString, '.'
-
-! !
-
-!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:34:12'!
-addFromTransferSource: anAmount
-
-	^report add: 'Salida por transferencia de ', anAmount value asString, '.'.
-! !
-
-!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:10'!
-addFromWithdraw: anAmount
-	
+<<<<<<< HEAD
 	^report add: 'Extracción por ', anAmount asString, '.'.
 	! !
 
@@ -1359,6 +1477,9 @@ printReceptiveAccount: aReceptiveAccount
 !TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:21:46'!
 report
 	^report.! !
+=======
+	^transfer value.! !
+>>>>>>> f13b8e25ad9d5e52e057018391322afbd43c04b2
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
@@ -1373,12 +1494,12 @@ destination
 
 	^destination! !
 
-!Transfer methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:11:05'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 13:41:37'!
 initializeFor: anAmount from: aSourceReceptiveAccount to: aDestinationReceptiveAccount
 	
 	value := anAmount.
-	source := TransferSource for: self.
-	destination :=  TransferDestination for: self.
+	source := TransferFromSource for: self.
+	destination :=  TransferToDestination for: self.
 	
 	aSourceReceptiveAccount register: source.
 	aDestinationReceptiveAccount register: destination.! !
@@ -1418,84 +1539,3 @@ transferCannotBeNull
 !Transfer class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:13:25'!
 cannotTransferToSourceAccountErrorMesssage
 	^'An account cannot transfer to himself'.! !
-
-
-!classDefinition: #TransferParts category: 'Portfolio-Solucion'!
-Object subclass: #TransferParts
-	instanceVariableNames: 'transfer'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:48:13'!
-initializeFor: aTransfer
-
-	transfer := aTransfer ! !
-
-!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:03:48'!
-other
-	self subclassResponsibility.! !
-
-!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:48:31'!
-transfer
-
-	^transfer.! !
-
-!TransferParts methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:17:44'!
-value
-	
-	^transfer value.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TransferParts class' category: 'Portfolio-Solucion'!
-TransferParts class
-	instanceVariableNames: ''!
-
-!TransferParts class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:46:44'!
-for: aTransfer
-
-	^ self new initializeFor: aTransfer! !
-
-
-!classDefinition: #TransferDestination category: 'Portfolio-Solucion'!
-TransferParts subclass: #TransferDestination
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:22:18'!
-affectBalance: aBalance 
-	^aBalance + transfer value.! !
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:30:51'!
-affectReport: aReport
-	
-	^aReport addFromTransferDestination: transfer value ! !
-
-!TransferDestination methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:05:34'!
-other
-	^transfer source.! !
-
-
-!classDefinition: #TransferSource category: 'Portfolio-Solucion'!
-TransferParts subclass: #TransferSource
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:21:24'!
-affectBalance: aBalance 
-	
-	^aBalance - self value.! !
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:02'!
-affectReport: aReport
-	
-	^aReport addFromTransferSource: transfer value ! !
-
-!TransferSource methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 16:04:15'!
-other
-	^transfer destination .! !
