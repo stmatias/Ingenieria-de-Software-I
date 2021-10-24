@@ -13942,3 +13942,157 @@ PASSED!
 
 !testRun: #TreeStructureTest #test07 stamp: 'AC 10/23/2021 23:37:36'!
 PASSED!
+
+AccountReporter subclass: #TreeStructure
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 23:40:30'!
+AccountReporter subclass: #TreeStructure
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnCero stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneTransferInReturnsPositiveTransferNet stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneTransferOutReturnNegativeTransferNet stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test04anSourceAccountWithOneTransferOutReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test04depositAndWithdrawShouldntAffectAccountTransferNet stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test05anDestinationAccountWithOneTransferInReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test07anEmptyPortfolioReturnsCeroBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #ReportTest #test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TreeStructureTest #test05 stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TreeStructureTest #test06 stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!
+
+!testRun: #TreeStructureTest #test07 stamp: 'AC 10/23/2021 23:40:56'!
+PASSED!

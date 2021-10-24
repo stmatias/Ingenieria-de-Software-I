@@ -1113,6 +1113,41 @@ for: anAccount
 	^self new initializeWith: anAccount .! !
 
 
+!classDefinition: #TreeStructure category: 'Portfolio-Solucion'!
+AccountReporter subclass: #TreeStructure
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:34:52'!
+initializeWith: aPortfolio
+	report := OrderedCollection new.
+	aPortfolio treeStructure: self withIndent: ''.! !
+
+!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:34:24'!
+printPortfolio: aPortfolio withIndent: anIndent
+	report add: anIndent, aPortfolio name.! !
+
+!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:34:39'!
+printReceptiveAccount: aReceptiveAccount withIndent: anIndent
+	report add: anIndent, aReceptiveAccount name.! !
+
+!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:13:55'!
+report
+	^report! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TreeStructure class' category: 'Portfolio-Solucion'!
+TreeStructure class
+	instanceVariableNames: ''!
+
+!TreeStructure class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 23:12:28'!
+for: anAccount
+	^self new initializeWith: anAccount .! !
+
+
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
 Object subclass: #AccountTransaction
 	instanceVariableNames: ''
@@ -1324,38 +1359,3 @@ transferCannotBeNull
 !Transfer class methodsFor: 'as yet unclassified' stamp: 'MS 10/20/2021 15:13:25'!
 cannotTransferToSourceAccountErrorMesssage
 	^'An account cannot transfer to himself'.! !
-
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion'!
-Object subclass: #TreeStructure
-	instanceVariableNames: 'account report'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:34:52'!
-initializeWith: aPortfolio
-	report := OrderedCollection new.
-	aPortfolio treeStructure: self withIndent: ''.! !
-
-!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:34:24'!
-printPortfolio: aPortfolio withIndent: anIndent
-	report add: anIndent, aPortfolio name.! !
-
-!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:34:39'!
-printReceptiveAccount: aReceptiveAccount withIndent: anIndent
-	report add: anIndent, aReceptiveAccount name.! !
-
-!TreeStructure methodsFor: 'asYetUnclassified' stamp: 'AC 10/23/2021 23:13:55'!
-report
-	^report! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'TreeStructure class' category: 'Portfolio-Solucion'!
-TreeStructure class
-	instanceVariableNames: ''!
-
-!TreeStructure class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 23:12:28'!
-for: anAccount
-	^self new initializeWith: anAccount .! !
