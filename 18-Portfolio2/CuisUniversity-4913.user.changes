@@ -2614,8 +2614,8 @@ test06
 	account2 transfer: 30 to: account1.
 	
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with: 'Salida por transferencia de 20.'
 		with: 'Entrada por transferencia de 30.'
 		with: 'Balance = 60'. 
@@ -2635,8 +2635,8 @@ test06
 	account2 transfer: 30 to: account1.
 	
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with: 'Salida por transferencia de 20.'
 		with: 'Entrada por transferencia de 30.'
 		with: 'Balance = 60'. 
@@ -3209,7 +3209,7 @@ affectReport: aReport
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:31'!
 addFromDeposit: anAmount
 	
-	^report add: 'Depósito por ', anAmount asString, '.'.! !
+	^report add: 'Depï¿½sito por ', anAmount asString, '.'.! !
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:31:45'!
 addFromDepositTransfer: anAmount
 	
@@ -3222,12 +3222,12 @@ addFromDeposit: anAmount
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:10'!
 addFromWithdraw: anAmount
 	
-	^report add: 'Extracción por ', anAmount asString, '.'.
+	^report add: 'Extracciï¿½n por ', anAmount asString, '.'.
 	! !
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:28' prior: 50937540!
 addFromDeposit: anAmount
 	
-	^report add: 'Depósito por ', anAmount asString, '.'.! !
+	^report add: 'Depï¿½sito por ', anAmount asString, '.'.! !
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/22/2021 16:32:55' prior: 50937533!
 addFromDepositTransfer: anAmount
 	
@@ -3380,7 +3380,7 @@ test02
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectiveReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectiveReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectiveReport equals: accountSummary report.
 	! !
@@ -3413,7 +3413,7 @@ test03
 	account := ReceptiveAccount new.
 	Withdraw register:100 on:account.
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+	expectedReport := OrderedCollection with:'Extracciï¿½n por 100.' with: 'Balance = -100'.
 		
 	self assert: expectedReport equals: accountSummary balance.
 	! !
@@ -3428,7 +3428,7 @@ test03
 	account := ReceptiveAccount new.
 	Withdraw register:100 on:account.
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+	expectedReport := OrderedCollection with:'Extracciï¿½n por 100.' with: 'Balance = -100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -3461,7 +3461,7 @@ test02
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -3721,7 +3721,7 @@ test06
 	sourceAccount transfer: 100 to: destinationAccount .
 	destinationAccountSummary := AccountSummary for: destinationAccount.
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
+		with: 'Depï¿½sito por 100.'
 		with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: destinationAccountSummary report .
@@ -3738,8 +3738,8 @@ test06
 	sourceAccount transfer: 100 to: destinationAccount .
 	destinationAccountSummary := AccountSummary for: destinationAccount.
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		
 		with: 'Balance = 100'.
 		
@@ -3758,8 +3758,8 @@ test06
 	destinationAccount transfer: 30 to: sourceAccount.
 	destinationAccountSummary := AccountSummary for: destinationAccount.
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		
 		with: 'Balance = 100'.
@@ -3779,8 +3779,8 @@ test06
 	destinationAccount transfer: 30 to: sourceAccount.
 	destinationAccountSummary := AccountSummary for: destinationAccount.
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -3806,8 +3806,8 @@ test06
 	destinationAccount transfer: 30 to: sourceAccount.
 	sourceAccountSummary := AccountSummary for: destinationAccount.
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -3827,8 +3827,8 @@ test06
 	destinationAccount transfer: 30 to: sourceAccount.
 	sourceAccountSummary := AccountSummary for: sourceAccount .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -3944,8 +3944,8 @@ test08
 	Deposit register: 100  on: account .
 	Withdraw register: 50 on: account.
 	expectedReport := OrderedCollection 
-		with:'Depósito por 100.' 
-		with: 'Extracción por 50'
+		with:'Depï¿½sito por 100.' 
+		with: 'Extracciï¿½n por 50'
 		with: 'Balance = 50'.
 	portfolio := Portfolio with: account.
 	accountSummary := AccountSummary for: portfolio.
@@ -3962,8 +3962,8 @@ test08
 	Deposit register: 100  on: account .
 	Withdraw register: 50 on: account.
 	expectedReport := OrderedCollection 
-		with:'Depósito por 100.' 
-		with: 'Extracción por 50.'
+		with:'Depï¿½sito por 100.' 
+		with: 'Extracciï¿½n por 50.'
 		with: 'Balance = 50'.
 	portfolio := Portfolio with: account.
 	accountSummary := AccountSummary for: portfolio.
@@ -4004,8 +4004,8 @@ test09
 	Deposit register: 100  on: account .
 	Withdraw register: 50 on: account.
 	expectedReport := OrderedCollection 
-		with:'Depósito por 100.' 
-		with: 'Extracción por 50.'
+		with:'Depï¿½sito por 100.' 
+		with: 'Extracciï¿½n por 50.'
 		with: 'Balance = 50'.
 	portfolio := Portfolio with: account.
 	accountSummary := AccountSummary for: portfolio.
@@ -4023,8 +4023,8 @@ test09
 	destinationAccount transfer: 30 to: sourceAccount.
 	sourceAccountSummary := AccountSummary for: sourceAccount .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -4044,8 +4044,8 @@ test09
 	
 	sourceAccountSummary := AccountSummary for: sourceAccount .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -4065,8 +4065,8 @@ test09
 	
 	sourceAccountSummary := AccountSummary for: account1 .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -4086,8 +4086,8 @@ test09
 	
 	sourceAccountSummary := AccountSummary for: account1 .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -4107,8 +4107,8 @@ test09
 	
 	portfolioSummary := AccountSummary for: account1 .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -4129,8 +4129,8 @@ test09
 	
 	portfolioSummary := AccountSummary for: portfolio .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -4151,7 +4151,7 @@ test09
 	
 	portfolioSummary := AccountSummary for: portfolio .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
+		with: 'Depï¿½sito por 100.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with:'Entrada por transferencia de 20.'
@@ -4174,7 +4174,7 @@ test09
 	
 	portfolioSummary := AccountSummary for: portfolio .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
+		with: 'Depï¿½sito por 100.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with:'Entrada por transferencia de 20.'
@@ -4200,7 +4200,7 @@ test09
 	
 	portfolioSummary := AccountSummary for: portfolio .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
+		with: 'Depï¿½sito por 100.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with:'Entrada por transferencia de 20.'
@@ -4228,7 +4228,7 @@ test09
 	
 	portfolioSummary := AccountSummary for: portfolio .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
+		with: 'Depï¿½sito por 100.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with:'Entrada por transferencia de 20.'
@@ -5136,2507 +5136,6 @@ tranferNet: aTransferNet
 	transactions do: [:aTransaction| aTransaction affectReport: aTransferNet].
 	! !
 
-<<<<<<< HEAD
-----QUIT----(23 October 2021 11:43:39) CuisUniversity-4913.image priorSource: 19424697!
-
-----STARTUP---- (23 October 2021 13:42:31) as /home/matias/Downloads/newcuis/linux64/CuisUniversity-4913.image!
-
-
-TestCase subclass: #TransferNetTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TransferNetTest category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 13:47:20'!
-TestCase subclass: #TransferNetTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classRemoval: #TransferNetTest stamp: 'MS 10/23/2021 13:47:43'!
-TestCase subclass: #TransferNetTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:48:31'!
-test14
-	
-	|account1 account2|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account2  to: account1.
-	Transfer transfer: 100 from: account2  to: account1.
-	Transfer transfer: 100 from: account2  to: account1.
-	Transfer transfer: 100 from: account2  to: account1.
-	Deposit register:1000  on: account1.
-	Withdraw register: 500 on: account1.
-	 
-	self assert: 400 equals: (TransferNet for: account1).! !
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 13:48:32'!
-PASSED!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:49:09'!
-test15
-	
-	|portfolio|
-	
-	portfolio := Portfolio new.
-	self assert: 400 equals: (TransferNet for: portfolio ).! !
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 13:49:09'!
-ERROR!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:49:16' prior: 50939531!
-test15
-	
-	|portfolio|
-	
-	portfolio := Portfolio new.
-	self assert: 0 equals: (TransferNet for: portfolio ).! !
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 13:49:16'!
-ERROR!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:49:29'!
-tranferNet: aTransferNet 
-	self shouldBeImplemented.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:49:36' prior: 50939549!
-tranferNet: aTransferNet 
-	^0.! !
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 13:49:36'!
-PASSED!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:49:50'!
-test16
-	
-	|portfolio account1 account2|
-	
-	portfolio := Portfolio new.
-	self assert: 0 equals: (TransferNet for: portfolio ).! !
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:50:49' prior: 50939594!
-test16
-	
-	|portfolio account1 account2|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1 to: account2.
-	portfolio := Portfolio with: account2.
-	self assert: 100 equals: (TransferNet for: portfolio ).! !
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 13:50:51'!
-FAILURE!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:52:38' prior: 50939554!
-tranferNet: aTransferNet 
-	accounts do: [:anAccount| anAccount tranferNet: aTransferNet ].! !
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 13:52:41'!
-PASSED!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:53:17'!
-test17
-	
-	|portfolio account1 account2|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1 to: account2.
-	portfolio := Portfolio with: account2 with: account2 .
-	self assert: 100 equals: (TransferNet for: portfolio ).! !
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:53:20' prior: 50939659!
-test17
-	
-	|portfolio account1 account2|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1 to: account2.
-	portfolio := Portfolio with: account2 with: account2 .
-	self assert: 0 equals: (TransferNet for: portfolio ).! !
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 13:53:20'!
-ERROR!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 13:53:28' prior: 50939671!
-test17
-	
-	|portfolio account1 account2|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1 to: account2.
-	portfolio := Portfolio with: account1 with: account2 .
-	self assert: 0 equals: (TransferNet for: portfolio ).! !
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 13:53:29'!
-PASSED!
-
-TestCase subclass: #TreeStructureTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructureTest category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 13:57:51'!
-TestCase subclass: #TreeStructureTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-Object subclass: #TreeStructure
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 13:58:20'!
-Object subclass: #TreeStructure
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classRemoval: #TreeStructure stamp: 'MS 10/23/2021 13:58:28'!
-Object subclass: #TreeStructure
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-Report subclass: #TreeStructure
-	instanceVariableNames: 'account transferNet'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 13:58:34'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'account transferNet'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TreeStructureTest methodsFor: 'no messages' stamp: 'MS 10/23/2021 14:01:23'!
-test01
-	|portfolio report|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	report := TreeStructure for: portfolio .! !
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:01:46' prior: 50939780!
-test01
-	|portfolio treeStructure|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	treeStructure := TreeStructure for: portfolio .! !
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:02:54' prior: 50939787!
-test01
-	|portfolio treeStructure expectedReport|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	treeStructure := TreeStructure for: portfolio .
-	expectedReport := OrderedCollection with: 'Portfolio'.
-	
-	self assert: expectedReport equals: expectedReport ! !
-!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:05:23' prior: 50939347!
-initializeWith: anAccount 
-	transferNet := 0.
-	anAccount tranferNet: self.
-	! !
-!TransferNet methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:05:38'!
-report
-	^transferNet.! !
-
-Report subclass: #TransferNet
-	instanceVariableNames: 'transferNet'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TransferNet category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:06:05'!
-Report subclass: #TransferNet
-	instanceVariableNames: 'transferNet'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-Report subclass: #TreeStructure
-	instanceVariableNames: 'transferNet'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:06:10'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'transferNet'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:06:18'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:06:18'!
-FAILURE!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:07:18' prior: 50938691!
-test10
-	|account accountTransferNet|
-	
-	account := ReceptiveAccount new.
-	accountTransferNet := TransferNet for:account.
-	self assert: 0 equals: accountTransferNet report.! !
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:07:19'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:07:19'!
-FAILURE!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:07:19'!
-FAILURE!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:07:19'!
-FAILURE!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:07:19'!
-FAILURE!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:07:19'!
-FAILURE!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:07:19'!
-FAILURE!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:07:19'!
-FAILURE!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:07:21'!
-PASSED!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:08:04' prior: 50938785!
-test11
-	|account1 account2 account2TransferNet|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1  to: account2.
-	account2TransferNet := TransferNet for: account2 .
-	self assert: 100 equals: account2TransferNet report.! !
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:08:05'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:08:05'!
-FAILURE!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:08:05'!
-FAILURE!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:08:05'!
-FAILURE!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:08:05'!
-FAILURE!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:08:05'!
-FAILURE!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:08:05'!
-FAILURE!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:08:44' prior: 50938978!
-test12
-	|account1 account2 account2TransferNet|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account2  to: account1.
-	account2TransferNet := TransferNet for: account2.
-	 
-	self assert: -100 equals: account2TransferNet report.! !
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:09:21' prior: 50939133!
-test13
-	
-	|account1 account2 account1TransferNet|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account2  to: account1.
-	Deposit register:1000  on: account1.
-	Withdraw register: 500 on: account1.
-	
-	account1TransferNet := TransferNet for: account1.
-	self assert: 100 equals: account1TransferNet report.! !
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:09:58' prior: 50939685!
-test17
-	
-	|portfolio account1 account2 portfolioTransferNet|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1 to: account2.
-	portfolio := Portfolio with: account1 with: account2 .
-	portfolioTransferNet := TransferNet for: portfolio.
-	self assert: 0 equals: portfolioTransferNet report.! !
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:10:29' prior: 50939601!
-test16
-	
-	|portfolio account1 account2 portfolioTransferNet|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1 to: account2.
-	portfolio := Portfolio with: account2.
-	portfolioTransferNet := TransferNet for: portfolio.
-	self assert: 100 equals: portfolioTransferNet .! !
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:10:59' prior: 50939540!
-test15
-	
-	|portfolio portfolioTransferNet|
-	
-	portfolio := Portfolio new.
-	portfolioTransferNet := TransferNet for: portfolio.
-	self assert: 0 equals: portfolioTransferNet report.! !
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:11:34' prior: 50939480!
-test14
-	
-	|account1 account2 account1TransferNet|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account2  to: account1.
-	Transfer transfer: 100 from: account2  to: account1.
-	Transfer transfer: 100 from: account2  to: account1.
-	Transfer transfer: 100 from: account2  to: account1.
-	Deposit register:1000  on: account1.
-	Withdraw register: 500 on: account1.
-	
-	account1TransferNet := TransferNet for: account1.
-	self assert: 400 equals: account1TransferNet report.! !
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:11:39'!
-FAILURE!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:11:39'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:11:39'!
-FAILURE!
-!ReportTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:11:56' prior: 50940024!
-test16
-	
-	|portfolio account1 account2 portfolioTransferNet|
-	
-	account1 := ReceptiveAccount new.
-	account2 := ReceptiveAccount new.
-	
-	Transfer transfer: 100 from: account1 to: account2.
-	portfolio := Portfolio with: account2.
-	portfolioTransferNet := TransferNet for: portfolio.
-	self assert: 100 equals: portfolioTransferNet report.! !
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:11:57'!
-PASSED!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:12:15' prior: 50939795!
-test01
-	|portfolio treeStructure expectedReport|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	treeStructure := TreeStructure for: portfolio .
-	expectedReport := OrderedCollection with: 'Portfolio'.
-	
-	self assert: expectedReport equals: expectedReport report.! !
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:12:30' prior: 50940162!
-test01
-	|portfolio treeStructure expectedReport|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	treeStructure := TreeStructure for: portfolio .
-	expectedReport := OrderedCollection with: 'Portfolio'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:12:31'!
-ERROR!
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:12:46'!
-named: aString 
-	self shouldBeImplemented.! !
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:13:23' prior: 50940188!
-named: aName 
-	
-	^self new initializeWithName: aName.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:13:26'!
-ERROR!
-
-!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:13:34'!
-Account subclass: #Portfolio
-	instanceVariableNames: 'accounts parents name'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!Portfolio methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:13:34'!
-initializeWithName: aName 
-	self shouldBeImplemented.
-	name := aName.! !
-!Portfolio methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:14:24' prior: 50940208!
-initializeWithName: aName 
-	name := aName.
-	self initialize .! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:14:25'!
-ERROR!
-!TreeStructure class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:14:34'!
-for: aPortfolio 
-	self shouldBeImplemented.! !
-!Report class methodsFor: 'no messages' stamp: 'MS 10/23/2021 14:15:32'!
-for: anAccount
-	^self new initializeWith: anAccount .! !
-
-!methodRemoval: TransferNet class #for: stamp: 'MS 10/23/2021 14:15:36'!
-for: anAccount
-	^self new initializeWith: anAccount .!
-
-!methodRemoval: AccountSummary class #for: stamp: 'MS 10/23/2021 14:15:41'!
-for: anAccount
-
-	^self new initializeFor: anAccount.!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:15:42'!
-ERROR!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:15:42'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:15:58'!
-ERROR!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:15:58'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:16:06'!
-ERROR!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:16:06'!
-ERROR!
-!AccountSummary methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:16:35'!
-initializeWith: anAccount
-
-	report := OrderedCollection new.
-	anAccount accountSummary: self.
-	report add: 'Balance = ', anAccount balance asString.! !
-
-!methodRemoval: AccountSummary #initializeFor: stamp: 'MS 10/23/2021 14:16:35'!
-initializeFor: anAccount
-
-	report := OrderedCollection new.
-	anAccount accountSummary: self.
-	report add: 'Balance = ', anAccount balance asString.!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:16:37'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:16:47'!
-ERROR!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:16:47'!
-ERROR!
-
-!methodRemoval: TreeStructure class #for: stamp: 'MS 10/23/2021 14:16:59'!
-for: aPortfolio 
-	self shouldBeImplemented.!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:17:05'!
-ERROR!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:17:05'!
-ERROR!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:17:16'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'transferNet account'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:17:16'!
-initializeWith: anAccount 
-	self shouldBeImplemented.
-	account := anAccount.! !
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:18:26' prior: 50940394!
-initializeWith: anAccount 
-	
-	! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:18:27'!
-ERROR!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:18:46'!
-report
-	self shouldBeImplemented.! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:19:29' prior: 50940407!
-report
-	^'Portfolio'.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:19:30'!
-FAILURE!
-
-Report subclass: #TreeStructure
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:19:59'!
-Report subclass: #TreeStructure
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:20:42'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:21:13' prior: 50940400!
-initializeWith: anAccount 
-
-	report := OrderedCollection new.
-	
-	! !
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:21:38' prior: 50940442!
-initializeWith: anAccount 
-
-	report := OrderedCollection with: 'Portfolio'.
-	
-	! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:21:46' prior: 50940412!
-report
-	^report.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:21:50'!
-PASSED!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:23:07' overrides: 16882612!
-name
-
-	^name copy.! !
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:23:28' prior: 50940448!
-initializeWith: anAccount 
-
-	report := OrderedCollection with: anAccount name.
-	
-	! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:23:29'!
-PASSED!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:24:27'!
-test02
-	|portfolio account treeStructure expectedReport|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	account := ReceptiveAccount named: 'Account'.
-	treeStructure := TreeStructure for: portfolio .
-	expectedReport := OrderedCollection 
-		with: 'Portfolio'
-		with: '   Account'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:24:46' prior: 50940473!
-test02
-	|portfolio account treeStructure expectedReport|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	account := ReceptiveAccount named: 'Account'.
-	portfolio add: account.
-	treeStructure := TreeStructure for: portfolio .
-	expectedReport := OrderedCollection 
-		with: 'Portfolio'
-		with: '   Account'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:24:47'!
-ERROR!
-!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:25:00'!
-named: aString 
-	self shouldBeImplemented.! !
-!ReceptiveAccount class methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:25:30' prior: 50940504!
-named: aName 
-	
-	^self new initializeWithName: aName! !
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:25:32'!
-ERROR!
-
-!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:25:38'!
-Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions tranfers name'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:25:38'!
-initializeWithName: aName 
-	self shouldBeImplemented.
-	name := aName.! !
-!ReceptiveAccount methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:25:49' prior: 50940525!
-initializeWithName: aName 
-	name := aName.
-	self initialize.! !
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:25:51'!
-FAILURE!
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:30:53' prior: 50940465!
-initializeWith: anAccount 
-
-	report := OrderedCollection with: anAccount name.
-	anAccount
-	
-	! !
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:31:11' prior: 50940539!
-initializeWith: anAccount 
-
-	report := OrderedCollection with: anAccount name.
-	anAccount treeStructure: self.
-	
-	! !
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:31:28'!
-ERROR!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:31:28'!
-ERROR!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:31:34'!
-treeStructure: aTreeStructure 
-	self shouldBeImplemented.! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:34:22' prior: 50940556!
-treeStructure: aTreeStructure 
-	
-	aTreeStructure ! !
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 14:35:45'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report treeLevelSize'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:35:44' prior: 50940545!
-initializeWith: anAccount 
-
-	report := OrderedCollection with: anAccount name.
-	treeLevelSize := OrderedCollection with: 1.
-	anAccount treeStructure: self.
-	
-	! !
-
-!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/23/2021 14:40:09'!
-PASSED!
-
-!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'MS 10/23/2021 14:40:09'!
-PASSED!
-
-!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'MS 10/23/2021 14:40:09'!
-PASSED!
-
-!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'MS 10/23/2021 14:40:09'!
-PASSED!
-
-!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'MS 10/23/2021 14:40:09'!
-PASSED!
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:40:11'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:40:12'!
-PASSED!
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 14:43:13' prior: 50940574!
-initializeWith: aPortfolio 
-
-	report := OrderedCollection with: aPortfolio name.
-	treeLevelSize := OrderedCollection with: 1.
-	aPortfolio treeStructure: self.
-	
-	! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:43:43' prior: 50940561!
-treeStructure: aTreeStructure 
-	
-	accounts do: [:anAccount| anAccount tranferNet: aTreeStructure ].! !
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:43:56' prior: 50940646!
-treeStructure: aTreeStructure 
-	
-	accounts do: [:anAccount| anAccount treeStructure: aTreeStructure ].! !
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:44:22'!
-treeStructure: aTreeStructure 
-	
-	transactions do: [:aTransaction| aTransaction affectReport: aTreeStructure].
-	! !
-
-!testRun: #ReportTest #test01 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test02 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test03 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test04 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test05 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test06 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test07 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test08 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test09 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test10 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test11 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test12 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test13 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test14 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test15 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test16 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #ReportTest #test17 stamp: 'MS 10/23/2021 14:44:58'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:45:02'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:45:02'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:45:02'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:45:06'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:45:06'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:47:08' prior: 50940659!
-treeStructure: aTreeStructure 
-	
-	aTreeStructure handleReceptiveAccount: self.
-	! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:47:56'!
-handleReceptiveAccount: aReceptiveAccount
-
-	report add: '   ', aReceptiveAccount name.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:47:59'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:47:59'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:47:59'!
-FAILURE!
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 14:49:18' overrides: 16882612!
-name
-
-	^name copy.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 14:49:20'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 14:49:20'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:25:21'!
-PASSED!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:27:19'!
-test03
-	|portfolio account1 account2 treeStructure expectedReport|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	
-	portfolio add: account1.
-	portfolio add: account2.
-	treeStructure := TreeStructure for: portfolio .
-	expectedReport := OrderedCollection 
-		with: 'Portfolio'
-		with: '   Account'
-		with: '   Account2'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:27:20'!
-FAILURE!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:27:27' prior: 50940748!
-test03
-	|portfolio account1 account2 treeStructure expectedReport|
-	
-	portfolio :=  Portfolio named: 'Portfolio' .
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	
-	portfolio add: account1.
-	portfolio add: account2.
-	treeStructure := TreeStructure for: portfolio .
-	expectedReport := OrderedCollection 
-		with: 'Portfolio'
-		with: '   Account1'
-		with: '   Account2'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:27:28'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:27:28'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:27:28'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:27:28'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:27:39'!
-PASSED!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:29:42'!
-test04
-	|portfolio1 account portfolio2  treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	account := ReceptiveAccount named: 'Account'.
-	portfolio1 add: account.
-	portfolio1 add: portfolio2 .
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   Account'
-		with: '   PortfolioSon'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:29:43'!
-FAILURE!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:31:38' prior: 50939615!
-tranferNet: aTransferNet 
-	aTransferNet printPortfolio: self.
-	accounts do: [:anAccount| anAccount tranferNet: aTransferNet ].! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:32:00'!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: '   ', aReceptiveAccount name.! !
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:32:00' prior: 50940717!
-treeStructure: aTreeStructure 
-	
-	aTreeStructure printReceptiveAccount: self.
-	! !
-
-!methodRemoval: TreeStructure #handleReceptiveAccount: stamp: 'MS 10/23/2021 16:32:00'!
-handleReceptiveAccount: aReceptiveAccount
-
-	report add: '   ', aReceptiveAccount name.!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:32:24'!
-printPortfolio: aPortfolio
-
-	report add: '   ', aPortfolio name.! !
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 16:32:39' prior: 50940637!
-initializeWith: aPortfolio 
-
-	report := OrderedCollection with: aPortfolio name.
-	aPortfolio treeStructure: self.
-	
-	! !
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 16:33:28' prior: 50940852!
-initializeWith: aPortfolio 
-	
-	report := OrderedCollection new.
-	aPortfolio treeStructure: self.
-
-	
-	! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:33:44' prior: 50940846!
-printPortfolio: aPortfolio
-
-	report add: aPortfolio name.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:34:06'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:34:06'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:34:06'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:34:06'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:34:11'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:34:11'!
-FAILURE!
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:34:48' prior: 50940653!
-treeStructure: aTreeStructure 
-
-	aTreeStructure printPortfolio: self.	
-	accounts do: [:anAccount| anAccount treeStructure: aTreeStructure ].! !
-
-!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'MS 10/23/2021 16:34:52'!
-PASSED!
-
-!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'MS 10/23/2021 16:34:52'!
-PASSED!
-
-!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'MS 10/23/2021 16:34:52'!
-PASSED!
-
-!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'MS 10/23/2021 16:34:52'!
-PASSED!
-
-!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'MS 10/23/2021 16:34:52'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:34:54'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:34:54'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:34:54'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:34:54'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:34:54'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:34:58'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:35:01'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:35:01'!
-FAILURE!
-
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report indentarion'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 16:36:52'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report indentarion'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report indentation'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 16:36:55'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report indentation'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 16:37:06' prior: 50940859!
-initializeWith: aPortfolio 
-	
-	report := OrderedCollection new.
-	indentation := ''.
-	aPortfolio treeStructure: self.
-
-	
-	! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:37:15' prior: 50940866!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:38:22' prior: 50940963!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	indentation := indentation , '   '.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:38:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:38:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:38:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:38:25'!
-PASSED!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:39:06' prior: 50940800!
-test04
-	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	portfolio1 add: account1.
-	portfolio1 add: portfolio2.
-	portfolio2 add: account2.
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   Account'
-		with: '   PortfolioSon'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:39:49' prior: 50940986!
-test04
-	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	portfolio1 add: account1.
-	portfolio1 add: portfolio2.
-	portfolio2 add: account2.
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   Account1'
-		with: '   PortfolioSon'
-		with: '      Account2'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:39:57'!
-test05
-	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	portfolio1 add: account1.
-	portfolio1 add: portfolio2.
-	portfolio2 add: account2.
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   Account1'
-		with: '   PortfolioSon'
-		with: '      Account2'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:29:42' prior: 50941008!
-test04
-	|portfolio1 account portfolio2  treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	account := ReceptiveAccount named: 'Account'.
-	portfolio1 add: account.
-	portfolio1 add: portfolio2 .
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   Account'
-		with: '   PortfolioSon'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:40:22'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:40:24'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:40:24'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:41:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:41:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:41:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:41:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:41:43'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:41:43'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:43:04' prior: 50940829!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: indentation, aReceptiveAccount name.! !
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:43:05'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:43:48'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:43:53'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:43:53'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:43:53'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:43:53'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:43:53'!
-PASSED!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:45:33'!
-test06
-	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	portfolio1 add: portfolio2.
-	portfolio1 add: account1.
-	portfolio2 add: account2.
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   PortfolioSon'
-		with: '      Account2'
-		with: '   Account1'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 16:45:35'!
-FAILURE!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:47:16' prior: 50941118!
-test06
-	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	portfolio2 add: account2.
-	portfolio1 add: portfolio2.
-	portfolio1 add: account1.
-	
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   PortfolioSon'
-		with: '      Account2'
-		with: '   Account1'.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 16:47:17'!
-FAILURE!
-
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report indentation sizeOfCurrentLevel'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 16:51:14'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report indentation sizeOfCurrentLevel'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 16:51:27' prior: 50940956!
-initializeWith: aPortfolio 
-	
-	sizeOfCurrentLevel := 1.
-	report := OrderedCollection new.
-	indentation := ''.
-	aPortfolio treeStructure: self.
-
-	
-	! !
-!TreeStructure methodsFor: 'initialization' stamp: 'MS 10/23/2021 16:52:27' prior: 50941182!
-initializeWith: aPortfolio 
-	
-	sizeOfCurrentLevel := OrderedCollection with: 1.
-	report := OrderedCollection new.
-	indentation := ''.
-	aPortfolio treeStructure: self.
-
-	
-	! !
-
-!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'MS 10/23/2021 16:52:35'!
-Report subclass: #TreeStructure
-	instanceVariableNames: 'report indentation sizeOfLevels'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:52:35' prior: 50941190!
-initializeWith: aPortfolio 
-	
-	sizeOfLevels := OrderedCollection with: 1.
-	report := OrderedCollection new.
-	indentation := ''.
-	aPortfolio treeStructure: self.
-
-	
-	! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:56:39' prior: 50940969!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	indentation := indentation , '   '.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:57:41' prior: 50941216!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	indentation := indentation , '   '.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accounts size.! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:58:01' prior: 50941225!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	indentation := indentation , '   '.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 16:58:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 16:58:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 16:58:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:58:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 16:58:25'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 16:58:25'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 16:58:25'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 16:58:30'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 16:58:31'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 16:58:31'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 16:59:36' prior: 50941095!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: indentation, aReceptiveAccount name.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:01:39' prior: 50941271!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: indentation, aReceptiveAccount name.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	
-	(sizeOfLevels last = 0) ifTrue: 
-		[indentation copyFrom: 1 to: (indentation size -4).
-	]! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:02:52' prior: 50941280!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: indentation, aReceptiveAccount name.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	
-	(sizeOfLevels last = 0) ifTrue: [
-		indentation copyFrom: 1 to: (indentation size -4).
-		sizeOfLevels removeLast.
-	]! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:03:05'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:03:05'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:03:05'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:03:05'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:03:05'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:03:05'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:03:05'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:06:05'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:06:08'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:06:08'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:07:25'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:07:25'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:10:06'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:12:24' prior: 50941292!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: indentation, aReceptiveAccount name.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	
-	(sizeOfLevels last = 0) ifTrue: [
-		indentation := indentation copyFrom: 1 to: (indentation size -4).
-		sizeOfLevels removeLast.
-	]! !
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:12:25'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:15:06'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:16:14'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:16:14'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:16:14'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:16:14'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:16:14'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:16:14'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:16:14'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:16:14'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:19:39' prior: 50941337!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: indentation, aReceptiveAccount name.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	
-	(sizeOfLevels last = 0) ifTrue: [
-		indentation := indentation copyFrom: 1 to: (indentation size -3).
-		sizeOfLevels removeLast.
-	]! !
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:19:40'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:19:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:19:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:19:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:19:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:19:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:19:43'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:19:43'!
-PASSED!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:24:15'!
-test07
-	|portfolio1  portfolio2 portfolio3 account1 account2 account3 treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	portfolio3 := Portfolio named: 'PortfolioGrandson'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	account3 := ReceptiveAccount named: 'Account3'.
-	
-	portfolio1 add: portfolio2.
-	portfolio1 add: account3.
-	portfolio2 add: portfolio3.
-	portfolio3 add: account1.
-	portfolio2 add: account2.
-	
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   PortfolioSon'
-		with: '      PortfolioGrandson'
-		with: '         Account1'
-		with: '      Account2' 
-		with: '   Account3 '
-		.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:24:16'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:24:32'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:24:32'!
-FAILURE!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:25:24' prior: 50941407!
-test07
-	|portfolio1  portfolio2 portfolio3 account1 account2 account3 treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	portfolio3 := Portfolio named: 'PortfolioGrandson'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	account3 := ReceptiveAccount named: 'Account3'.
-	
-	portfolio1 add: portfolio2.
-	portfolio1 add: account3.
-	portfolio2 add: portfolio3.
-	portfolio2 add: account1.
-	portfolio2 add: account2.
-	
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   PortfolioSon'
-		with: '      PortfolioGrandson'
-		with: '      Account1'
-		with: '      Account2' 
-		with: '   Account3 '
-		.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:25:25'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:31:24' prior: 50941236!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	aPortfolio accountsSize isEmpty ifFalse: [indentation := indentation , '   '].
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.! !
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:31:34'!
-ERROR!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:32:00' prior: 50941478!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	(aPortfolio accountsSize = 0) ifFalse: [indentation := indentation , '   '].
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.! !
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:32:01'!
-FAILURE!
-
-aPortfolio!
-
-aPortfolio!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:35:26'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:36:10'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:37:40'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:37:40'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:43:37' prior: 50941492!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	(aPortfolio accountsSize = 0) ifFalse: [indentation := indentation , '   '].
-	sizeOfLevels at: (sizeOfLevels size-1) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:43:39'!
-ERROR!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:43:39'!
-ERROR!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:43:39'!
-ERROR!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:43:39'!
-ERROR!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:43:39'!
-ERROR!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:43:39'!
-ERROR!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:43:39'!
-ERROR!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:43:45'!
-ERROR!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:43:45'!
-ERROR!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:43:45'!
-ERROR!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:43:45'!
-ERROR!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:43:45'!
-ERROR!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:43:45'!
-ERROR!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:43:45'!
-ERROR!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:43:54' prior: 50941517!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	(aPortfolio accountsSize = 0) ifFalse: [indentation := indentation , '   '].
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:43:55'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:43:55'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:43:55'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:43:55'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:43:55'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:43:55'!
-PASSED!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:43:55'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:43:55'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:47:08'!
-FAILURE!
-
-aPortfolio!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:53:26' prior: 50941563!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	(aPortfolio accountsSize = 0) ifFalse: [
-		indentation := indentation , '   '.
-		sizeOfLevels addLast: aPortfolio accountsSize.].
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:53:33'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:53:33'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:53:33'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:53:33'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:53:33'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:53:33'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:53:33'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:53:39'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:53:39'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:43:54' prior: 50941598!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	(aPortfolio accountsSize = 0) ifFalse: [indentation := indentation , '   '].
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.! !
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:57:15' prior: 50941375!
-printReceptiveAccount: aReceptiveAccount
-
-	report add: indentation, aReceptiveAccount name.
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	
-	(sizeOfLevels last = 0) ifTrue: [
-		indentation := indentation copyFrom: 1 to: (indentation size -3).
-		sizeOfLevels removeLast.
-	].
-
-	sizeOfLevels isEmpty ifFalse: [
-		(sizeOfLevels last = 0) ifTrue: [
-			indentation := indentation copyFrom: 1 to: (indentation size -3).
-			sizeOfLevels removeLast.
-		].
-	].! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:57:16'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:57:16'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:57:16'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:57:16'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:57:16'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:57:16'!
-PASSED!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:57:16'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:57:16'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 17:57:37' prior: 50941633!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	(aPortfolio accountsSize = 0) ifFalse: [indentation := indentation , '   '].
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.
-	
-	(sizeOfLevels last = 0) ifTrue: [
-		indentation := indentation copyFrom: 1 to: (indentation size -3).
-		sizeOfLevels removeLast.
-	].
-
-	sizeOfLevels isEmpty ifFalse: [
-		(sizeOfLevels last = 0) ifTrue: [
-			indentation := indentation copyFrom: 1 to: (indentation size -3).
-			sizeOfLevels removeLast.
-		].
-	].! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 17:57:38'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 17:57:38'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 17:57:38'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 17:57:38'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 17:57:38'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 17:57:38'!
-PASSED!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:57:38'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 17:57:38'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:00:27'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:00:27'!
-FAILURE!
-!TreeStructure methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 18:02:20' prior: 50941683!
-printPortfolio: aPortfolio
-
-	report add: indentation , aPortfolio name.
-	(aPortfolio accountsSize = 0) ifFalse: [indentation := indentation , '   '].
-	sizeOfLevels at: (sizeOfLevels size) put: (sizeOfLevels last -1 ).
-	sizeOfLevels addLast: aPortfolio accountsSize.
-	
-	(sizeOfLevels last = 0) ifTrue: [
-		sizeOfLevels removeLast.
-	].
-
-	sizeOfLevels isEmpty ifFalse: [
-		(sizeOfLevels last = 0) ifTrue: [
-			indentation := indentation copyFrom: 1 to: (indentation size -3).
-			sizeOfLevels removeLast.
-		].
-	].! !
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 18:02:21'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 18:02:21'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 18:02:21'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 18:02:21'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 18:02:21'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 18:02:21'!
-PASSED!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:02:21'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:02:21'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:02:58'!
-PASSED!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:03:00'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:03:00'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:03:05'!
-FAILURE!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:03:05'!
-FAILURE!
-!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'MS 10/23/2021 18:03:32' prior: 50941445!
-test07
-	|portfolio1  portfolio2 portfolio3 account1 account2 account3 treeStructure expectedReport|
-	
-	portfolio1 :=  Portfolio named: 'PortfolioFather' .
-	portfolio2 := Portfolio named: 'PortfolioSon'.
-	portfolio3 := Portfolio named: 'PortfolioGrandson'.
-	account1 := ReceptiveAccount named: 'Account1'.
-	account2 := ReceptiveAccount named: 'Account2'.
-	account3 := ReceptiveAccount named: 'Account3'.
-	
-	portfolio1 add: portfolio2.
-	portfolio1 add: account3.
-	portfolio2 add: portfolio3.
-	portfolio2 add: account1.
-	portfolio2 add: account2.
-	
-	
-	treeStructure := TreeStructure for: portfolio1 .
-	expectedReport := OrderedCollection 
-		with: 'PortfolioFather'
-		with: '   PortfolioSon'
-		with: '      PortfolioGrandson'
-		with: '      Account1'
-		with: '      Account2' 
-		with: '   Account3'
-		.
-	
-	self assert: expectedReport equals: treeStructure report.! !
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:03:34'!
-PASSED!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-!testRun: #TreeStructureTest #test01 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-!testRun: #TreeStructureTest #test02 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-!testRun: #TreeStructureTest #test03 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-!testRun: #TreeStructureTest #test04 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-!testRun: #TreeStructureTest #test05 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-!testRun: #TreeStructureTest #test06 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-!testRun: #TreeStructureTest #test07 stamp: 'MS 10/23/2021 18:03:35'!
-PASSED!
-
-----QUIT----(23 October 2021 18:10:20) CuisUniversity-4913.image priorSource: 19449740!
-=======
 ----STARTUP---- (23 October 2021 13:29:50) as /home/alex/Downloads/linux64-Ejercitacion/CuisUniversity-4913.image!
 
 
@@ -9551,7 +7050,7 @@ PASSED!
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:04:53' prior: 50919407 overrides: 50919374!
 addFromDeposit: aDeposit
 	
-	^report add: 'Depósito por ', aDeposit value asString, '.'.! !
+	^report add: 'Depï¿½sito por ', aDeposit value asString, '.'.! !
 
 !testRun: #ReportTest #test02 stamp: 'AC 10/23/2021 15:04:54'!
 PASSED!
@@ -9564,7 +7063,7 @@ FAILURE!
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:05:33' prior: 50919427 overrides: 50919389!
 addFromWithdraw: aWithdraw
 	
-	^report add: 'Extracción por ', aWithdraw value asString, '.'.
+	^report add: 'Extracciï¿½n por ', aWithdraw value asString, '.'.
 	! !
 
 !testRun: #ReportTest #test03 stamp: 'AC 10/23/2021 15:05:34'!
@@ -10384,7 +7883,7 @@ addFromDeposit: aDeposit
 		declaredAt: (30 to: 35)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{42 to: 56}) ,
 			([
 			([
@@ -10418,7 +7917,7 @@ addFromWithdraw: aWithdraw
 		declaredAt: (32 to: 37)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{44 to: 60}) ,
 			([
 			([
@@ -12222,7 +9721,7 @@ addFromDeposit: aDeposit
 		declaredAt: (30 to: 35)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{42 to: 56}) ,
 			([
 			([
@@ -12256,7 +9755,7 @@ addFromWithdraw: aWithdraw
 		declaredAt: (32 to: 37)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{44 to: 60}) ,
 			([
 			([
@@ -13646,7 +11145,7 @@ addFromDeposit: aDeposit
 		declaredAt: (30 to: 35)) add:
 		([
 		([
-		('Depósito por ' coverAll:
+		('Depï¿½sito por ' coverAll:
 			{42 to: 56}) ,
 			([
 			([
@@ -13680,7 +11179,7 @@ addFromWithdraw: aWithdraw
 		declaredAt: (32 to: 37)) add:
 		([
 		([
-		('Extracción por ' coverAll:
+		('Extracciï¿½n por ' coverAll:
 			{44 to: 60}) ,
 			([
 			([
@@ -14508,7 +12007,7 @@ PASSED!
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:53:51' prior: 50919282 overrides: 50919249!
 addFromDeposit: aDeposit
 	
-	report add: 'Depósito por ', aDeposit value asString, '.'.! !
+	report add: 'Depï¿½sito por ', aDeposit value asString, '.'.! !
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:53:56' prior: 50919289 overrides: 50919254!
 addFromTransferDestination: anAmount
 
@@ -14523,7 +12022,7 @@ addFromTransferSource: anAmount
 !AccountSummary methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:54:03' prior: 50919303 overrides: 50919264!
 addFromWithdraw: aWithdraw
 	
-	report add: 'Extracción por ', aWithdraw value asString, '.'.
+	report add: 'Extracciï¿½n por ', aWithdraw value asString, '.'.
 	! !
 !ReportTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 15:56:19'!
 test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
@@ -14533,7 +12032,7 @@ test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -14546,7 +12045,7 @@ test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	!
@@ -14558,7 +12057,7 @@ test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -14571,7 +12070,7 @@ test02
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	!
@@ -14617,7 +12116,7 @@ test02anAccountWithOneTransactionReturnsAccountSummaryWithThatTransactionAndItsB
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -14630,7 +12129,7 @@ test02anAccountWithOneTransactionReturnsThatTransactionAndItsBalance
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	!
@@ -14642,7 +12141,7 @@ test02anAccountWithOneDepositReturnsAccountSummaryWithThatTransactionAndItsBalan
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -14655,7 +12154,7 @@ test02anAccountWithOneTransactionReturnsAccountSummaryWithThatTransactionAndItsB
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	!
@@ -14667,7 +12166,7 @@ test03anAccountWithOneWithdrawReturnsAccountSummaryWithThatTransactionAndItsBala
 	account := ReceptiveAccount new.
 	Withdraw register:100 on:account.
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+	expectedReport := OrderedCollection with:'Extracciï¿½n por 100.' with: 'Balance = -100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -14680,7 +12179,7 @@ test03
 	account := ReceptiveAccount new.
 	Withdraw register:100 on:account.
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+	expectedReport := OrderedCollection with:'Extracciï¿½n por 100.' with: 'Balance = -100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	!
@@ -14832,8 +12331,8 @@ test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalan
 	destinationAccount transfer: 30 to: sourceAccount.
 	sourceAccountSummary := AccountSummary for: sourceAccount .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -14854,8 +12353,8 @@ test06
 	destinationAccount transfer: 30 to: sourceAccount.
 	sourceAccountSummary := AccountSummary for: sourceAccount .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
-		with: 'Extracción por 50.'
+		with: 'Depï¿½sito por 100.'
+		with: 'Extracciï¿½n por 50.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with: 'Balance = 60'.
@@ -14908,7 +12407,7 @@ test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -14921,7 +12420,7 @@ test02anAccountWithOneDepositReturnsAccountSummaryWithThatTransactionAndItsBalan
 	account := ReceptiveAccount new.
 	Deposit register:100 on:account .
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Depósito por 100.' with: 'Balance = 100'.
+	expectedReport := OrderedCollection with:'Depï¿½sito por 100.' with: 'Balance = 100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	!
@@ -14933,7 +12432,7 @@ test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance
 	account := ReceptiveAccount new.
 	Withdraw register:100 on:account.
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+	expectedReport := OrderedCollection with:'Extracciï¿½n por 100.' with: 'Balance = -100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	! !
@@ -14946,7 +12445,7 @@ test03anAccountWithOneWithdrawReturnsAccountSummaryWithThatTransactionAndItsBala
 	account := ReceptiveAccount new.
 	Withdraw register:100 on:account.
 	accountSummary := AccountSummary for: account.
-	expectedReport := OrderedCollection with:'Extracción por 100.' with: 'Balance = -100'.
+	expectedReport := OrderedCollection with:'Extracciï¿½n por 100.' with: 'Balance = -100'.
 		
 	self assert: expectedReport equals: accountSummary report.
 	!
@@ -15012,8 +12511,8 @@ test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary
 	Deposit register: 100  on: account .
 	Withdraw register: 50 on: account.
 	expectedReport := OrderedCollection 
-		with:'Depósito por 100.' 
-		with: 'Extracción por 50.'
+		with:'Depï¿½sito por 100.' 
+		with: 'Extracciï¿½n por 50.'
 		with: 'Balance = 50'.
 	portfolio := Portfolio with: account.
 	accountSummary := AccountSummary for: portfolio.
@@ -15028,8 +12527,8 @@ test08
 	Deposit register: 100  on: account .
 	Withdraw register: 50 on: account.
 	expectedReport := OrderedCollection 
-		with:'Depósito por 100.' 
-		with: 'Extracción por 50.'
+		with:'Depï¿½sito por 100.' 
+		with: 'Extracciï¿½n por 50.'
 		with: 'Balance = 50'.
 	portfolio := Portfolio with: account.
 	accountSummary := AccountSummary for: portfolio.
@@ -15049,7 +12548,7 @@ test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance
 	
 	portfolioSummary := AccountSummary for: portfolio .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
+		with: 'Depï¿½sito por 100.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with:'Entrada por transferencia de 20.'
@@ -15072,7 +12571,7 @@ test09
 	
 	portfolioSummary := AccountSummary for: portfolio .
 	expectedReport := OrderedCollection 
-		with: 'Depósito por 100.'
+		with: 'Depï¿½sito por 100.'
 		with:'Salida por transferencia de 20.' 
 		with:'Entrada por transferencia de 30.'
 		with:'Entrada por transferencia de 20.'
@@ -15390,4 +12889,1056 @@ PASSED!
 
 !testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 16:20:55'!
 PASSED!
->>>>>>> f13b8e25ad9d5e52e057018391322afbd43c04b2
+
+
+----STARTUP---- (23 October 2021 23:06:34) as /home/alex/Downloads/linux64-Ejercitacion/CuisUniversity-4913.image!
+
+
+!classRemoval: #TreeStructure stamp: 'AC 10/23/2021 23:06:40'!
+Object subclass: #TreeStructure
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transfer stamp: 'AC 10/23/2021 23:06:40'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value source destination'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferFromSource stamp: 'AC 10/23/2021 23:06:40'!
+Withdraw subclass: #TransferFromSource
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'AC 10/23/2021 23:06:40'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferToDestination stamp: 'AC 10/23/2021 23:06:41'!
+Deposit subclass: #TransferToDestination
+	instanceVariableNames: 'transfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'AC 10/23/2021 23:06:41'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'AC 10/23/2021 23:06:41'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferNet stamp: 'AC 10/23/2021 23:06:41'!
+AccountReporter subclass: #TransferNet
+	instanceVariableNames: 'account transferNet'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountSummary stamp: 'AC 10/23/2021 23:06:41'!
+AccountReporter subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountReporter stamp: 'AC 10/23/2021 23:06:42'!
+Object subclass: #AccountReporter
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'AC 10/23/2021 23:06:42'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions tranfers name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'AC 10/23/2021 23:06:42'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'AC 10/23/2021 23:06:42'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TreeStructureTest stamp: 'AC 10/23/2021 23:06:43'!
+TestCase subclass: #TreeStructureTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferTest stamp: 'AC 10/23/2021 23:06:43'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReportTest stamp: 'AC 10/23/2021 23:06:43'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'AC 10/23/2021 23:06:43'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'AC 10/23/2021 23:06:44'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of /home/alex/Downloads/linux64-Ejercitacion/Portfolio-Solucion.st----!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnCero stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneTransferInReturnsPositiveTransferNet stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneTransferOutReturnNegativeTransferNet stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test04anSourceAccountWithOneTransferOutReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test04depositAndWithdrawShouldntAffectAccountTransferNet stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test05anDestinationAccountWithOneTransferInReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test07anEmptyPortfolioReturnsCeroBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #ReportTest #test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 23:07:04'!
+PASSED!
+
+TestCase subclass: #TreeStructureTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructureTest category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 23:07:35'!
+TestCase subclass: #TreeStructureTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TreeStructureTest methodsFor: 'nil' stamp: 'AC 10/23/2021 23:07:54'!
+test01
+	|portfolio treeStructure expectedReport|
+	
+	portfolio :=  Portfolio named: 'Portfolio' .
+	treeStructure := treeStructure for: portfolio .
+	expectedReport := OrderedCollection with: 'Portfolio'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:08:04'!
+ERROR!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:08:29'!
+named: aString 
+	self shouldBeImplemented.! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:08:57' prior: 50922947!
+named: aName
+	^self new initializeWithName: aName! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:08:58'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 23:09:04'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Portfolio methodsFor: 'initialization' stamp: 'AC 10/23/2021 23:09:04'!
+initializeWithName: aName 
+	self shouldBeImplemented.
+	name := aName.! !
+!Portfolio methodsFor: 'initialization' stamp: 'AC 10/23/2021 23:09:24' prior: 50922967!
+initializeWithName: aName 
+	name := aName.
+	self initialize .! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:09:35'!
+ERROR!
+!Object methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:09:55'!
+for: aPortfolio 
+	self shouldBeImplemented.! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:10:08'!
+ERROR!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:10:08'!
+ERROR!
+
+!methodRemoval: Object #for: stamp: 'AC 10/23/2021 23:11:14'!
+for: aPortfolio 
+	self shouldBeImplemented.!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnCero stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneTransferInReturnsPositiveTransferNet stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneTransferOutReturnNegativeTransferNet stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test04anSourceAccountWithOneTransferOutReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test04depositAndWithdrawShouldntAffectAccountTransferNet stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test05anDestinationAccountWithOneTransferInReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test07anEmptyPortfolioReturnsCeroBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #ReportTest #test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 23:11:28'!
+PASSED!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:11:28'!
+ERROR!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:11:28'!
+ERROR!
+
+Object subclass: #TreeStructure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 23:11:52'!
+Object subclass: #TreeStructure
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:11:54'!
+ERROR!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:11:54'!
+ERROR!
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:12:04' prior: 50922933!
+test01
+	|portfolio treeStructure expectedReport|
+	
+	portfolio :=  Portfolio named: 'Portfolio' .
+	treeStructure := TreeStructure for: portfolio .
+	expectedReport := OrderedCollection with: 'Portfolio'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:12:14'!
+ERROR!
+!TreeStructure class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 23:12:21'!
+for: aPortfolio 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aPortfolio ! !
+!TreeStructure class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 23:12:28' prior: 50923181!
+for: anAccount
+	^self new initializeWith: anAccount .! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:12:30'!
+ERROR!
+
+!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 23:12:49'!
+Object subclass: #TreeStructure
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:12:49'!
+initializeWith: anAccount 
+	self shouldBeImplemented.
+	account := anAccount.! !
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:13:06' prior: 50923204!
+initializeWith: aPortfolio
+	^'Portfolio'! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:13:07'!
+ERROR!
+
+!classDefinition: #TreeStructure category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 23:13:41'!
+Object subclass: #TreeStructure
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:13:39' prior: 50923210!
+initializeWith: aPortfolio
+	report := OrderedCollection with: 'Portfolio'! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:13:48'!
+ERROR!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:13:48'!
+ERROR!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:13:52'!
+report
+	self shouldBeImplemented.
+	^report! !
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:13:55' prior: 50923235!
+report
+	^report! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:13:57'!
+PASSED!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:13:58'!
+PASSED!
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:14:06'!
+test02
+	|portfolio account treeStructure expectedReport|
+	
+	portfolio :=  Portfolio named: 'Portfolio' .
+	account := ReceptiveAccount named: 'Account'.
+	portfolio add: account.
+	treeStructure := TreeStructure for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Portfolio'
+		with: '   Account'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:14:08'!
+ERROR!
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 23:14:17'!
+named: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeNamed: aString ! !
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'AC 10/23/2021 23:14:29' prior: 50923266!
+named: aName 
+	
+	^self new initializeWithName: aName! !
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:14:31'!
+ERROR!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:15:07'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:15:07'!
+ERROR!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:15:07'!
+ERROR!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion' stamp: 'AC 10/23/2021 23:15:17'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions tranfers name'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'AC 10/23/2021 23:15:17'!
+initializeWithName: aName 
+	self shouldBeImplemented.
+	name := aName.! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'AC 10/23/2021 23:15:20' prior: 50923298!
+initializeWithName: aName 
+	name := aName.
+	self initialize.! !
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:15:23'!
+FAILURE!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:16:46' prior: 50923225!
+initializeWith: aPortfolio
+	report := OrderedCollection with: 'Portfolio'.
+	aPortfolio accountsIsEmpty not ifTrue:[report add: '   ', 'Account'
+	]! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:16:48'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:16:48'!
+PASSED!
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:17:00'!
+test03
+	|portfolio account1 account2 treeStructure expectedReport|
+	
+	portfolio :=  Portfolio named: 'Portfolio' .
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	
+	portfolio add: account1.
+	portfolio add: account2.
+	treeStructure := TreeStructure for: portfolio .
+	expectedReport := OrderedCollection 
+		with: 'Portfolio'
+		with: '   Account1'
+		with: '   Account2'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:17:01'!
+FAILURE!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:18:52' prior: 50923312!
+initializeWith: aPortfolio
+	report := OrderedCollection new.
+	aPortfolio treeStructure: self.! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:18:57'!
+ERROR!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:18:57'!
+ERROR!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:18:57'!
+ERROR!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:19:02'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:19:07'!
+treeStructure: aTreeStructure 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:20:02' prior: 50923362!
+treeStructure: aTreeStructure 
+	aTreeStructure printPortfolio: self.
+	accounts do: [:anAccount |anAccount treeStructure: aTreeStructure]! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:20:05'!
+ERROR!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:20:12'!
+printPortfolio: aPortfolio 
+	self shouldBeImplemented.! !
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:20:47' prior: 50923377!
+printPortfolio: aPortfolio 
+	report add: aPortfolio name.! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:20:48'!
+FAILURE!
+!Portfolio methodsFor: 'accounts management' stamp: 'AC 10/23/2021 23:20:59' overrides: 16882612!
+name
+	^name.! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:21:01'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:21:01'!
+ERROR!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:21:01'!
+ERROR!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:21:04'!
+ERROR!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:21:09'!
+treeStructure: aTreeStructure 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:21:20' prior: 50923403!
+treeStructure: aTreeStructure 
+	
+	aTreeStructure printReceptiveAccount: self.! !
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:21:22'!
+ERROR!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:21:29'!
+printReceptiveAccount: aReceptiveAccount 
+	self shouldBeImplemented.! !
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:22:00' prior: 50923417!
+printReceptiveAccount: aReceptiveAccount 
+	report add: '   ', aReceptiveAccount name.! !
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:22:01'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'AC 10/23/2021 23:22:24' overrides: 16882612!
+name
+	^name! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:22:26'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:22:26'!
+PASSED!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:22:26'!
+PASSED!
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:22:44'!
+test04
+	|portfolio1 account portfolio2  treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	account := ReceptiveAccount named: 'Account'.
+	portfolio1 add: account.
+	portfolio1 add: portfolio2 .
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   Account'
+		with: '   PortfolioSon'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:22:53'!
+FAILURE!
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:22:53'!
+FAILURE!
+
+treeStructure report!
+
+'a' * 2!
+
+'a' * '4'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:32:39'!
+treeStructure: aTreeStructure withIndent: anIndent
+	aTreeStructure printPortfolio: self.
+	accounts do: [:anAccount |anAccount treeStructure: aTreeStructure withIndent: anIndent, '   ']! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:33:32' prior: 50923468!
+treeStructure: aTreeStructure withIndent: anIndent
+	aTreeStructure printPortfolio: self withIndent: anIndent.
+	accounts do: [:anAccount |anAccount treeStructure: aTreeStructure withIndent: anIndent, '   ']! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:33:50'!
+treeStructure: aTreeStructure withIndent: anIndent
+	
+	aTreeStructure printReceptiveAccount: self withIndent: anIndent.! !
+
+!methodRemoval: ReceptiveAccount #treeStructure: stamp: 'AC 10/23/2021 23:33:55'!
+treeStructure: aTreeStructure 
+	
+	aTreeStructure printReceptiveAccount: self.!
+
+!methodRemoval: Portfolio #treeStructure: stamp: 'AC 10/23/2021 23:33:58'!
+treeStructure: aTreeStructure 
+	aTreeStructure printPortfolio: self.
+	accounts do: [:anAccount |anAccount treeStructure: aTreeStructure]!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:34:24'!
+printPortfolio: aPortfolio withIndent: anIndent
+	report add: anIndent, aPortfolio name.! !
+
+!methodRemoval: TreeStructure #printPortfolio: stamp: 'AC 10/23/2021 23:34:26'!
+printPortfolio: aPortfolio 
+	report add: aPortfolio name.!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:34:39'!
+printReceptiveAccount: aReceptiveAccount withIndent: anIndent
+	report add: anIndent, aReceptiveAccount name.! !
+
+!methodRemoval: TreeStructure #printReceptiveAccount: stamp: 'AC 10/23/2021 23:34:41'!
+printReceptiveAccount: aReceptiveAccount 
+	report add: '   ', aReceptiveAccount name.!
+!TreeStructure methodsFor: 'category-name' stamp: 'AC 10/23/2021 23:34:52' prior: 50923346!
+initializeWith: aPortfolio
+	report := OrderedCollection new.
+	aPortfolio treeStructure: self withIndent: ''.! !
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:34:54'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:34:54'!
+PASSED!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:34:54'!
+PASSED!
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:34:54'!
+PASSED!
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:36:05'!
+test05
+	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	portfolio1 add: account1.
+	portfolio1 add: portfolio2.
+	portfolio2 add: account2.
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   Account1'
+		with: '   PortfolioSon'
+		with: '      Account2'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test05 stamp: 'AC 10/23/2021 23:36:07'!
+PASSED!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:36:07'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:36:07'!
+PASSED!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:36:07'!
+PASSED!
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:36:07'!
+PASSED!
+
+!testRun: #TreeStructureTest #test05 stamp: 'AC 10/23/2021 23:36:07'!
+PASSED!
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:36:16'!
+test06
+	|portfolio1 account1 portfolio2 account2  treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	portfolio2 add: account2.
+	portfolio1 add: portfolio2.
+	portfolio1 add: account1.
+	
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   PortfolioSon'
+		with: '      Account2'
+		with: '   Account1'.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test06 stamp: 'AC 10/23/2021 23:36:17'!
+PASSED!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:36:17'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:36:17'!
+PASSED!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:36:17'!
+PASSED!
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:36:17'!
+PASSED!
+
+!testRun: #TreeStructureTest #test05 stamp: 'AC 10/23/2021 23:36:17'!
+PASSED!
+
+!testRun: #TreeStructureTest #test06 stamp: 'AC 10/23/2021 23:36:17'!
+PASSED!
+!TreeStructureTest methodsFor: 'as yet unclassified' stamp: 'AC 10/23/2021 23:36:24'!
+test07
+	|portfolio1  portfolio2 portfolio3 account1 account2 account3 treeStructure expectedReport|
+	
+	portfolio1 :=  Portfolio named: 'PortfolioFather' .
+	portfolio2 := Portfolio named: 'PortfolioSon'.
+	portfolio3 := Portfolio named: 'PortfolioGrandson'.
+	account1 := ReceptiveAccount named: 'Account1'.
+	account2 := ReceptiveAccount named: 'Account2'.
+	account3 := ReceptiveAccount named: 'Account3'.
+	
+	portfolio1 add: portfolio2.
+	portfolio1 add: account3.
+	portfolio2 add: portfolio3.
+	portfolio2 add: account1.
+	portfolio2 add: account2.
+	
+	
+	treeStructure := TreeStructure for: portfolio1 .
+	expectedReport := OrderedCollection 
+		with: 'PortfolioFather'
+		with: '   PortfolioSon'
+		with: '      PortfolioGrandson'
+		with: '      Account1'
+		with: '      Account2' 
+		with: '   Account3'
+		.
+	
+	self assert: expectedReport equals: treeStructure report.! !
+
+!testRun: #TreeStructureTest #test07 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #TreeStructureTest #test05 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #TreeStructureTest #test06 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #TreeStructureTest #test07 stamp: 'AC 10/23/2021 23:36:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnCero stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test01anAccountWithoutTransactionsReturnsCeroBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneDepositReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test02anAccountWithOneTransferInReturnsPositiveTransferNet stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneTransferOutReturnNegativeTransferNet stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test03anAccountWithOneWithdrawReturnsThatTransactionAndItsBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test04anSourceAccountWithOneTransferOutReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test04depositAndWithdrawShouldntAffectAccountTransferNet stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test05anDestinationAccountWithOneTransferInReturnsThatTransferAndItsBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test06anAccountWithAllFourTypeOfTransactionsReturnsAllFourTransactionAndItsBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test07anEmptyPortfolioReturnsCeroBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test08aPortfolioWithOneAccountReturnsThatAccountsAccountSummary stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #ReportTest #test09aPortfolioWithTwoAccountsReturnsAllTransactionsAndTheCombinedBalance stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TransferTest #test01canNotTransferZeroAsAmount stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TransferTest #test02canNotTransferANegativeValueAsAmount stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TransferTest #test03canNotTransferToSameAccount stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TransferTest #test04aTransferMustAffectBothBalances stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TransferTest #test05canNavigateThroughTransfer stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TreeStructureTest #test01 stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TreeStructureTest #test02 stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TreeStructureTest #test03 stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TreeStructureTest #test04 stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TreeStructureTest #test05 stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TreeStructureTest #test06 stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
+
+!testRun: #TreeStructureTest #test07 stamp: 'AC 10/23/2021 23:37:36'!
+PASSED!
