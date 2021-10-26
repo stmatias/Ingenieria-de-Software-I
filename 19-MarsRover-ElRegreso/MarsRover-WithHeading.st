@@ -349,6 +349,28 @@ test09
 	self assert: 'East' equals: x getHeadingTextFieldModel printString.
 	! !
 
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 13:14:30'!
+test10
+	| marsRover x y logReadStream|
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	y _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'fffr'.
+	
+	logReadStream _ ReadStream on: y contents.
+	
+	
+	self assert: '1@4' equals: x getPositionTextFieldModel.
+	
+	self assert: '1@2' equals: logReadStream nextLine.
+	self assert: '1@3' equals: logReadStream nextLine.
+	self assert: '1@4' equals: logReadStream nextLine.
+	self assert: logReadStream atEnd.
+	! !
+
 !TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:33:22'!
 trackHeadingChangesOf: aMarsRover 
 	| logger |

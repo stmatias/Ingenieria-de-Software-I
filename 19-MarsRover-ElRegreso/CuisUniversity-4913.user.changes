@@ -1559,3 +1559,153 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(26 October 2021 12:55:48) CuisUniversity-4913.image priorSource: 18694785!
+
+----SNAPSHOT----(26 October 2021 12:58:23) CuisUniversity-4913.image priorSource: 18713340!
+
+----QUIT----(26 October 2021 12:58:35) CuisUniversity-4913.image priorSource: 18713433!
+
+----STARTUP---- (26 October 2021 13:07:26) as /home/goon/Desktop/inge1/new cuis/CuisUniversity-4913.image!
+
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 13:11:13'!
+test10
+	| marsRover x y |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	y _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'fffr'.
+	
+	self assert: '1@4' equals: x getPositionTextFieldModel.
+	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 13:13:20' prior: 50916455!
+test10
+	| marsRover x y logReadStream|
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	y _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'fffr'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	
+	self assert: '1@4' equals: x getPositionTextFieldModel.
+	
+	self assert: '1@2' equals: logReadStream nextLine.
+	self assert: '1@3' equals: logReadStream nextLine.
+	self assert: '1@4' equals: logReadStream nextLine.
+	! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 13:13:29' prior: 50916470!
+test10
+	| marsRover x y logReadStream|
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	y _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'fffr'.
+	
+	logReadStream _ ReadStream on: y contents.
+	
+	
+	self assert: '1@4' equals: x getPositionTextFieldModel.
+	
+	self assert: '1@2' equals: logReadStream nextLine.
+	self assert: '1@3' equals: logReadStream nextLine.
+	self assert: '1@4' equals: logReadStream nextLine.
+	! !
+
+!testRun: #TestXxx #test10 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test09 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+
+!testRun: #TestXxx #test10 stamp: 'goc 10/26/2021 13:13:30'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 13:14:30' prior: 50916489!
+test10
+	| marsRover x y logReadStream|
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	y _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'fffr'.
+	
+	logReadStream _ ReadStream on: y contents.
+	
+	
+	self assert: '1@4' equals: x getPositionTextFieldModel.
+	
+	self assert: '1@2' equals: logReadStream nextLine.
+	self assert: '1@3' equals: logReadStream nextLine.
+	self assert: '1@4' equals: logReadStream nextLine.
+	self assert: logReadStream atEnd.
+	! !
+
+!testRun: #TestXxx #test10 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test09 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+!testRun: #TestXxx #test10 stamp: 'goc 10/26/2021 13:14:32'!
+PASSED!
+
+----SNAPSHOT----(26 October 2021 13:21:45) CuisUniversity-4913.image priorSource: 18713526!
