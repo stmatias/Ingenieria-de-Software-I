@@ -975,3 +975,587 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(25 October 2021 23:05:01) CuisUniversity-4913.image priorSource: 18661997!
+
+----STARTUP---- (26 October 2021 12:10:08) as /home/goon/Desktop/inge1/new cuis/CuisUniversity-4913.image!
+
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/26/2021 12:10:13'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/26/2021 12:10:25'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/26/2021 12:10:28'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/26/2021 12:10:28'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/26/2021 12:10:28'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/26/2021 12:10:28'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/26/2021 12:10:28'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/26/2021 12:10:28'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:21:20'!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInWindowPositionAndHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	
+	
+	
+	self assert: '1@3' equals: x positionTextFieldModel.
+	self assert: MarsRoverHeadingEast equals: x headingTextFieldModel.
+	! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:21:37'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:21:46'!
+trackInWindowPositionAndHeadingChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:24:08' prior: 50915887!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInWindowPositionChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x positionTextFieldModel.
+	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
+	! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:24:13'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:24:26'!
+trackInWindowPositionChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRoverStatusView category: 'MarsRover-WithHeading' stamp: 'goc 10/26/2021 12:24:42'!
+Object subclass: #MarsRoverStatusView
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:24:33' prior: 50915923!
+trackInWindowPositionChangesOf: aMarsRover 
+	|x|
+	
+	x _ MarsRoverStatusView new.
+	aMarsRover  trackPositionChangesToStatusView: x.
+	
+	^ x.! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:24:50'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:24:58'!
+trackPositionChangesToStatusView: aMarsRoverStatusView 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'goc 10/26/2021 12:25:38'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionChangesLogger headingChangesLogger positionChangesStatusView'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:25:35' prior: 50915946!
+trackPositionChangesToStatusView: aMarsRoverStatusView 
+	
+	positionChangesStatusView _ aMarsRoverStatusView.! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:25:41'!
+ERROR!
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:26:12'!
+positionTextFieldModel
+	self shouldBeImplemented.! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:26:41'!
+ERROR!
+
+!classDefinition: #MarsRoverStatusView category: 'MarsRover-WithHeading' stamp: 'goc 10/26/2021 12:28:09'!
+Object subclass: #MarsRoverStatusView
+	instanceVariableNames: 'positionTextFieldModel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:28:08'!
+positionTextFieldModel: aPosition
+	
+	positionTextFieldModel _ aPosition.! !
+
+!methodRemoval: MarsRoverStatusView #positionTextFieldModel stamp: 'goc 10/26/2021 12:28:13'!
+positionTextFieldModel
+	self shouldBeImplemented.!
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/26/2021 12:31:14' prior: 50915753!
+movePositionWith: anOffset
+	
+	position := position + anOffset .
+	
+	positionChangesLogger  ifNotNil:[positionChangesLogger nextPutAll: position printString; newLine].
+	positionChangesStatusView ifNotNil:[positionChangesStatusView positionTextFieldModel: position].
+	! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:31:57' prior: 50915908!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInWindowPositionChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x positionTextFieldModel.
+	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
+	! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:32:26'!
+trackInStatusViewPositionChangesOf: aMarsRover 
+	|x|
+	
+	x _ MarsRoverStatusView new.
+	aMarsRover  trackPositionChangesToStatusView: x.
+	
+	^ x.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:32:26' prior: 50916009!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x positionTextFieldModel.
+	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
+	! !
+
+!methodRemoval: TestXxx #trackInWindowPositionChangesOf: stamp: 'goc 10/26/2021 12:32:26'!
+trackInWindowPositionChangesOf: aMarsRover 
+	|x|
+	
+	x _ MarsRoverStatusView new.
+	aMarsRover  trackPositionChangesToStatusView: x.
+	
+	^ x.!
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:32:35'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:33:13' prior: 50916029!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x getPositionTextFieldModel.
+	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
+	! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:33:17'!
+ERROR!
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:33:23'!
+getPositionTextFieldModel
+	self shouldBeImplemented.! !
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:33:34' prior: 50916066!
+getPositionTextFieldModel
+	^ positionTextFieldModel .! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:33:37'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:34:00' prior: 50916051!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: 1@3 equals: x getPositionTextFieldModel.
+	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
+	! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:33:13' prior: 50916078!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x getPositionTextFieldModel.
+	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
+	! !
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:35:45' prior: 50916071!
+getPositionTextFieldModel
+	^ positionTextFieldModel printString.! !
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:35:51'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:36:46'!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: MarsRoverHeadingEast equals: x headingTextFieldModel.
+	! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:37:03' prior: 50916127!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: MarsRoverHeadingEast equals: x getHeadingTextFieldModel.
+	! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:37:07'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:37:14'!
+trackInStatusViewHeadingChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:38:09' prior: 50916151!
+trackInStatusViewHeadingChangesOf: aMarsRover 
+	|x|
+	
+	x _ MarsRoverStatusView new.
+	aMarsRover trackHeadingChangesToStatusView: x.
+	
+	^x.! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:38:14'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:38:23'!
+trackHeadingChangesToStatusView: aMarsRoverStatusView 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'goc 10/26/2021 12:38:56'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionChangesLogger headingChangesLogger positionChangesStatusView headingChangesStatusView'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:38:54' prior: 50916166!
+trackHeadingChangesToStatusView: aMarsRoverStatusView 
+	
+	headingChangesStatusView _ aMarsRoverStatusView .! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:38:58'!
+ERROR!
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:39:06'!
+getHeadingTextFieldModel
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/26/2021 12:41:03' prior: 50915779!
+changeHeadTo: aMarsRoverHeadingaDirection
+	
+	head := aMarsRoverHeadingaDirection.
+	
+	headingChangesLogger ifNotNil:[ headingChangesLogger nextPutAll: head printString; newLine ].
+	headingChangesStatusView ifNotNil:[headingChangesStatusView headingTextFieldModel: head].! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:41:18'!
+ERROR!
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:41:23'!
+headingTextFieldModel: aMarsRoverHeadingEast 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRoverStatusView category: 'MarsRover-WithHeading' stamp: 'goc 10/26/2021 12:41:56'!
+Object subclass: #MarsRoverStatusView
+	instanceVariableNames: 'positionTextFieldModel headingTextFieldModel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:41:54' prior: 50916211!
+headingTextFieldModel: aMarsRoverHeading
+	
+	headingTextFieldModel _ aMarsRoverHeading.! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:41:59'!
+ERROR!
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:42:17' prior: 50916192!
+getHeadingTextFieldModel
+	^ headingTextFieldModel.! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:42:19'!
+FAILURE!
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:42:31'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:42:59' prior: 50916138!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: (MarsRoverHeadingEast = x getHeadingTextFieldModel).
+	! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:42:59'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:43:04' prior: 50916245!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: (MarsRoverHeadingEast == x getHeadingTextFieldModel).
+	! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:43:04'!
+FAILURE!
+
+a _ MarsRoverHeadingEast for: MarsRover new.!
+
+b _ MarsRoverHeadingEast for: MarsRover new.!
+
+b _ MarsRoverHeadingEast for: MarsRover new.!
+
+a==b!
+
+a=b!
+
+a is: b!
+
+a == b!
+
+a isKindOf: b!
+
+a == b!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:37:03' prior: 50916258!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: MarsRoverHeadingEast equals: x getHeadingTextFieldModel.
+	! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:48:55' prior: 50916278!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: MarsRoverHeadingEast printString equals: x getHeadingTextFieldModel printString.
+	! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:48:55'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:50:06' prior: 50916289!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: 'East' printString equals: x getHeadingTextFieldModel.
+	! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:50:08'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:50:20' prior: 50916303!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: 'East' printString equals: x getHeadingTextFieldModel printString.
+	! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:50:21'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:50:42' prior: 50916316!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	! !
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:50:42'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:52:29'!
+test09
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionAndHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: 1@3 equals: x getPositionTextFieldModel .
+	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	! !
+
+!testRun: #TestXxx #test09 stamp: 'goc 10/26/2021 12:52:30'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:52:42'!
+trackInStatusViewPositionAndHeadingChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:53:47' prior: 50916375!
+trackInStatusViewPositionAndHeadingChangesOf: aMarsRover 
+	| x |
+	
+	x _ MarsRoverStatusView new.
+	
+	aMarsRover  trackPositionAndHeadingChangesToStatusView: x.
+	
+	^ x.! !
+
+!testRun: #TestXxx #test09 stamp: 'goc 10/26/2021 12:53:51'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:53:57'!
+trackPositionAndHeadingChangesToStatusView: aMarsRoverStatusView 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:54:41' prior: 50916391!
+trackPositionAndHeadingChangesToStatusView: aMarsRoverStatusView 
+	
+	positionChangesStatusView _ aMarsRoverStatusView .
+	headingChangesStatusView _ aMarsRoverStatusView .! !
+
+!testRun: #TestXxx #test09 stamp: 'goc 10/26/2021 12:54:43'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:55:14' prior: 50916360!
+test09
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionAndHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x getPositionTextFieldModel .
+	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	! !
+
+!testRun: #TestXxx #test09 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test07 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test08 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+!testRun: #TestXxx #test09 stamp: 'goc 10/26/2021 12:55:15'!
+PASSED!
+
+----SNAPSHOT----(26 October 2021 12:55:48) CuisUniversity-4913.image priorSource: 18694785!

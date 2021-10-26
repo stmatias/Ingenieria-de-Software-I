@@ -308,6 +308,47 @@ test06
 	self assert: 'North' equals: logReadStream nextLine .
 	self assert: logReadStream atEnd.! !
 
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:33:13'!
+test07
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x getPositionTextFieldModel.
+	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
+	! !
+
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:50:42'!
+test08
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	! !
+
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:55:14'!
+test09
+	| marsRover x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackInStatusViewPositionAndHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	self assert: '1@3' equals: x getPositionTextFieldModel .
+	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	! !
+
 !TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:33:22'!
 trackHeadingChangesOf: aMarsRover 
 	| logger |
@@ -316,6 +357,38 @@ trackHeadingChangesOf: aMarsRover
 	aMarsRover trackHeadingChangesTo: logger.
 	
 	^logger.! !
+
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:38:09'!
+trackInStatusViewHeadingChangesOf: aMarsRover 
+	|x|
+	
+	x _ MarsRoverStatusView new.
+	aMarsRover trackHeadingChangesToStatusView: x.
+	
+	^x.! !
+
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:53:47'!
+trackInStatusViewPositionAndHeadingChangesOf: aMarsRover 
+	| x |
+	
+	x _ MarsRoverStatusView new.
+	
+	aMarsRover  trackPositionAndHeadingChangesToStatusView: x.
+	
+	^ x.! !
+
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:32:26'!
+trackInStatusViewPositionChangesOf: aMarsRover 
+	|x|
+	
+	x _ MarsRoverStatusView new.
+	aMarsRover  trackPositionChangesToStatusView: x.
+	
+	^ x.! !
+
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:21:46'!
+trackInWindowPositionAndHeadingChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
 
 !TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:51:22'!
 trackPositionAndHeadingChangesOf: aMarsRover 
@@ -340,7 +413,7 @@ trackPositionChangesOf: aMarsRover
 
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position head positionChangesLogger headingChangesLogger'
+	instanceVariableNames: 'position head positionChangesLogger headingChangesLogger positionChangesStatusView headingChangesStatusView'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -363,12 +436,13 @@ initializeAt: aPosition heading: aHeadingType
 	head := aHeadingType for: self ! !
 
 
-!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:59:08'!
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/26/2021 12:41:03'!
 changeHeadTo: aMarsRoverHeadingaDirection
 	
 	head := aMarsRoverHeadingaDirection.
 	
-	headingChangesLogger ifNotNil:[ headingChangesLogger nextPutAll: head printString; newLine ]! !
+	headingChangesLogger ifNotNil:[ headingChangesLogger nextPutAll: head printString; newLine ].
+	headingChangesStatusView ifNotNil:[headingChangesStatusView headingTextFieldModel: head].! !
 
 !MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:59:44'!
 headEast
@@ -449,12 +523,13 @@ moveNorth
 	
 	! !
 
-!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:55:53'!
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/26/2021 12:31:14'!
 movePositionWith: anOffset
 	
 	position := position + anOffset .
 	
 	positionChangesLogger  ifNotNil:[positionChangesLogger nextPutAll: position printString; newLine].
+	positionChangesStatusView ifNotNil:[positionChangesStatusView positionTextFieldModel: position].
 	! !
 
 !MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:57:17'!
@@ -492,10 +567,26 @@ trackHeadingChangesTo: aLogger
 	
 	headingChangesLogger _ aLogger.! !
 
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:38:54'!
+trackHeadingChangesToStatusView: aMarsRoverStatusView 
+	
+	headingChangesStatusView _ aMarsRoverStatusView .! !
+
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:54:41'!
+trackPositionAndHeadingChangesToStatusView: aMarsRoverStatusView 
+	
+	positionChangesStatusView _ aMarsRoverStatusView .
+	headingChangesStatusView _ aMarsRoverStatusView .! !
+
 !MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 22:21:56'!
 trackPositionChangesTo: aLogger
 	
 	positionChangesLogger _ aLogger.! !
+
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:25:35'!
+trackPositionChangesToStatusView: aMarsRoverStatusView 
+	
+	positionChangesStatusView _ aMarsRoverStatusView.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -704,3 +795,29 @@ rotateRight
 printString
 
 	^'West'.! !
+
+
+!classDefinition: #MarsRoverStatusView category: 'MarsRover-WithHeading'!
+Object subclass: #MarsRoverStatusView
+	instanceVariableNames: 'positionTextFieldModel headingTextFieldModel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:42:17'!
+getHeadingTextFieldModel
+	^ headingTextFieldModel.! !
+
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:35:45'!
+getPositionTextFieldModel
+	^ positionTextFieldModel printString.! !
+
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:41:54'!
+headingTextFieldModel: aMarsRoverHeading
+	
+	headingTextFieldModel _ aMarsRoverHeading.! !
+
+!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:28:08'!
+positionTextFieldModel: aPosition
+	
+	positionTextFieldModel _ aPosition.! !
