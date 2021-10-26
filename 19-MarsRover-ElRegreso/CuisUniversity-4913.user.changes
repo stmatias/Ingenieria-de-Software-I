@@ -1,0 +1,977 @@
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:20:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:20:10) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (13 October 2021 15:21:02) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:21:02) CuisUniversity-4913.image priorSource: 18661997!
+
+----QUIT----(13 October 2021 15:26:07) CuisUniversity-4913.image priorSource: 14638157!
+
+----STARTUP---- (13 October 2021 15:26:08) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-4913.image!
+
+
+----QUIT----(13 October 2021 15:26:08) CuisUniversity-4913.image priorSource: 18661767!
+
+----STARTUP---- (25 October 2021 20:49:39) as /home/goon/Desktop/inge1/new cuis/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/goon/Desktop/inge1/ejsCatedra/2021-2c/19-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+Object subclass: #xx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverRegreso'!
+
+Object subclass: #Xx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverRegreso'!
+
+!classDefinition: #Xx category: 'MarsRoverRegreso' stamp: 'goc 10/25/2021 20:51:36'!
+Object subclass: #Xx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverRegreso'!
+
+TestCase subclass: #TestsXx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverRegreso'!
+
+!classDefinition: #TestsXx category: 'MarsRoverRegreso' stamp: 'goc 10/25/2021 20:52:19'!
+TestCase subclass: #TestsXx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverRegreso'!
+!TestsXx methodsFor: 'nil' stamp: 'goc 10/25/2021 20:52:43'!
+test0
+
+! !
+!TestsXx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 20:56:52' prior: 50915357!
+test0
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	
+	
+	self deny: (marsRover isAt: 1@2 heading: self north)
+! !
+
+TestCase subclass: #MarsRoverRegresoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #MarsRoverRegresoTest category: 'MarsRover-WithHeading' stamp: 'goc 10/25/2021 20:57:53'!
+TestCase subclass: #MarsRoverRegresoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverRegresoTest methodsFor: 'nil' stamp: 'goc 10/25/2021 20:58:14'!
+east
+
+	^ MarsRoverHeadingEast! !
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 20:58:24'!
+west
+
+	^ MarsRoverHeadingWest! !
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 20:58:35'!
+north
+
+	^ MarsRoverHeadingNorth! !
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 20:59:32'!
+test0
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	
+	
+	self deny: (marsRover isAt: 1@2 heading: self north)! !
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 20:59:53'!
+south
+
+	^ MarsRoverHeadingSouth! !
+
+!methodRemoval: MarsRoverRegresoTest #test0 stamp: 'goc 10/25/2021 21:00:16'!
+test0
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	
+	
+	self deny: (marsRover isAt: 1@2 heading: self north)!
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 21:00:20'!
+test0
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	
+	
+	self deny: (marsRover isAt: 1@2 heading: self north)! !
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 21:03:34' prior: 50915412!
+test0
+	| marsRover resLog |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	resLog := marsRover returnLogs.
+	
+	
+	self assert:( resLog isEmpty).! !
+
+!testRun: #MarsRoverRegresoTest #test0 stamp: 'goc 10/25/2021 21:03:39'!
+ERROR!
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 21:04:53'!
+returnLog
+
+	^ OrderedCollection new.! !
+
+!classRemoval: #Xx stamp: 'goc 10/25/2021 21:06:10'!
+Object subclass: #Xx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverRegreso'!
+
+!classRemoval: #TestsXx stamp: 'goc 10/25/2021 21:06:10'!
+TestCase subclass: #TestsXx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRoverRegreso'!
+
+!testRun: #MarsRoverRegresoTest #test0 stamp: 'goc 10/25/2021 21:06:26'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test0 stamp: 'goc 10/25/2021 21:06:26'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 21:06:46'!
+returnLogs
+
+	^ OrderedCollection new.! !
+
+!methodRemoval: MarsRover #returnLog stamp: 'goc 10/25/2021 21:06:48'!
+returnLog
+
+	^ OrderedCollection new.!
+
+!testRun: #MarsRoverRegresoTest #test0 stamp: 'goc 10/25/2021 21:06:53'!
+PASSED!
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 21:08:27' prior: 50915420!
+test0
+	| marsRover resLog |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	resLog := marsRover returnLogsBoth.
+	
+	
+	self assert:( resLog isEmpty).! !
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 21:11:07' prior: 50915462!
+test0
+	| marsRover resLogBoth resLogPos resLogDir |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	resLogBoth := marsRover returnLogsBoth.
+	
+	resLogPos := marsRover returnLogsPos.
+	
+	resLogDir := marsRover returnLogsDir.
+	
+	self assert:( resLogBoth isEmpty).
+	self assert:( resLogPos isEmpty).
+	self assert:( resLogDir isEmpty).! !
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 21:11:13'!
+test00
+	| marsRover resLogBoth resLogPos resLogDir |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	resLogBoth := marsRover returnLogsBoth.
+	
+	resLogPos := marsRover returnLogsPos.
+	
+	resLogDir := marsRover returnLogsDir.
+	
+	self assert:( resLogBoth isEmpty).
+	self assert:( resLogPos isEmpty).
+	self assert:( resLogDir isEmpty).! !
+
+!methodRemoval: MarsRoverRegresoTest #test0 stamp: 'goc 10/25/2021 21:11:15'!
+test0
+	| marsRover resLogBoth resLogPos resLogDir |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	resLogBoth := marsRover returnLogsBoth.
+	
+	resLogPos := marsRover returnLogsPos.
+	
+	resLogDir := marsRover returnLogsDir.
+	
+	self assert:( resLogBoth isEmpty).
+	self assert:( resLogPos isEmpty).
+	self assert:( resLogDir isEmpty).!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:18'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:22'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:23'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:24'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:24'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:25'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:26'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:11:26'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 21:11:42'!
+returnLogsBoth
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 21:12:02' prior: 50915532!
+returnLogsBoth
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:12:03'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 21:12:08'!
+returnLogsPos
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 21:12:10' prior: 50915544!
+returnLogsPos
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:12:11'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 21:12:16'!
+returnLogsDir
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 21:12:19' prior: 50915556!
+returnLogsDir
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:12:19'!
+PASSED!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:12:20'!
+PASSED!
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 21:26:12'!
+test01
+	| marsRover resLogBoth resLogPos resLogDir |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	marsRover  process: 'f'.
+	
+	resLogBoth := marsRover returnLogsBoth.
+	
+	resLogPos := marsRover returnLogsPos.
+	
+	resLogDir := marsRover returnLogsDir.
+	
+	self assert:( resLogBoth isEmpty).
+	
+	self assert:( resLogPos at:1) equals:(1@2).
+	self assert: resLogPos size equals:1.
+	
+	self assert:( resLogDir isEmpty).! !
+
+!classDefinition: #LogsMarsRover category: 'MarsRover-WithHeading' stamp: 'goc 10/25/2021 21:28:58'!
+Object subclass: #LogsMarsRover
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRoverRegresoTest methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 21:28:41' prior: 50915485!
+test00
+	| marsRover resLogBoth resLogPos resLogDir logs |
+	
+	marsRover := MarsRover at: 1@1 heading: self north.
+	
+	logs := LogsMarsRover with: marsRover.
+	
+	
+	resLogBoth := logs returnLogsBoth.
+	
+	resLogPos := logs returnLogsPos.
+	
+	resLogDir := logs returnLogsDir.
+	
+	self assert:( resLogBoth isEmpty).
+	self assert:( resLogPos isEmpty).
+	self assert:( resLogDir isEmpty).! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:29:07'!
+ERROR!
+!LogsMarsRover class methodsFor: 'instance creation' stamp: 'goc 10/25/2021 21:29:18'!
+with: aMarsRover 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWith: aMarsRover ! !
+!LogsMarsRover class methodsFor: 'instance creation' stamp: 'goc 10/25/2021 21:29:37' prior: 50915614!
+with: aMarsRover 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	
+	^self new initializeWith: aMarsRover ! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:29:52'!
+ERROR!
+
+!classDefinition: #LogsMarsRover category: 'MarsRover-WithHeading' stamp: 'goc 10/25/2021 21:30:11'!
+Object subclass: #LogsMarsRover
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:30:11'!
+initializeWith: aMarsRover 
+	self shouldBeImplemented.
+	marsRover := aMarsRover.! !
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:30:23' prior: 50915640!
+initializeWith: aMarsRover 
+	
+	marsRover := aMarsRover.! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:30:24'!
+ERROR!
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:30:33'!
+returnLogsBoth
+	self shouldBeImplemented.! !
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:31:05' prior: 50915653!
+returnLogsBoth
+	
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:31:06'!
+ERROR!
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:31:12'!
+returnLogsPos
+	self shouldBeImplemented.! !
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:31:14' prior: 50915665!
+returnLogsPos
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:31:15'!
+ERROR!
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:31:20'!
+returnLogsDir
+	self shouldBeImplemented.! !
+!LogsMarsRover methodsFor: 'unclasiffied' stamp: 'goc 10/25/2021 21:31:22' prior: 50915677!
+returnLogsDir
+	^ OrderedCollection new.! !
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:31:23'!
+PASSED!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:31:23'!
+PASSED!
+
+!testRun: #MarsRoverRegresoTest #test01 stamp: 'goc 10/25/2021 21:31:23'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test01 stamp: 'goc 10/25/2021 21:31:23'!
+ERROR!
+
+!testRun: #MarsRoverRegresoTest #test00 stamp: 'goc 10/25/2021 21:31:42'!
+PASSED!
+
+----STARTUP---- (25 October 2021 22:13:49) as /home/goon/Desktop/inge1/new cuis/CuisUniversity-4913.image!
+
+
+----End fileIn of /home/goon/Desktop/inge1/ejsCatedra/2021-2c/19-MarsRover-ElRegreso/MarsRover-WithHeading.st----!
+
+TestCase subclass: #TestXxx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!classDefinition: #TestXxx category: 'MarsRover-WithHeading' stamp: 'goc 10/25/2021 22:15:07'!
+TestCase subclass: #TestXxx
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!TestXxx methodsFor: 'nil' stamp: 'goc 10/25/2021 22:18:06'!
+test01
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'f'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert:'1@2' equals: logReadStream nextLine.
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:18:42'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:18:57'!
+trackPositionChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:19:53' prior: 50915358!
+trackPositionChangesOf: aMarsRover 
+	| logger |
+	
+	logger _ WriteStream on: ''.
+	aMarsRover trackPositionChangesTo: logger.
+	
+	^ logger.! !
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:19:58'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 22:21:25'!
+trackPositionChangesTo: aWriteStream 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'goc 10/25/2021 22:22:13'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionChangesLogger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 22:21:56' prior: 50915372!
+trackPositionChangesTo: aLogger
+	
+	positionChangesLogger _ aLogger.! !
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:22:16'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:25:49' prior: 50915097!
+moveNorth
+	
+	position := position + (0@1).
+	
+	positionChangesLogger  ifNotNil:[positionChangesLogger nextPutAll: position printString; newLine].
+	! !
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:25:56'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:25:56'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:27:59'!
+test02
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'ff'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert:'1@2' equals: logReadStream nextLine.
+	self assert: logReadStream atEnd.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:28:31' prior: 50915405!
+test02
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'b'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert:'1@0' equals: logReadStream nextLine.
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:28:33'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:30:31' prior: 50915101!
+moveSouth
+	
+	position := position + (0@-1).
+	
+	positionChangesLogger ifNotNil:[positionChangesLogger nextPutAll: position printString; newLine].! !
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:30:38'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:30:38'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:30:38'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:31:46'!
+test03
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'ff'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:31:49'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:32:09' prior: 50915447!
+test03
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ff'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:32:15'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:32:25'!
+trackHeadingChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:33:22' prior: 50915474!
+trackHeadingChangesOf: aMarsRover 
+	| logger |
+	
+	logger _ WriteStream on: ''.
+	aMarsRover trackHeadingChangesTo: logger.
+	
+	^logger.! !
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:33:28'!
+ERROR!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 22:33:35'!
+trackHeadingChangesTo: aWriteStream 
+	self shouldBeImplemented.! !
+
+!classDefinition: #MarsRover category: 'MarsRover-WithHeading' stamp: 'goc 10/25/2021 22:34:15'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position head positionChangesLogger headingChangesLogger'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 22:34:31' prior: 50915488!
+trackHeadingChangesTo: aLogger 
+	
+	headingChangesLogger _ aLogger.! !
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:34:32'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:34:32'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:34:32'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:34:32'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:35:51' prior: 50915461!
+test03
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert: 'East' equals: logReadStream nextLine .
+	self assert: logReadStream atEnd.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:35:51' prior: 50915516!
+test03
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert: 'East' equals: logReadStream nextLine .
+	self assert: logReadStream atEnd.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:31:46' prior: 50915529!
+test03
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackPositionChangesOf: marsRover.
+	
+	marsRover process: 'ff'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert: logReadStream atEnd.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:37:04'!
+test04
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert: 'East' equals: logReadStream nextLine .
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:37:07'!
+FAILURE!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:37:07'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:37:55' prior: 50915542!
+test03
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ff'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:37:56'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:37:56'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:37:56'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:37:56'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:37:56'!
+FAILURE!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:37:56'!
+FAILURE!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:38:41'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:38:41'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:38:41'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:38:41'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:38:41'!
+FAILURE!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:38:41'!
+FAILURE!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:38:56'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:39:13'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:40:30' prior: 50915039!
+headEast
+	
+	head := MarsRoverHeadingEast for: self.
+	
+	headingChangesLogger nextPutAll: head printString; newLine.! !
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:40:36'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:41:56' prior: 50915613!
+headEast
+	
+	head := MarsRoverHeadingEast for: self.
+	
+	headingChangesLogger ifNotNil:[headingChangesLogger nextPutAll: head printString; newLine].! !
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:42:02'!
+FAILURE!
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:42:36' prior: 50915622!
+headEast
+	
+	head := MarsRoverHeadingEast for: self.
+	
+	headingChangesLogger ifNotNil:[ headingChangesLogger nextPutAll: head printString; newLine ].! !
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:43:46' prior: 50915632!
+headEast
+	
+	head := MarsRoverHeadingEast for: self.
+	
+	headingChangesLogger ifNotNil:[ headingChangesLogger nextPutAll: head printString; newLine ]! !
+
+head _ MarsRoverHeadingEast for: MarsRover new.!
+
+head printString !
+!MarsRoverHeading methodsFor: 'heading' stamp: 'goc 10/25/2021 22:47:28' overrides: 50773773!
+printString
+
+	self subclassResponsibility ! !
+!MarsRoverHeadingEast methodsFor: 'nil' stamp: 'goc 10/25/2021 22:47:59' overrides: 50915650!
+printString
+
+	^'East'.! !
+!MarsRoverHeadingNorth methodsFor: 'nil' stamp: 'goc 10/25/2021 22:48:13' overrides: 50915650!
+printString
+
+	^'North'.! !
+!MarsRoverHeadingSouth methodsFor: 'nil' stamp: 'goc 10/25/2021 22:48:22' overrides: 50915650!
+printString
+
+	^'South'.! !
+!MarsRoverHeadingWest methodsFor: 'nil' stamp: 'goc 10/25/2021 22:48:31' overrides: 50915650!
+printString
+
+	^'West'.! !
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:48:36'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:48:36'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:48:36'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:48:36'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:48:36'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:49:52'!
+test05
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackPositionAndHeadingChangesOf: marsRover.
+	
+	marsRover process: 'ffr'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	
+	self assert: '1@2' equals: logReadStream nextLine.
+	self assert: '1@3' equals: logReadStream nextLine.
+	self assert: 'East' equals: logReadStream nextLine .
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/25/2021 22:50:30'!
+ERROR!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:50:36'!
+trackPositionAndHeadingChangesOf: aMarsRover 
+	self shouldBeImplemented.! !
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:51:22' prior: 50915701!
+trackPositionAndHeadingChangesOf: aMarsRover 
+	
+	| logger|
+	
+	logger _ WriteStream on: ''.
+	aMarsRover  trackHeadingChangesTo: logger.
+	aMarsRover  trackPositionChangesTo: logger.
+	
+	^logger.! !
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/25/2021 22:51:23'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 22:51:23'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 22:51:23'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 22:51:23'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 22:51:23'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/25/2021 22:51:23'!
+PASSED!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:54:01'!
+test06
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	x _ self trackPositionAndHeadingChangesOf: marsRover.
+	
+	marsRover process: 'frfrfr'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	
+	self assert: '2@1' equals: logReadStream nextLine.
+	self assert: 'South' equals: logReadStream nextLine .
+	self assert: '2@0' equals: logReadStream nextLine.
+	self assert: 'West' equals: logReadStream nextLine .
+	self assert: '1@0' equals: logReadStream nextLine .
+	self assert: 'North' equals: logReadStream nextLine .
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/25/2021 22:54:15'!
+FAILURE!
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:55:53'!
+movePositionWith: anOffset
+	
+	position := position + anOffset .
+	
+	positionChangesLogger  ifNotNil:[positionChangesLogger nextPutAll: position printString; newLine].
+	! !
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:56:45' prior: 50915089!
+moveEast
+	
+	self movePositionWith: (1@0).! !
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:57:05' prior: 50915393!
+moveNorth
+	
+	self movePositionWith: (0@1).
+	
+	! !
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:57:17' prior: 50915433!
+moveSouth
+	
+	self movePositionWith: (0@-1).
+	
+	! !
+!MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:57:28' prior: 50915105!
+moveWest
+	
+	self movePositionWith: (-1@0).! !
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:59:08'!
+changeHeadTo: aMarsRoverHeadingaDirection
+	
+	head := aMarsRoverHeadingaDirection.
+	
+	headingChangesLogger ifNotNil:[ headingChangesLogger nextPutAll: head printString; newLine ]! !
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:59:44' prior: 50915640!
+headEast
+	
+	self changeHeadTo: (MarsRoverHeadingEast for: self).! !
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:59:54' prior: 50915043!
+headNorth
+	
+	self changeHeadTo: (MarsRoverHeadingNorth for: self).! !
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 23:00:01' prior: 50915047!
+headSouth
+	
+	self changeHeadTo: (MarsRoverHeadingSouth for: self).! !
+!MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 23:00:10' prior: 50915051!
+headWest
+	
+	self changeHeadTo: (MarsRoverHeadingWest for: self).! !
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/25/2021 23:00:19'!
+FAILURE!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 23:01:59'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 23:02:01'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 23:02:05'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 23:02:08'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/25/2021 23:02:12'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/25/2021 23:02:15'!
+FAILURE!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/25/2021 23:02:15'!
+FAILURE!
+!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 23:02:48' prior: 50915729!
+test06
+	| marsRover logReadStream x |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingEast.
+	
+	x _ self trackPositionAndHeadingChangesOf: marsRover.
+	
+	marsRover process: 'frfrfr'.
+	
+	logReadStream _ ReadStream on: x contents.
+	
+	
+	self assert: '2@1' equals: logReadStream nextLine.
+	self assert: 'South' equals: logReadStream nextLine .
+	self assert: '2@0' equals: logReadStream nextLine.
+	self assert: 'West' equals: logReadStream nextLine .
+	self assert: '1@0' equals: logReadStream nextLine .
+	self assert: 'North' equals: logReadStream nextLine .
+	self assert: logReadStream atEnd.! !
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/25/2021 23:02:53'!
+PASSED!
+
+!testRun: #TestXxx #test01 stamp: 'goc 10/25/2021 23:02:53'!
+PASSED!
+
+!testRun: #TestXxx #test02 stamp: 'goc 10/25/2021 23:02:53'!
+PASSED!
+
+!testRun: #TestXxx #test03 stamp: 'goc 10/25/2021 23:02:53'!
+PASSED!
+
+!testRun: #TestXxx #test04 stamp: 'goc 10/25/2021 23:02:53'!
+PASSED!
+
+!testRun: #TestXxx #test05 stamp: 'goc 10/25/2021 23:02:53'!
+PASSED!
+
+!testRun: #TestXxx #test06 stamp: 'goc 10/25/2021 23:02:53'!
+PASSED!
+
+----SNAPSHOT----(25 October 2021 23:05:01) CuisUniversity-4913.image priorSource: 18661997!
