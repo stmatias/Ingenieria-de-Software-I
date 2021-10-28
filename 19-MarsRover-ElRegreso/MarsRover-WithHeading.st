@@ -203,239 +203,538 @@ assertIsAt: newPosition heading: newHeadingType afterProcessing: commands whenSt
 	self assert: (marsRover isAt: newPosition heading: newHeadingType)! !
 
 
-!classDefinition: #TestXxx category: 'MarsRover-WithHeading'!
-TestCase subclass: #TestXxx
+!classDefinition: #MarsRoverTracker category: 'MarsRover-WithHeading'!
+TestCase subclass: #MarsRoverTracker
+	instanceVariableNames: 'marsRover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverTracker methodsFor: 'changing' stamp: 'MS 10/28/2021 16:22:04'!
+changeHeading: aHeading
+
+	self subclassResponsibility .! !
+
+!MarsRoverTracker methodsFor: 'changing' stamp: 'MS 10/28/2021 16:22:16'!
+changePosition: aPosition
+
+	self subclassResponsibility .! !
+
+
+!MarsRoverTracker methodsFor: 'initialization' stamp: 'MS 10/28/2021 14:43:30'!
+initializeInstances
+
+	self subclassResponsibility .! !
+
+!MarsRoverTracker methodsFor: 'initialization' stamp: 'MS 10/28/2021 14:43:16'!
+initializeWith: aMarsRover
+
+	marsRover := aMarsRover.
+	aMarsRover add: self.
+	self initializeInstances.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MarsRoverTracker class' category: 'MarsRover-WithHeading'!
+MarsRoverTracker class
+	instanceVariableNames: ''!
+
+!MarsRoverTracker class methodsFor: 'as yet unclassified' stamp: 'MS 10/28/2021 14:51:15'!
+for: aMarsRover
+
+	^self new initializeWith: aMarsRover.! !
+
+
+!classDefinition: #MarsRoverLogs category: 'MarsRover-WithHeading'!
+MarsRoverTracker subclass: #MarsRoverLogs
+	instanceVariableNames: 'log'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverLogs methodsFor: 'adding' stamp: 'MS 10/27/2021 15:47:37'!
+add: aHeading
+
+	log add: aHeading .! !
+
+
+!MarsRoverLogs methodsFor: 'log' stamp: 'MS 10/27/2021 15:46:53'!
+log
+	^log.! !
+
+
+!MarsRoverLogs methodsFor: 'changing' stamp: 'MS 10/28/2021 16:18:07'!
+changeHeading: aHeading
+
+	self subclassResponsibility .! !
+
+!MarsRoverLogs methodsFor: 'changing' stamp: 'MS 10/28/2021 16:17:58'!
+changePosition: aPosition
+
+	self subclassResponsibility .! !
+
+
+!MarsRoverLogs methodsFor: 'initialization' stamp: 'MS 10/28/2021 14:43:54'!
+initializeInstances
+
+	log := OrderedCollection new.! !
+
+
+!classDefinition: #MarsRoverHeadingLog category: 'MarsRover-WithHeading'!
+MarsRoverLogs subclass: #MarsRoverHeadingLog
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:18:06'!
-test01
-	| marsRover logReadStream x |
+!MarsRoverHeadingLog methodsFor: 'changing' stamp: 'MS 10/28/2021 14:53:41'!
+changeHeading: aHeading
+
+	log add: aHeading.! !
+
+!MarsRoverHeadingLog methodsFor: 'changing' stamp: 'MS 10/28/2021 14:54:21'!
+changePosition: aPosition
+! !
+
+
+!classDefinition: #MarsRoverPositionHeadingLog category: 'MarsRover-WithHeading'!
+MarsRoverLogs subclass: #MarsRoverPositionHeadingLog
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverPositionHeadingLog methodsFor: 'changing' stamp: 'MS 10/28/2021 13:23:19'!
+changeHeading: aHeading
+
+	log add: aHeading.! !
+
+!MarsRoverPositionHeadingLog methodsFor: 'changing' stamp: 'MS 10/28/2021 13:23:03'!
+changePosition: aPosition
+
+	log add: aPosition.! !
+
+
+!classDefinition: #MarsRoverPositionLog category: 'MarsRover-WithHeading'!
+MarsRoverLogs subclass: #MarsRoverPositionLog
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverPositionLog methodsFor: 'changing' stamp: 'MS 10/28/2021 14:53:17'!
+changeHeading: aHeading
+
+	! !
+
+!MarsRoverPositionLog methodsFor: 'changing' stamp: 'MS 10/28/2021 14:53:18'!
+changePosition: aPosition
+
+	log add: aPosition.! !
+
+
+!classDefinition: #MarsRoverStatusView category: 'MarsRover-WithHeading'!
+MarsRoverTracker subclass: #MarsRoverStatusView
+	instanceVariableNames: 'window'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverStatusView methodsFor: 'initialization' stamp: 'MS 10/28/2021 14:44:43'!
+initializeInstances
+	
+	self subclassResponsibility.
+	! !
+
+
+!MarsRoverStatusView methodsFor: 'window' stamp: 'MS 10/28/2021 14:56:09'!
+window
+
+	^window.! !
+
+
+!MarsRoverStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 16:17:22'!
+changeHeading: aHeading
+
+	self subclassResponsibility.! !
+
+!MarsRoverStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 16:17:40'!
+changePosition: aPosition
+
+	self subclassResponsibility.! !
+
+
+!classDefinition: #MarsRoverHeadingStatusView category: 'MarsRover-WithHeading'!
+MarsRoverStatusView subclass: #MarsRoverHeadingStatusView
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverHeadingStatusView methodsFor: 'initialization' stamp: 'MS 10/28/2021 14:55:27'!
+initializeInstances
+	! !
+
+
+!MarsRoverHeadingStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 14:21:01'!
+changeHeading: aHeading
+
+	window := aHeading.
+
+	! !
+
+!MarsRoverHeadingStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 14:20:34'!
+changePosition: aPosition
+
+	! !
+
+
+!classDefinition: #MarsRoverPositionAndHeadingStatusView category: 'MarsRover-WithHeading'!
+MarsRoverStatusView subclass: #MarsRoverPositionAndHeadingStatusView
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverPositionAndHeadingStatusView methodsFor: 'initialization' stamp: 'MS 10/28/2021 14:47:03'!
+initializeInstances
+
+	window := Array new: 2.! !
+
+
+!MarsRoverPositionAndHeadingStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 15:05:54'!
+changeHeading: aHeading
+
+	window at: 2 put: aHeading.! !
+
+!MarsRoverPositionAndHeadingStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 15:05:57'!
+changePosition: aPosition
+
+	window at: 1  put: aPosition .! !
+
+
+!classDefinition: #MarsRoverPositionStatusView category: 'MarsRover-WithHeading'!
+MarsRoverStatusView subclass: #MarsRoverPositionStatusView
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverPositionStatusView methodsFor: 'initialization' stamp: 'MS 10/28/2021 14:55:33'!
+initializeInstances
+! !
+
+
+!MarsRoverPositionStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 14:22:21'!
+changeHeading: aHeading
+
+! !
+
+!MarsRoverPositionStatusView methodsFor: 'changing' stamp: 'MS 10/28/2021 14:22:17'!
+changePosition: aPosition
+
+	window := aPosition.! !
+
+
+!classDefinition: #MarsRoverTrackerTest category: 'MarsRover-WithHeading'!
+TestCase subclass: #MarsRoverTrackerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover-WithHeading'!
+
+!MarsRoverTrackerTest methodsFor: 'log position' stamp: 'MS 10/28/2021 16:03:25'!
+test00logForPositionWithoutMovingReturnsEmptyCollection
+	| marsRover expected positionLog |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackPositionChangesOf: marsRover.
+	positionLog _ MarsRoverPositionLog for: marsRover .
+	
+	expected := OrderedCollection new.
+	
+	self assert: expected equals: positionLog log.! !
+
+!MarsRoverTrackerTest methodsFor: 'log position' stamp: 'MS 10/28/2021 16:03:35'!
+test01logForPositionWithForwardCommandReturnsCorrectCollection
+	| marsRover expected positionLog |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	positionLog _ MarsRoverPositionLog for: marsRover .
 	
 	marsRover process: 'f'.
 	
-	logReadStream _ ReadStream on: x contents.
+	expected _ OrderedCollection with: 1@2.
 	
-	self assert:'1@2' equals: logReadStream nextLine.
-	self assert: logReadStream atEnd.! !
+	self assert: expected equals: positionLog log.
+! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:28:31'!
-test02
-	| marsRover logReadStream x |
+!MarsRoverTrackerTest methodsFor: 'log position' stamp: 'MS 10/28/2021 16:03:42'!
+test02logForPositionWithBackwardCommandReturnsCorrectCollection
+	| marsRover expected positionLog |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackPositionChangesOf: marsRover.
+	positionLog _ MarsRoverPositionLog for: marsRover .
 	
 	marsRover process: 'b'.
 	
-	logReadStream _ ReadStream on: x contents.
+	expected _ OrderedCollection with: 1@0.
 	
-	self assert:'1@0' equals: logReadStream nextLine.
-	self assert: logReadStream atEnd.! !
+	self assert: expected equals: positionLog log.
+! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:37:55'!
-test03
-	| marsRover logReadStream x |
+!MarsRoverTrackerTest methodsFor: 'log position' stamp: 'MS 10/28/2021 16:03:53'!
+test03logForPositionWithMultiplePositionCommandsReturnsCorrectCollection
+	| marsRover expected positionLog |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackHeadingChangesOf: marsRover.
+	positionLog _ MarsRoverPositionLog for: marsRover .
 	
-	marsRover process: 'ff'.
+	marsRover process: 'ffbf'.
 	
-	logReadStream _ ReadStream on: x contents.
+	expected _ OrderedCollection with: 1@2 with:1@3 with:1@2 with:1@3.
 	
-	self assert: logReadStream atEnd.! !
+	self assert: expected equals: positionLog log.! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:37:04'!
-test04
-	| marsRover logReadStream x |
+!MarsRoverTrackerTest methodsFor: 'log position' stamp: 'MS 10/28/2021 16:04:03'!
+test04logForPositionDoesNotIncludeHeadingChanges
+	| marsRover expected positionLog |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackHeadingChangesOf: marsRover.
+	positionLog _ MarsRoverPositionLog for: marsRover.
 	
-	marsRover process: 'ffr'.
+	marsRover process: 'ffrrb'.
 	
-	logReadStream _ ReadStream on: x contents.
+	expected _ OrderedCollection with: 1@2 with:1@3 with:1@4.
 	
-	self assert: 'East' equals: logReadStream nextLine .
-	self assert: logReadStream atEnd.! !
+	self assert: expected equals: positionLog log.! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:49:52'!
-test05
-	| marsRover logReadStream x |
-	
-	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
-	
-	x _ self trackPositionAndHeadingChangesOf: marsRover.
-	
-	marsRover process: 'ffr'.
-	
-	logReadStream _ ReadStream on: x contents.
-	
-	
-	self assert: '1@2' equals: logReadStream nextLine.
-	self assert: '1@3' equals: logReadStream nextLine.
-	self assert: 'East' equals: logReadStream nextLine .
-	self assert: logReadStream atEnd.! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 23:02:48'!
-test06
-	| marsRover logReadStream x |
+!MarsRoverTrackerTest methodsFor: 'log position heading' stamp: 'MS 10/28/2021 16:05:58'!
+test10logForPositionAndHeadingWithoutMovingReturnsEmptyCollection
+	| marsRover expected positionHeadingLog |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingEast.
 	
-	x _ self trackPositionAndHeadingChangesOf: marsRover.
+	positionHeadingLog _ MarsRoverPositionHeadingLog for: marsRover .
+		
+	expected _ OrderedCollection new.
 	
-	marsRover process: 'frfrfr'.
-	
-	logReadStream _ ReadStream on: x contents.
-	
-	
-	self assert: '2@1' equals: logReadStream nextLine.
-	self assert: 'South' equals: logReadStream nextLine .
-	self assert: '2@0' equals: logReadStream nextLine.
-	self assert: 'West' equals: logReadStream nextLine .
-	self assert: '1@0' equals: logReadStream nextLine .
-	self assert: 'North' equals: logReadStream nextLine .
-	self assert: logReadStream atEnd.! !
+	self assert: expected equals: positionHeadingLog log.! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:33:13'!
-test07
-	| marsRover x |
+!MarsRoverTrackerTest methodsFor: 'log position heading' stamp: 'MS 10/28/2021 16:11:55'!
+test11logForPositionAndHeadingIncludeBothPositionAndHeadingChanges
+	| marsRover expected positionHeadingLog |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackInStatusViewPositionChangesOf: marsRover.
+	positionHeadingLog _ MarsRoverPositionHeadingLog for: marsRover .
 	
 	marsRover process: 'ffr'.
 	
-	self assert: '1@3' equals: x getPositionTextFieldModel.
-	"self assert: MarsRoverHeadingEast equals: x headingTextFieldModel."
-	! !
+	expected _ OrderedCollection with: 1@2 with: 1@3 with: 'East'.
+	
+	self assert: expected equals: positionHeadingLog log.! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:50:42'!
-test08
-	| marsRover x |
+
+!MarsRoverTrackerTest methodsFor: 'status view' stamp: 'MS 10/28/2021 16:12:00'!
+test12windowForPositionReturnsNillIfMarsRoverDidNotMove
+	| marsRover positionStatusView |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackInStatusViewHeadingChangesOf: marsRover.
+	positionStatusView _ MarsRoverPositionStatusView for: marsRover.
 	
-	marsRover process: 'ffr'.
-	
-	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	self assert: nil equals: positionStatusView window.
 	! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:55:14'!
-test09
-	| marsRover x |
+!MarsRoverTrackerTest methodsFor: 'status view' stamp: 'MS 10/28/2021 16:12:06'!
+test13windowForHeadingReturnsNillIfMarsRoverDidNotMove
+	| marsRover headingStatusView |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackInStatusViewPositionAndHeadingChangesOf: marsRover.
+	headingStatusView _ MarsRoverHeadingStatusView for: marsRover.
 	
-	marsRover process: 'ffr'.
-	
-	self assert: '1@3' equals: x getPositionTextFieldModel .
-	self assert: 'East' equals: x getHeadingTextFieldModel printString.
+	self assert: nil equals: headingStatusView window.
 	! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 13:14:30'!
-test10
-	| marsRover x y logReadStream|
+!MarsRoverTrackerTest methodsFor: 'status view' stamp: 'MS 10/28/2021 16:12:11'!
+test14windowForPositionReturnsCurrentPosition
+	| marsRover positionStatusView |
 	
 	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	x _ self trackInStatusViewPositionChangesOf: marsRover.
-	y _ self trackPositionChangesOf: marsRover.
+	positionStatusView _ MarsRoverPositionStatusView for: marsRover.
+	
+	marsRover process: 'ffbfbbfflrrr'.
+	
+	self assert: 1@3 equals: positionStatusView window.
+	! !
+
+!MarsRoverTrackerTest methodsFor: 'status view' stamp: 'MS 10/28/2021 16:12:21'!
+test15windowForHeadingReturnsCurrentHeading
+	| marsRover headingStatusView |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	headingStatusView _ MarsRoverHeadingStatusView for: marsRover .
+	
+	marsRover process: 'fflrlrbbflbrr'.
+	
+	self assert: 'East' equals: headingStatusView window.
+	! !
+
+!MarsRoverTrackerTest methodsFor: 'status view' stamp: 'MS 10/28/2021 16:12:28'!
+test16windowsForPositionAndHeadingReturnsPositionAndHeading
+	| marsRover positionAndHeadingStatusView expected |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	positionAndHeadingStatusView _ MarsRoverPositionAndHeadingStatusView for: marsRover.
+	
+	marsRover process: 'ffbfbflrllrrr'.
+	
+	expected := Array with: 1@3 with: 'East'.
+	
+	self assert: expected equals: positionAndHeadingStatusView window.! !
+
+
+!MarsRoverTrackerTest methodsFor: 'multiple trackers' stamp: 'MS 10/28/2021 16:12:33'!
+test17marsRoverSupportsManyEqualLogs
+	| marsRover positionLog1 positionLog2 expected|
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	positionLog1 _ MarsRoverPositionLog for: marsRover.
+	positionLog2 _ MarsRoverPositionLog for: marsRover.
 	
 	marsRover process: 'fffr'.
 	
-	logReadStream _ ReadStream on: y contents.
+	expected _ OrderedCollection with: 1@2 with: 1@3 with: 1@4.
 	
-	
-	self assert: '1@4' equals: x getPositionTextFieldModel.
-	
-	self assert: '1@2' equals: logReadStream nextLine.
-	self assert: '1@3' equals: logReadStream nextLine.
-	self assert: '1@4' equals: logReadStream nextLine.
-	self assert: logReadStream atEnd.
+	self assert: expected equals: positionLog1 log.
+	self assert: expected equals: positionLog2 log.
 	! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:33:22'!
-trackHeadingChangesOf: aMarsRover 
-	| logger |
+!MarsRoverTrackerTest methodsFor: 'multiple trackers' stamp: 'MS 10/28/2021 16:12:37'!
+test18marsRoverSupportsManyDifferentLogs
+	| marsRover positionLog headingLog expectedPositionLog expectedHeadingLog|
 	
-	logger _ WriteStream on: ''.
-	aMarsRover trackHeadingChangesTo: logger.
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	^logger.! !
+	positionLog _ MarsRoverPositionLog for: marsRover.
+	headingLog _ MarsRoverHeadingLog for: marsRover.
+	
+	marsRover process: 'fffr'.
+	
+	expectedPositionLog _ OrderedCollection with: 1@2 with: 1@3 with: 1@4.
+	expectedHeadingLog := OrderedCollection with: 'East'.
+	
+	self assert: expectedPositionLog equals: positionLog log.
+	self assert: expectedHeadingLog equals: headingLog log.
+	! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:38:09'!
-trackInStatusViewHeadingChangesOf: aMarsRover 
-	|x|
+!MarsRoverTrackerTest methodsFor: 'multiple trackers' stamp: 'MS 10/28/2021 16:12:45'!
+test19marsRoverSupportsManyDifferentLogsAndWindonws
+	| marsRover positionLog positionStatusView expectedPositionLog expectedPositionStatusView|
 	
-	x _ MarsRoverStatusView new.
-	aMarsRover trackHeadingChangesToStatusView: x.
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	^x.! !
+	positionLog _ MarsRoverPositionLog for: marsRover.
+	positionStatusView _ MarsRoverPositionStatusView for: marsRover.
+	
+	marsRover process: 'fffr'.
+	
+	expectedPositionLog _ OrderedCollection with: 1@2 with: 1@3 with: 1@4.
+	expectedPositionStatusView := 1@4.
+	
+	self assert: expectedPositionLog equals: positionLog log.
+	self assert: expectedPositionStatusView equals: positionStatusView window.
+	! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:53:47'!
-trackInStatusViewPositionAndHeadingChangesOf: aMarsRover 
-	| x |
-	
-	x _ MarsRoverStatusView new.
-	
-	aMarsRover  trackPositionAndHeadingChangesToStatusView: x.
-	
-	^ x.! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:32:26'!
-trackInStatusViewPositionChangesOf: aMarsRover 
-	|x|
+!MarsRoverTrackerTest methodsFor: 'log heading' stamp: 'MS 10/28/2021 16:04:18'!
+test05logForHeadingWithoutMovingReturnsEmptyCollection
+	| marsRover expected headingLog |
 	
-	x _ MarsRoverStatusView new.
-	aMarsRover  trackPositionChangesToStatusView: x.
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
 	
-	^ x.! !
+	headingLog _ MarsRoverHeadingLog for: marsRover .
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/26/2021 12:21:46'!
-trackInWindowPositionAndHeadingChangesOf: aMarsRover 
-	self shouldBeImplemented.! !
+	expected := OrderedCollection new.
+		
+	self assert: expected equals: headingLog log.
+	! !
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:51:22'!
-trackPositionAndHeadingChangesOf: aMarsRover 
-	
-	| logger|
-	
-	logger _ WriteStream on: ''.
-	aMarsRover  trackHeadingChangesTo: logger.
-	aMarsRover  trackPositionChangesTo: logger.
-	
-	^logger.! !
+!MarsRoverTrackerTest methodsFor: 'log heading' stamp: 'MS 10/28/2021 16:04:49'!
+test06logForHeadingWithRightCommandReturnsCorrectCollection
+	 | marsRover expected headingLog |
 
-!TestXxx methodsFor: 'as yet unclassified' stamp: 'goc 10/25/2021 22:19:53'!
-trackPositionChangesOf: aMarsRover 
-	| logger |
+	marsRover :=  MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+
+	headingLog := MarsRoverHeadingLog for: marsRover .
+
+	marsRover process: 'r'.
+
+	expected _ OrderedCollection with: 'East'.
 	
-	logger _ WriteStream on: ''.
-	aMarsRover trackPositionChangesTo: logger.
+	self assert: expected equals: headingLog log.	
 	
-	^ logger.! !
+! !
+
+!MarsRoverTrackerTest methodsFor: 'log heading' stamp: 'MS 10/28/2021 16:05:08'!
+test07logForHeadingWithLeftCommandReturnsCorrectCollection
+	 | marsRover expected headingLog |
+
+	marsRover :=  MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+
+	headingLog := MarsRoverHeadingLog for: marsRover .
+
+	marsRover process: 'l'.
+
+	expected _ OrderedCollection with: 'West'.
+	
+	self assert: expected equals: headingLog log.	
+	
+! !
+
+!MarsRoverTrackerTest methodsFor: 'log heading' stamp: 'MS 10/28/2021 16:05:17'!
+test08logForHeadingWithMultipleHeadingCommandsReturnsCorrectCollection
+	| marsRover expected headingLog |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	headingLog _ MarsRoverHeadingLog for: marsRover .
+	
+	marsRover process: 'rlrrr'.
+	
+	expected _ OrderedCollection with: 'East' with: 'North' with: 'East' with: 'South' with: 'West'.
+	
+	self assert: expected equals: headingLog log.! !
+
+!MarsRoverTrackerTest methodsFor: 'log heading' stamp: 'MS 10/28/2021 16:05:38'!
+test09logForHeadingDoesNotIncludePositionChanges
+	| marsRover expected headingLog |
+	
+	marsRover _ MarsRover at: 1@1 heading: MarsRoverHeadingNorth.
+	
+	headingLog _ MarsRoverHeadingLog for: marsRover .
+	
+	marsRover process: 'rffrfbfr'.
+	
+	expected _ OrderedCollection with: 'East'with: 'South' with: 'West'.
+	
+	self assert: expected equals: headingLog log.! !
 
 
 !classDefinition: #MarsRover category: 'MarsRover-WithHeading'!
 Object subclass: #MarsRover
-	instanceVariableNames: 'position head positionChangesLogger headingChangesLogger positionChangesStatusView headingChangesStatusView'
+	instanceVariableNames: 'position head trackers'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'MarsRover-WithHeading'!
@@ -451,20 +750,25 @@ signalInvalidCommand
 	self error: self invalidCommandErrorDescription ! !
 
 
-!MarsRover methodsFor: 'initialization' stamp: 'HAW 10/7/2021 20:10:49'!
+!MarsRover methodsFor: 'initialization' stamp: 'MS 10/28/2021 11:10:40'!
 initializeAt: aPosition heading: aHeadingType
 
 	position := aPosition.
-	head := aHeadingType for: self ! !
+	head := aHeadingType for: self. 
+	trackers := OrderedCollection new.! !
 
 
-!MarsRover methodsFor: 'heading' stamp: 'goc 10/26/2021 12:41:03'!
-changeHeadTo: aMarsRoverHeadingaDirection
-	
-	head := aMarsRoverHeadingaDirection.
-	
-	headingChangesLogger ifNotNil:[ headingChangesLogger nextPutAll: head printString; newLine ].
-	headingChangesStatusView ifNotNil:[headingChangesStatusView headingTextFieldModel: head].! !
+!MarsRover methodsFor: 'heading' stamp: 'MS 10/28/2021 12:51:00'!
+add: aTracker
+
+	trackers add: aTracker .! !
+
+!MarsRover methodsFor: 'heading' stamp: 'MS 10/28/2021 15:08:01'!
+changeHeadTo: aHeading
+
+	head := aHeading.
+
+	trackers do: [:aTracker | aTracker changeHeading: head printString].! !
 
 !MarsRover methodsFor: 'heading' stamp: 'goc 10/25/2021 22:59:44'!
 headEast
@@ -545,14 +849,12 @@ moveNorth
 	
 	! !
 
-!MarsRover methodsFor: 'moving' stamp: 'goc 10/26/2021 12:31:14'!
+!MarsRover methodsFor: 'moving' stamp: 'MS 10/28/2021 15:08:12'!
 movePositionWith: anOffset
 	
 	position := position + anOffset .
 	
-	positionChangesLogger  ifNotNil:[positionChangesLogger nextPutAll: position printString; newLine].
-	positionChangesStatusView ifNotNil:[positionChangesStatusView positionTextFieldModel: position].
-	! !
+	trackers do: [:aTracker | aTracker changePosition: position].! !
 
 !MarsRover methodsFor: 'moving' stamp: 'goc 10/25/2021 22:57:17'!
 moveSouth
@@ -582,33 +884,6 @@ processCommand: aCommand
 	(self isRotateLeftCommand: aCommand) ifTrue: [ ^ self rotateLeft ].
 
 	self signalInvalidCommand.! !
-
-
-!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 22:34:31'!
-trackHeadingChangesTo: aLogger 
-	
-	headingChangesLogger _ aLogger.! !
-
-!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:38:54'!
-trackHeadingChangesToStatusView: aMarsRoverStatusView 
-	
-	headingChangesStatusView _ aMarsRoverStatusView .! !
-
-!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:54:41'!
-trackPositionAndHeadingChangesToStatusView: aMarsRoverStatusView 
-	
-	positionChangesStatusView _ aMarsRoverStatusView .
-	headingChangesStatusView _ aMarsRoverStatusView .! !
-
-!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/25/2021 22:21:56'!
-trackPositionChangesTo: aLogger
-	
-	positionChangesLogger _ aLogger.! !
-
-!MarsRover methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:25:35'!
-trackPositionChangesToStatusView: aMarsRoverStatusView 
-	
-	positionChangesStatusView _ aMarsRoverStatusView.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -817,29 +1092,3 @@ rotateRight
 printString
 
 	^'West'.! !
-
-
-!classDefinition: #MarsRoverStatusView category: 'MarsRover-WithHeading'!
-Object subclass: #MarsRoverStatusView
-	instanceVariableNames: 'positionTextFieldModel headingTextFieldModel'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'MarsRover-WithHeading'!
-
-!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:42:17'!
-getHeadingTextFieldModel
-	^ headingTextFieldModel.! !
-
-!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:35:45'!
-getPositionTextFieldModel
-	^ positionTextFieldModel printString.! !
-
-!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:41:54'!
-headingTextFieldModel: aMarsRoverHeading
-	
-	headingTextFieldModel _ aMarsRoverHeading.! !
-
-!MarsRoverStatusView methodsFor: 'unclassified' stamp: 'goc 10/26/2021 12:28:08'!
-positionTextFieldModel: aPosition
-	
-	positionTextFieldModel _ aPosition.! !
