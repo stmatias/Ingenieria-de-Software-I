@@ -4801,3 +4801,2169 @@ PASSED!
 
 !testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/4/2021 21:12:50'!
 PASSED!
+
+----SNAPSHOT----(4 November 2021 21:20:14) CuisUniversity-4913.image priorSource: 18717693!
+
+----QUIT----(4 November 2021 21:20:17) CuisUniversity-4913.image priorSource: 18858205!
+
+----STARTUP---- (8 November 2021 10:49:11) as /home/goon/Desktop/inge1/new cuis/CuisUniversity-4913.image!
+
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 10:51:27'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 10:51:27'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 10:51:27'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03 stamp: 'goc 11/8/2021 10:51:27'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 10:51:27'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 10:51:27'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 10:53:31'!
+test06
+	
+	| aValidUser aValidPassword cartId|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'aValidBook' bookQuantity:1.
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 10:54:19' prior: 50920639!
+listCart: aCartId 
+	^OrderedCollection new.! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 10:56:46' prior: 50920994!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'aValidBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: Dictionary.
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 10:57:53' prior: 50921011!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'aValidBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: (Dictionary new at:'aValidBook' put:1; yourself).
+	"validUsersAndPasswords := Dictionary new at:'ValidUser1' put:'ValidPassword1' ; at:'ValidUser2' put:'ValidPassword2' ; yourself."
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 10:58:23' prior: 50921026!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'aValidBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: (Dictionary new at:'aValidBook' put:1; yourself) equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 10:58:58' prior: 50921046!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: (Dictionary new at:'validBook' put:1; yourself) equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 10:59:00'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:02:13' prior: 50920866!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage].
+	
+	
+	(catalog includes: aBook) ifFalse:[^ self error: self invalidItemErrorMessage].
+	
+	
+	
+	
+	
+	
+	 ! !
+
+!classDefinition: #TusLibrosFacade category: 'TusLibros' stamp: 'goc 11/8/2021 11:05:13'!
+Object subclass: #TusLibrosFacade
+	instanceVariableNames: 'catalog salesBook merchantProcessor validUsers cartIdCounter cartIdToCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:05:08' prior: 50920573!
+initializeWith: usersWithPasswords withCatalog: aCatalog withSalesBook: aSalesBook withMerchantProcessor: aMerchantProcessor 
+	
+	validUsers := usersWithPasswords.
+	catalog := aCatalog.
+	salesBook := aSalesBook.
+	merchantProcessor := aMerchantProcessor.
+	cartIdToCart := Dictionary new.
+	cartIdCounter := 0.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:06:28' prior: 50920618!
+createCartFor: aUser with: aUserPassword 
+	
+	|password|
+	
+	validUsers at: aUser ifAbsent:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	password := validUsers at: aUser.
+	
+	( password = aUserPassword ) ifFalse:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	cartIdCounter := cartIdCounter + 1.
+	
+	^cartIdCounter.
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:06:37'!
+test09
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: (Dictionary new at:'validBook' put:1; yourself) equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:07:29' prior: 50921115!
+createCartFor: aUser with: aUserPassword 
+	
+	|password|
+	
+	validUsers at: aUser ifAbsent:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	password := validUsers at: aUser.
+	
+	( password = aUserPassword ) ifFalse:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	cartIdCounter := cartIdCounter + 1.
+	
+	^cartIdCounter.
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:10:42' prior: 50920795!
+test05
+	
+	
+	self should:[ interface addToCart: -50 book:'validBook' bookQuantity:1 ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:10:44'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:10:44'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:10:44'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03 stamp: 'goc 11/8/2021 11:10:44'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:10:44'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:10:44'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:10:44'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:10:44'!
+ERROR!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:12:34'!
+test03aNewCartIsEmpty
+	
+	| aValidUser aValidPassword cartId|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	self assert: (interface listCart: cartId) isEmpty.
+	
+	
+	
+	! !
+
+!methodRemoval: TusLibrosFacadeTest #test03 stamp: 'goc 11/8/2021 11:12:38'!
+test03
+	
+	| aValidUser aValidPassword cartId|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	self assert: (interface listCart: cartId) isEmpty.
+	
+	
+	
+	!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:13:48' prior: 50921145!
+createCartFor: aUser with: aUserPassword 
+	
+	|password cart|
+	
+	validUsers at: aUser ifAbsent:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	password := validUsers at: aUser.
+	
+	( password = aUserPassword ) ifFalse:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	cartIdCounter := cartIdCounter + 1.
+	
+	cart := Cart new.
+	
+	cartIdToCart at: cartIdCounter put:cart.
+	
+	^cartIdCounter.
+	! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:14:37' prior: 50921213!
+createCartFor: aUser with: aUserPassword 
+	
+	|password cart|
+	
+	validUsers at: aUser ifAbsent:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	password := validUsers at: aUser.
+	
+	( password = aUserPassword ) ifFalse:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	cartIdCounter := cartIdCounter + 1.
+	
+	cart := Cart new.
+	
+	cartIdToCart at: cartIdCounter put:cart.
+	
+	^cartIdCounter.
+	! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:15:05' prior: 50921229!
+createCartFor: aUser with: aUserPassword 
+	
+	|password cart|
+	
+	validUsers at: aUser ifAbsent:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	password := validUsers at: aUser.
+	
+	( password = aUserPassword ) ifFalse:[self error: self invalidUserOrPasswordErrorDescription].
+	
+	cartIdCounter := cartIdCounter + 1.
+	
+	cart := Cart acceptingItemsOf: catalog.
+	
+	cartIdToCart at: cartIdCounter put:cart.
+	
+	^cartIdCounter.
+	! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:17:27' prior: 50921082!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage].
+	
+	
+	(catalog includes: aBook) ifFalse:[^ self error: self invalidItemErrorMessage].
+	
+	
+	cart := cartIdToCart at: cartId.
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:18:07' prior: 50921262!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage].
+	
+	
+	(catalog includes: aBook) ifFalse:[^ self error: self invalidItemErrorMessage].
+	
+	
+	cart := cartIdToCart at: cartId.
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:19:58' prior: 50921006!
+listCart: aCartId 
+	^OrderedCollection new.! !
+!Cart methodsFor: 'total' stamp: 'goc 11/8/2021 11:21:53'!
+getItems
+
+	^ items copy.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:22:44' prior: 50921289!
+listCart: aCartId 
+	
+	^ (cartIdToCart at: aCartId) getItems.! !
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:22:49'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:25:28' prior: 50921275!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage].
+	
+	
+	"(catalog includes: aBook) ifFalse:[]."
+	
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidItemErrorMessage].
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:25:32'!
+FAILURE!
+!Cart methodsFor: 'initialization' stamp: 'goc 11/8/2021 11:27:09' prior: 50919549!
+initializeAcceptingItemsOf: aCatalog
+
+	catalog := aCatalog.
+	items := Bag new.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'goc 11/8/2021 11:27:26'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'goc 11/8/2021 11:27:33'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'goc 11/8/2021 11:27:33'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'goc 11/8/2021 11:27:33'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'goc 11/8/2021 11:27:33'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'goc 11/8/2021 11:27:33'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'goc 11/8/2021 11:27:33'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:27:42'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:27:42'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:27:42'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:27:42'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:27:42'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:27:42'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:27:42'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:28:24'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:29:04'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:30:10'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:30:10'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:31:23'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:31:23'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:33:17' prior: 50921305!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage].
+	
+	
+	(catalog includes: aBook) ifFalse:[^ self error: self invalidItemErrorMessage].
+	
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidItemErrorMessage].
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:33:21'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:33:21'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:33:21'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:33:21'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:33:21'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:33:21'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:33:21'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:33:21'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:34:15' prior: 50921406!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	"(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage]."
+	
+	
+	(catalog includes: aBook) ifFalse:[^ self error: self invalidItemErrorMessage].
+	
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:34:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:34:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:34:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:34:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:34:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:34:19'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:34:19'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:34:19'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:34:36'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:35:40' prior: 50921442!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	"(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage]."
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	(catalog includes: aBook) ifFalse:[^ self error: self invalidItemErrorMessage].
+	
+	
+	
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:35:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:35:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:35:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:35:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:35:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:35:43'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:35:43'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:37:14' prior: 50921481!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	"(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage]."
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	(catalog includes: aBook) ifFalse:[^ self error: self invalidItemErrorMessage].
+	
+	
+	
+	
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:37:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:37:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:37:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:37:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:37:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:37:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:37:19'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:37:19'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:37:27'!
+ERROR!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:37:45' prior: 50921063!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: (Bag new at:'validBook') equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:37:47'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:40:40' prior: 50921515!
+addToCart: cartId book: aBook bookQuantity: aQuantity 
+	
+	|cart|
+	
+	"(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage]."
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	catalog at: aBook ifAbsent:[^ self error: self invalidItemErrorMessage].
+	
+	
+	
+	
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:40:47'!
+ERROR!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:41:30' prior: 50921554!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: (Bag new add:'validBook') equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:41:32'!
+FAILURE!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:43:18' prior: 50921590!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook'.
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:43:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:43:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:43:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:43:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:43:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:43:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:43:19'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:43:19'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:43:19'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:43:32'!
+PASSED!
+
+!methodRemoval: TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 11:43:44'!
+test09
+	
+	| aValidUser aValidPassword cartId booksInCart|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	self assert: (Dictionary new at:'validBook' put:1; yourself) equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:45:15'!
+test07
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook'.
+	bag add:'validBook'.
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 11:45:17'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:45:44' prior: 50921666!
+test07
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:3.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook'.
+	bag add:'validBook'.
+	bag add:'validBook'.
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 11:45:45'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:46:35'!
+test08
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	interface addToCart: cartId book:'validBook2' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook'.
+	bag add:'validBook2'.
+	
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'goc 11/8/2021 11:48:27' prior: 50920038!
+defaultCatalog
+	
+	^ Dictionary new
+		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self anotherItemSellByTheStore put: self anotherItemSellByTheStorePrice;
+		yourself ! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'goc 11/8/2021 11:48:46'!
+anotherItemSellByTheStore
+	
+	^ 'validBook2'! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'goc 11/8/2021 11:48:59'!
+anotherItemSellByTheStorePrice
+	
+	^ 20! !
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 11:49:15'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:50:35' prior: 50921744!
+test08
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:2.
+	interface addToCart: cartId book:'validBook2' bookQuantity:3.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOcurrences:2.
+	bag add:'validBook2' withOcurrences:3.
+	
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 11:50:37'!
+ERROR!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:51:03' prior: 50921804!
+test08
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:2.
+	interface addToCart: cartId book:'validBook2' bookQuantity:3.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOccurrences:2.
+	bag add:'validBook2' withOccurrences:3.
+	
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 11:51:04'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:53:45'!
+test09
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:2.
+	interface addToCart: cartId book:'validBook2' bookQuantity:3.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOccurrences:2.
+	bag add:'validBook2' withOccurrences:3.
+	
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:55:29' prior: 50921870!
+test09
+	
+	self should:[ interface checkOut: -50 withCreditCardNumber: 44 ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!classDefinition: #TusLibrosFacadeTest category: 'TusLibros' stamp: 'goc 11/8/2021 11:58:22'!
+TestCase subclass: #TusLibrosFacadeTest
+	instanceVariableNames: 'interface testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:58:19' prior: 50920201 overrides: 16927572!
+setUp
+	|catalog validUsersAndPasswords|
+	
+	validUsersAndPasswords := Dictionary new at:'ValidUser1' put:'ValidPassword1' ; at:'ValidUser2' put:'ValidPassword2' ; yourself.
+	
+	catalog:= StoreTestObjectsFactory new defaultCatalog.
+	
+	interface := TusLibrosFacade withUsers: validUsersAndPasswords	 withCatalog: catalog withSalesBook: OrderedCollection new withMerchantProcessor: self.
+	
+	testObjectsFactory := StoreTestObjectsFactory new.! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:00:49' prior: 50921891!
+test09
+	
+	self should:[ interface checkOut: -50 withCreditCardNumber: testObjectsFactory notExpiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:03:02' prior: 50921928!
+test09
+	
+	self should:[ interface checkOut: -50 withCreditCardNumber: testObjectsFactory notExpiredCreditCard]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:03:04'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:03:11'!
+checkOut: aSmallInteger withCreditCardNumber: aCreditCard 
+	self shouldBeImplemented.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:03:36' prior: 50921955!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	self invalidCartIdErrorMessage.! !
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:03:37'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:03:55'!
+FAILURE!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:05:43'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:06:16' prior: 50921961!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	^self invalidCartIdErrorMessage.! !
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:06:19'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:06:42' prior: 50921975!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	^self error: self invalidCartIdErrorMessage.! !
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:06:46'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:07:06'!
+test10
+	
+	self should:[ interface checkOut: -50 withCreditCardNumber: testObjectsFactory notExpiredCreditCard]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:08:14' prior: 50922016!
+test10
+	| aValidUser aValidPassword cartId bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:08:27' prior: 50922029!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+----SNAPSHOT----(8 November 2021 12:17:53) CuisUniversity-4913.image priorSource: 18858298!
+
+Object subclass: #TusLibrosFacade
+	instanceVariableNames: 'catalog salesBook merchantProcessor validUsers cartIdCounter cartIdToCart transactionsId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosFacade category: 'TusLibros' stamp: 'goc 11/8/2021 12:24:30'!
+Object subclass: #TusLibrosFacade
+	instanceVariableNames: 'catalog salesBook merchantProcessor validUsers cartIdCounter cartIdToCart transactionsId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:24:43'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:25:54' prior: 50922047!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:26:54' prior: 50922113!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: Cashier canNotChargeAnExpiredCreditCardErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:26:56'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:27:40' prior: 50921984!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+
+	^self error: self invalidCartIdErrorMessage.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:28:16' prior: 50922152!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart|
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+
+	^self error: self invalidCartIdErrorMessage.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:29:07' prior: 50922159!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart|
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:29:16'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'error handling' stamp: 'goc 11/8/2021 12:31:04'!
+canNotChargeAnExpiredCreditCardErrorMessage
+	^ Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:31:12' prior: 50922131!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface canNotChargeAnExpiredCreditCardErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:31:14'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:32:18' prior: 50922169!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart|
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	self canNotChargeAnExpiredCreditCardErrorMessage.
+
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:32:25'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:33:05' prior: 50922208!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart|
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	self error: self canNotChargeAnExpiredCreditCardErrorMessage.
+
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:33:10'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:35:00' prior: 50922187!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	interface addToCart: cartId book:'validBook'  bookQuantity: 1.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface canNotChargeAnExpiredCreditCardErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:35:01'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:35:02'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:35:09'!
+test11
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	interface addToCart: cartId book:'validBook'  bookQuantity: 1.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface canNotChargeAnExpiredCreditCardErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:35:16' prior: 50922260!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface canNotChargeAnExpiredCreditCardErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:36:12' prior: 50922330!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface canNotCheckOutAnEmptyCart.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:36:18'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:36:22'!
+canNotCheckOutAnEmptyCart
+	self shouldBeImplemented.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:36:50' prior: 50922369!
+canNotCheckOutAnEmptyCart
+	
+	^ 'Can not checkout a empty cart'.! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:36:51'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'error handling' stamp: 'goc 11/8/2021 12:37:54'!
+cartCanNotBeEmptyErrorMessage
+	^ Cashier cartCanNotBeEmptyErrorMessage.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:38:23' prior: 50922221!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart|
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	
+	
+	self error: self canNotChargeAnExpiredCreditCardErrorMessage.
+
+	! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:39:04' prior: 50922388!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart|
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	(cart isEmpty) ifTrue:[^self error: self cartCanNotBeEmptyErrorMessage].
+	
+	self error: self canNotChargeAnExpiredCreditCardErrorMessage.
+
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:39:10'!
+FAILURE!
+
+!methodRemoval: TusLibrosFacade #canNotCheckOutAnEmptyCart stamp: 'goc 11/8/2021 12:39:43'!
+canNotCheckOutAnEmptyCart
+	
+	^ 'Can not checkout a empty cart'.!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:39:47'!
+ERROR!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:40:03' prior: 50922349!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard ]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface cartCanNotBeEmptyErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test11 stamp: 'goc 11/8/2021 12:40:05'!
+PASSED!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:42:04'!
+test12
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOccurrences:1.
+	
+	
+	interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:47:36' prior: 50922471!
+test12
+	
+	| aValidUser aValidPassword cartId booksInCart bag purchases|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOccurrences:1.
+	
+	
+	interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard.
+	
+	purchases :=interface listPurchases: aValidUser withPassword: aValidPassword.
+	
+	self assert: purchases equals: bag.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 12:47:47'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:49:24' prior: 50922399!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart cashier |
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	(cart isEmpty) ifTrue:[^self error: self cartCanNotBeEmptyErrorMessage].
+	
+	"self error: self canNotChargeAnExpiredCreditCardErrorMessage."
+	
+	cashier := Cashier new.
+
+	! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:53:56'!
+checkOut: cartId withCreditCardNumber: aCreditCard on: aDate
+	
+	|cart cashier |
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	(cart isEmpty) ifTrue:[^self error: self cartCanNotBeEmptyErrorMessage].
+	
+	"self error: self canNotChargeAnExpiredCreditCardErrorMessage."
+	"toCheckout: aCart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook"
+	cashier := Cashier toCheckout: cart charging: aCreditCard  throught: merchantProcessor on: aDate registeringOn: salesBook.
+
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:54:41' prior: 50922490!
+test12
+	
+	| aValidUser aValidPassword cartId booksInCart bag purchases|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOccurrences:1.
+	
+	
+	interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today.
+	
+	purchases :=interface listPurchases: aValidUser withPassword: aValidPassword.
+	
+	self assert: purchases equals: bag.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:54:59' prior: 50922309!
+test11
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	interface addToCart: cartId book:'validBook'  bookQuantity: 1.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard on: testObjectsFactory today]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface canNotChargeAnExpiredCreditCardErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: TusLibrosFacade #checkOut:withCreditCardNumber: stamp: 'goc 11/8/2021 12:55:06'!
+checkOut: cartId withCreditCardNumber: aCreditCard 
+	
+	|cart cashier |
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	(cart isEmpty) ifTrue:[^self error: self cartCanNotBeEmptyErrorMessage].
+	
+	"self error: self canNotChargeAnExpiredCreditCardErrorMessage."
+	
+	cashier := Cashier new.
+
+	!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:55:24'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:55:24'!
+ERROR!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:55:38' prior: 50922422!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface cartCanNotBeEmptyErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:55:40'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test11 stamp: 'goc 11/8/2021 12:55:40'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 12:55:40'!
+ERROR!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:55:53' prior: 50921941!
+test09
+	
+	self should:[ interface checkOut: -50 withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test11 stamp: 'goc 11/8/2021 12:55:54'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 12:55:54'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 12:55:54'!
+ERROR!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 12:55:58'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 12:56:15'!
+ERROR!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:56:22'!
+listPurchases: aString withPassword: aString2 
+	self shouldBeImplemented.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:59:58' prior: 50922720!
+listPurchases: aUser withPassword: aPassword 
+	
+	^ Bag new add: 'validBook'.! !
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 12:59:59'!
+FAILURE!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 13:00:38' prior: 50922726!
+listPurchases: aUser withPassword: aPassword 
+	|bag|
+	
+	bag:= Bag new.
+	bag add: 'validBook'.
+	^bag.! !
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test01 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test02 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test03aNewCartIsEmpty stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test04 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test05 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test06 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test07 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test08 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test09 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test10 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test11 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+!testRun: #TusLibrosFacadeTest #test12 stamp: 'goc 11/8/2021 13:00:43'!
+PASSED!
+
+----SNAPSHOT----(8 November 2021 13:01:51) CuisUniversity-4913.image priorSource: 18893229!

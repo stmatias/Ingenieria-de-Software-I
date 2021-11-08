@@ -248,12 +248,12 @@ debit: anAmount from: aCreditCard
 
 !classDefinition: #TusLibrosFacadeTest category: 'TusLibros'!
 TestCase subclass: #TusLibrosFacadeTest
-	instanceVariableNames: 'interface'
+	instanceVariableNames: 'interface testObjectsFactory'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/4/2021 20:12:18'!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:58:19'!
 setUp
 	|catalog validUsersAndPasswords|
 	
@@ -262,7 +262,8 @@ setUp
 	catalog:= StoreTestObjectsFactory new defaultCatalog.
 	
 	interface := TusLibrosFacade withUsers: validUsersAndPasswords	 withCatalog: catalog withSalesBook: OrderedCollection new withMerchantProcessor: self.
-	! !
+	
+	testObjectsFactory := StoreTestObjectsFactory new.! !
 
 !TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/4/2021 20:29:44'!
 test01
@@ -294,8 +295,8 @@ test02
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/4/2021 20:38:59'!
-test03
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:12:34'!
+test03aNewCartIsEmpty
 	
 	| aValidUser aValidPassword cartId|
 	
@@ -333,15 +334,205 @@ test04
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/4/2021 21:03:16'!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:10:42'!
 test05
 	
 	
-	self should:[ interface addToCart: -50 book:'anInvalidBook' bookQuantity:1 ]
+	self should:[ interface addToCart: -50 book:'validBook' bookQuantity:1 ]
 	raise: Error - MessageNotUnderstood
 	withExceptionDo:[ : anError |
 		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
 		]
+	
+	
+	
+	
+	! !
+
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:43:18'!
+test06
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook'.
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:45:44'!
+test07
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:3.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook'.
+	bag add:'validBook'.
+	bag add:'validBook'.
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:51:03'!
+test08
+	
+	| aValidUser aValidPassword cartId booksInCart bag|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:2.
+	interface addToCart: cartId book:'validBook2' bookQuantity:3.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOccurrences:2.
+	bag add:'validBook2' withOccurrences:3.
+	
+	
+	self assert: bag equals: booksInCart.
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:55:53'!
+test09
+	
+	self should:[ interface checkOut: -50 withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface invalidCartIdErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:55:38'!
+test10
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface cartCanNotBeEmptyErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:54:59'!
+test11
+	| aValidUser aValidPassword cartId |
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	interface addToCart: cartId book:'validBook'  bookQuantity: 1.
+	
+	self should:[ interface checkOut: cartId withCreditCardNumber: testObjectsFactory expiredCreditCard on: testObjectsFactory today]
+	raise: Error - MessageNotUnderstood
+	withExceptionDo:[ : anError |
+		self assert: anError messageText equals: interface canNotChargeAnExpiredCreditCardErrorMessage.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:54:41'!
+test12
+	
+	| aValidUser aValidPassword cartId booksInCart bag purchases|
+	
+	aValidUser := 'ValidUser1'.
+	aValidPassword := 'ValidPassword1'.
+	
+	cartId := interface createCartFor: aValidUser with: aValidPassword.
+	
+	interface addToCart: cartId book:'validBook' bookQuantity:1.
+	
+	booksInCart := interface listCart: cartId.
+	
+	bag := Bag new.
+	bag add:'validBook' withOccurrences:1.
+	
+	
+	interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today.
+	
+	purchases :=interface listPurchases: aValidUser withPassword: aValidPassword.
+	
+	self assert: purchases equals: bag.
+	
+	
+	
+	
 	
 	
 	
@@ -378,11 +569,11 @@ assertIsValidQuantity: aQuantity
 	aQuantity strictlyPositive ifFalse: [ self error: self invalidQuantityErrorMessage ]! !
 
 
-!Cart methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 17:48'!
+!Cart methodsFor: 'initialization' stamp: 'goc 11/8/2021 11:27:09'!
 initializeAcceptingItemsOf: aCatalog
 
 	catalog := aCatalog.
-	items := OrderedCollection new.! !
+	items := Bag new.! !
 
 
 !Cart methodsFor: 'queries' stamp: 'HernanWilkinson 6/17/2013 17:45'!
@@ -401,6 +592,11 @@ isEmpty
 	
 	^items isEmpty ! !
 
+
+!Cart methodsFor: 'total' stamp: 'goc 11/8/2021 11:21:53'!
+getItems
+
+	^ items copy.! !
 
 !Cart methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2013 19:09'!
 total
@@ -592,6 +788,16 @@ Object subclass: #StoreTestObjectsFactory
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'goc 11/8/2021 11:48:46'!
+anotherItemSellByTheStore
+	
+	^ 'validBook2'! !
+
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'goc 11/8/2021 11:48:59'!
+anotherItemSellByTheStorePrice
+	
+	^ 20! !
+
 !StoreTestObjectsFactory methodsFor: 'items' stamp: 'HernanWilkinson 6/17/2013 18:08'!
 itemNotSellByTheStore
 	
@@ -613,11 +819,12 @@ createCart
 	
 	^Cart acceptingItemsOf: self defaultCatalog! !
 
-!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'goc 11/8/2021 11:48:27'!
 defaultCatalog
 	
 	^ Dictionary new
 		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self anotherItemSellByTheStore put: self anotherItemSellByTheStorePrice;
 		yourself ! !
 
 
@@ -646,10 +853,18 @@ today
 
 !classDefinition: #TusLibrosFacade category: 'TusLibros'!
 Object subclass: #TusLibrosFacade
-	instanceVariableNames: 'catalog salesBook merchantProcessor validUsers cartIdCounter'
+	instanceVariableNames: 'catalog salesBook merchantProcessor validUsers cartIdCounter cartIdToCart transactionsId'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
+
+!TusLibrosFacade methodsFor: 'error handling' stamp: 'goc 11/8/2021 12:31:04'!
+canNotChargeAnExpiredCreditCardErrorMessage
+	^ Cashier canNotChargeAnExpiredCreditCardErrorMessage.! !
+
+!TusLibrosFacade methodsFor: 'error handling' stamp: 'goc 11/8/2021 12:37:54'!
+cartCanNotBeEmptyErrorMessage
+	^ Cashier cartCanNotBeEmptyErrorMessage.! !
 
 !TusLibrosFacade methodsFor: 'error handling' stamp: 'goc 11/4/2021 21:03:40'!
 invalidCartIdErrorMessage
@@ -664,18 +879,51 @@ invalidUserOrPasswordErrorDescription
 	^ 'Invalid user or password'.! !
 
 
-!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/4/2021 21:08:39'!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:40:40'!
 addToCart: cartId book: aBook bookQuantity: aQuantity 
 	
-	(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage].
+	|cart|
+	
+	"(self isValidCartId: cartId) ifFalse:[^ self error: self invalidCartIdErrorMessage]."
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	catalog at: aBook ifAbsent:[^ self error: self invalidItemErrorMessage].
 	
 	
-	^ self error: self invalidItemErrorMessage. ! !
+	
+	
+	
+	cart add: aQuantity of: aBook.
+	
+	
+	
+	
+	
+	
+	
+	
+	 ! !
 
-!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/4/2021 20:48:23'!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:53:56'!
+checkOut: cartId withCreditCardNumber: aCreditCard on: aDate
+	
+	|cart cashier |
+	
+	cart := cartIdToCart at: cartId ifAbsent:[^ self error: self invalidCartIdErrorMessage].
+	
+	(cart isEmpty) ifTrue:[^self error: self cartCanNotBeEmptyErrorMessage].
+	
+	"self error: self canNotChargeAnExpiredCreditCardErrorMessage."
+	"toCheckout: aCart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook"
+	cashier := Cashier toCheckout: cart charging: aCreditCard  throught: merchantProcessor on: aDate registeringOn: salesBook.
+
+	! !
+
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:15:05'!
 createCartFor: aUser with: aUserPassword 
 	
-	|password|
+	|password cart|
 	
 	validUsers at: aUser ifAbsent:[self error: self invalidUserOrPasswordErrorDescription].
 	
@@ -685,16 +933,21 @@ createCartFor: aUser with: aUserPassword
 	
 	cartIdCounter := cartIdCounter + 1.
 	
+	cart := Cart acceptingItemsOf: catalog.
+	
+	cartIdToCart at: cartIdCounter put:cart.
+	
 	^cartIdCounter.
 	! !
 
-!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/4/2021 20:46:39'!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:05:08'!
 initializeWith: usersWithPasswords withCatalog: aCatalog withSalesBook: aSalesBook withMerchantProcessor: aMerchantProcessor 
 	
 	validUsers := usersWithPasswords.
 	catalog := aCatalog.
 	salesBook := aSalesBook.
 	merchantProcessor := aMerchantProcessor.
+	cartIdToCart := Dictionary new.
 	cartIdCounter := 0.! !
 
 !TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/4/2021 21:12:43'!
@@ -703,9 +956,18 @@ isValidCartId: aCartId
 	
 	^ (aCartId <= cartIdCounter) and: (aCartId > 0) .! !
 
-!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/4/2021 20:48:43'!
-listCart: aSmallInteger 
-	^OrderedCollection new.! !
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 11:22:44'!
+listCart: aCartId 
+	
+	^ (cartIdToCart at: aCartId) getItems.! !
+
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 13:00:38'!
+listPurchases: aUser withPassword: aPassword 
+	|bag|
+	
+	bag:= Bag new.
+	bag add: 'validBook'.
+	^bag.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
