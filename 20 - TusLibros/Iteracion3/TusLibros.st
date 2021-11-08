@@ -265,8 +265,8 @@ setUp
 	
 	testObjectsFactory := StoreTestObjectsFactory new.! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/4/2021 20:29:44'!
-test01
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 17:53:55'!
+test01cannotCreateCartWithInvalidUser
 	
 	| anInvalidUser aPassword|
 	
@@ -280,8 +280,8 @@ test01
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/4/2021 20:28:17'!
-test02
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 17:54:10'!
+test02cannotCreateCartWithInvalidPassword
 	
 	| aValidUser anInvalidPassword|
 	
@@ -295,8 +295,8 @@ test02
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:12:34'!
-test03aNewCartIsEmpty
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 17:54:54'!
+test03anEmptyCartHasZeroItems
 	
 	| aValidUser aValidPassword cartId|
 	
@@ -311,8 +311,8 @@ test03aNewCartIsEmpty
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/4/2021 20:54:48'!
-test04
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 17:56:09'!
+test04addingAnInvalidBookToCartShouldThrowError
 	
 	| aValidUser aValidPassword cartId|
 	
@@ -334,8 +334,8 @@ test04
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:10:42'!
-test05
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 18:00:08'!
+test05addingAValidBookToInvalidCartIdShouldThrowError
 	
 	
 	self should:[ interface addToCart: -50 book:'validBook' bookQuantity:1 ]
@@ -349,8 +349,8 @@ test05
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:43:18'!
-test06
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 17:59:52'!
+test06listingACartWithValidCartIdReturnsItsItems
 	
 	| aValidUser aValidPassword cartId booksInCart bag|
 	
@@ -377,8 +377,8 @@ test06
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:45:44'!
-test07
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 18:05:25'!
+test07listingACartWithValidCartIdReturnsItsThreeItems
 	
 	| aValidUser aValidPassword cartId booksInCart bag|
 	
@@ -407,8 +407,8 @@ test07
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 11:51:03'!
-test08
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 18:06:55'!
+test08listingACartWithValidCartIdReturnsItsFiveItems
 	
 	| aValidUser aValidPassword cartId booksInCart bag|
 	
@@ -438,8 +438,8 @@ test08
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:55:53'!
-test09
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 18:08:02'!
+test09cannotCheckoutWithInvalidCartId
 	
 	self should:[ interface checkOut: -50 withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today]
 	raise: Error - MessageNotUnderstood
@@ -456,8 +456,8 @@ test09
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:55:38'!
-test10
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 18:08:26'!
+test10cannotCheckoutEmptyCart
 	| aValidUser aValidPassword cartId |
 	
 	aValidUser := 'ValidUser1'.
@@ -481,8 +481,8 @@ test10
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:54:59'!
-test11
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'AC 11/8/2021 18:08:46'!
+test11cannotCheckoutWithAnExpiredCreditCard
 	| aValidUser aValidPassword cartId |
 	
 	aValidUser := 'ValidUser1'.
