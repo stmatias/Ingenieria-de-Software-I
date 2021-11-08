@@ -506,23 +506,22 @@ test11cannotCheckoutWithAnExpiredCreditCard
 	
 	! !
 
-!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 12:54:41'!
+!TusLibrosFacadeTest methodsFor: 'as yet unclassified' stamp: 'goc 11/8/2021 20:24:22'!
 test12
 	
-	| aValidUser aValidPassword cartId booksInCart bag purchases|
+	| aValidUser aValidPassword cartId bag purchases|
 	
 	aValidUser := 'ValidUser1'.
 	aValidPassword := 'ValidPassword1'.
 	
 	cartId := interface createCartFor: aValidUser with: aValidPassword.
 	
-	interface addToCart: cartId book:'validBook' bookQuantity:1.
-	
-	booksInCart := interface listCart: cartId.
+	interface addToCart: cartId book:'validBook' bookQuantity:5.
+	interface addToCart: cartId book:'validBook2' bookQuantity:5.
 	
 	bag := Bag new.
-	bag add:'validBook' withOccurrences:1.
-	
+	bag add:'validBook' withOccurrences:5.
+	bag add:'validBook2' withOccurrences:5.
 	
 	interface checkOut: cartId withCreditCardNumber: testObjectsFactory notExpiredCreditCard on: testObjectsFactory today.
 	
@@ -631,7 +630,7 @@ acceptingItemsOf: aCatalog
 
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
-	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total'
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total customer'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -642,10 +641,10 @@ calculateTotal
 	total := cart total.
 	! !
 
-!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:07'!
+!Cashier methodsFor: 'checkout - private' stamp: 'goc 11/8/2021 20:08:36'!
 createSale
 
-	^ Sale of: total
+	^ Sale of: total withUser: customer.
 ! !
 
 !Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
@@ -678,6 +677,15 @@ initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor r
 	merchantProcessor := aMerchantProcessor.
 	salesBook := aSalesBook! !
 
+!Cashier methodsFor: 'initialization' stamp: 'goc 11/8/2021 20:07:12'!
+initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook withUser: aUsername
+	
+	cart := aCart.
+	creditCard := aCreditCard.
+	merchantProcessor := aMerchantProcessor.
+	salesBook := aSalesBook.
+	customer := aUsername.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Cashier class' category: 'TusLibros'!
@@ -703,6 +711,14 @@ toCheckout: aCart charging: aCreditCard throught: aMerchantProcessor on: aDate r
 	
 	^self new initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook! !
 
+!Cashier class methodsFor: 'instance creation' stamp: 'goc 11/8/2021 20:08:00'!
+toCheckout: aCart charging: aCreditCard throught: aMerchantProcessor on: aDate registeringOn: aSalesBook withUser: aUsername
+	
+	self assertIsNotEmpty: aCart.
+	self assertIsNotExpired: aCreditCard on: aDate.
+	
+	^self new initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor registeringOn: aSalesBook withUser: aUsername.! !
+
 
 !Cashier class methodsFor: 'error messages' stamp: 'HernanWilkinson 6/17/2013 18:21'!
 canNotChargeAnExpiredCreditCardErrorMessage
@@ -722,10 +738,15 @@ creditCardHasNoCreditErrorMessage
 
 !classDefinition: #CreditCard category: 'TusLibros'!
 Object subclass: #CreditCard
-	instanceVariableNames: 'expiration'
+	instanceVariableNames: 'expiration customerName'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
+
+!CreditCard methodsFor: 'testing' stamp: 'goc 11/8/2021 19:51:52'!
+customerName
+
+	^ customerName .! !
 
 !CreditCard methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 18:39'!
 isExpiredOn: aDate 
@@ -752,10 +773,20 @@ expiringOn: aMonth
 
 !classDefinition: #Sale category: 'TusLibros'!
 Object subclass: #Sale
-	instanceVariableNames: 'total'
+	instanceVariableNames: 'total customer itemsBought'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
+
+!Sale methodsFor: 'total' stamp: 'goc 11/8/2021 20:20:05'!
+isFrom: aUser
+	
+	^ aUser == customer.! !
+
+!Sale methodsFor: 'total' stamp: 'goc 11/8/2021 20:22:48'!
+itemsBought
+	
+	^ itemsBought! !
 
 !Sale methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2013 18:48'!
 total
@@ -768,6 +799,13 @@ initializeTotal: aTotal
 
 	total := aTotal ! !
 
+!Sale methodsFor: 'initialization' stamp: 'goc 11/8/2021 20:13:13'!
+initializeTotal: aTotal withUser: aUsername
+
+	total := aTotal.
+	customer := aUsername.
+	! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Sale class' category: 'TusLibros'!
@@ -779,6 +817,12 @@ of: aTotal
 
 	"should assert total is not negative or 0!!"
 	^self new initializeTotal: aTotal ! !
+
+!Sale class methodsFor: 'instance creation' stamp: 'goc 11/8/2021 20:13:47'!
+of: aTotal withUser: aUsername
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal withUser: aUsername! !
 
 
 !classDefinition: #StoreTestObjectsFactory category: 'TusLibros'!
@@ -905,7 +949,7 @@ addToCart: cartId book: aBook bookQuantity: aQuantity
 	
 	 ! !
 
-!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 12:53:56'!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 20:01:10'!
 checkOut: cartId withCreditCardNumber: aCreditCard on: aDate
 	
 	|cart cashier |
@@ -961,13 +1005,21 @@ listCart: aCartId
 	
 	^ (cartIdToCart at: aCartId) getItems.! !
 
-!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 13:00:38'!
+!TusLibrosFacade methodsFor: 'unclassified' stamp: 'goc 11/8/2021 20:23:06'!
 listPurchases: aUser withPassword: aPassword 
-	|bag|
+	|salesByUser items|
 	
-	bag:= Bag new.
+	"bag:= Bag new.
 	bag add: 'validBook'.
-	^bag.! !
+	^bag."
+	
+	salesByUser := salesBook select:[:aSale| aSale isFrom:aUser].
+	items:= Bag new.
+	salesByUser do:[:aSale| items add: aSale itemsBought ].
+	
+	^ items.
+	
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
