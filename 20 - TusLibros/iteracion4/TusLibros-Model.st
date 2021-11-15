@@ -350,6 +350,12 @@ isExpiredOn: aDate
 	^expiration start < (Month month: aDate monthIndex year: aDate yearNumber) start ! !
 
 
+!CreditCard methodsFor: 'expiration' stamp: 'MS 11/15/2021 14:28:11'!
+expiration
+
+	^ expiration ! !
+
+
 !CreditCard methodsFor: 'initialization' stamp: 'HernanWilkinson 6/17/2013 18:38'!
 initializeExpiringOn: aMonth
 
@@ -512,37 +518,115 @@ Object subclass: #TusLibrosRestInterface
 	poolDictionaries: ''
 	category: 'TusLibros-Model'!
 
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'goc 11/11/2021 21:53:25'!
-initializeWith: aPortNumber
-	
-	tusLibrosFacade := TusLibrosSystemFacade new.
-	
-	webServer := WebServer new listenOn: aPortNumber.
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:26:06'!
+addToCart: aRequest
 
-	webServer addService: '/createCart' action:[:request |	
-		|username password cart cartAsJson|
-		username:= request fields at: 'username'.
-		password:= request fields at: 'password'.
-		cart := tusLibrosFacade createCartFor: username authenticatedWith: password.
+	| cartId isbn quantity |
+
+	[ | requestFields | 
+	requestFields := aRequest fields.
+	cartId := (requestFields at: 'cartId') asNumber.
+	isbn := requestFields at: 'isbn' .
+	quantity := (requestFields at: 'quantity') asNumber .] 
+		on: Error 
+		do: [ :anError | aRequest send400Response: anError messageText ].
 		
-		cartAsJson:= WebUtils jsonEncode: (cart).
-		request send200Response: (cartAsJson)
+	"[tusLibrosFacade add: quantity of: isbn toCartIdentifiedAs: cartId.
+	aRequest send200Response: (WebUtils jsonEncode: 'OK') ]
+		on: Error
+		do: [:anError | 		aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:32:32'!
+checkoutCart: aRequest
+
+	| cartId userName creditCartNumber creditCardExpirationMonthOfYear creditCardOwner |
+
+	[ | requestFields creditCard | 
+		requestFields _ aRequest fields.
+		cartId _ (requestFields at: 'cartId') asNumber.
+		userName _ requestFields at: 'userName'.
+		creditCard _ self class usersAndCreditCards at: userName.
+		creditCartNumber _ creditCard number.
+ 	       creditCardExpirationMonthOfYear := creditCard expiration.
+		creditCardOwner _ userName]
+		on: Error 
+		do: [ :anError |aRequest send400Response: anError messageText ].
 		
-		].
+	"[ | ticket  ticketDecoded |
+		ticket := tusLibrosFacade  checkOutCartIdentifiedAs: cartId 
+							withCreditCardNumbered: creditCartNumber 
+							ownedBy: creditCardOwner 
+							expiringOn: creditCardExpirationMonthOfYear.
+		ticketDecoded := Dictionary new.
+		ticket lineItemsDo: [:anItem | ticketDecoded at: anItem item put: anItem total asString ].
+		ticketDecoded at: 'Total' put: ticket total asString .
+		aRequest send200Response: (WebUtils jsonEncode: ticketDecoded)]
+		on: Error
+		do: [:anError | 		aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:33:16'!
+createCart: aRequest
+
+	| clientId password |
 	
-	webServer addService: '/addToCart' action:[:request |	
-		|cartId bookIsbn bookQuantity status|
-		cartId= request fields at: 'cartId'.
-		bookIsbn= request fields at: 'bookIsbn'.
-		bookQuantity= request fields at: 'bookQuantity'.
-		status := tusLibrosFacade addToCart: bookQuantity of: bookIsbn.
-		request send200Response: (status)
-		].
+	[ | requestFields | 
+		requestFields := aRequest fields.
+		clientId := requestFields at: 'clientId'.
+		password := requestFields at: 'password' ]
+			on: Error 
+			do: [ :anError |aRequest send400Response: anError messageText ].
 	
-	"word := (request fields at:'sentence').
-		upperCasedWord := stringGenius toUppercase: word.
-		upperCasedWordAsJson:= WebUtils jsonEncode: (upperCasedWord).
-		request send200Response: (upperCasedWordAsJson)"! !
+	"
+	[cartId := tusLibrosFacade createCartFor: clientId  authenticatedWith: password.
+	aRequest send200Response: (WebUtils jsonEncode: cartId) ]
+		on: Error
+		do: [:anError | aRequest send400Response: (WebUtils jsonEncode: anError messageText)]
+	"! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 13:59:45'!
+initializeWith: aFacade andWebServer: aWebServer
+	
+	tusLibrosFacade := aFacade .
+	
+	webServer := aWebServer.! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:35:57'!
+listCart: aRequest
+
+	| cartId list |
+
+	[ | requestFields | 
+	requestFields := aRequest fields.
+	cartId := (requestFields at: 'cartId') asNumber]
+		on: Error 
+		do: [ :anError |aRequest send400Response: anError messageText ].
+		
+	"[ | itemByAmount |		
+		list := tusLibrosFacade listCartIdentifiedAs: cartId .
+		itemByAmount := Dictionary new.
+		list do:[:anItem | itemByAmount at: anItem put: ((itemByAmount at: anItem ifAbsent:[0]) + 1)].
+		aRequest send200Response: (WebUtils jsonEncode: itemByAmount)]
+			on: Error
+			do: [:anError | 		aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:37:22'!
+listPurchases: aRequest
+
+	| clientId password listPurchases |
+
+	[ | requestFields | 
+		requestFields _ aRequest fields.
+		clientId _ requestFields at: 'clientId'.
+		password _ self class usersAndPasswords at: clientId]
+			on: Error 
+			do: [ :anError |aRequest send400Response: anError messageText ].
+	
+	"
+	[listPurchases _ tusLibrosFacade listPurchasesOf: clientId authenticatingWith: password.
+	listPurchases  do:[:book :price | listPurchases  at: book put: price asString ].
+	aRequest send200Response: (WebUtils jsonEncode: listPurchases ) ]
+		on: Error
+		do: [:anError | aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -550,10 +634,63 @@ initializeWith: aPortNumber
 TusLibrosRestInterface class
 	instanceVariableNames: ''!
 
-!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'goc 11/11/2021 21:28:04'!
-listeningOn: aPortNumber
+!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:23:40'!
+catalogWithPrice
 
-	^self new initializeWith: aPortNumber.! !
+	^ Dictionary new
+		at: 'book1' put: 10;
+		at: 'book2' put: 20;
+		yourself .! !
+
+!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:24:26'!
+for: aPortNumber
+	
+	|webServer interface|
+		
+	"webServer := WebServer new listenOn: aPortNumber."
+
+	interface := self new initializeWith: (TusLibrosSystemFacade 
+		authenticatingWith: self usersAndPasswords  
+		acceptingItemsOf:  self catalogWithPrice 
+		registeringOn:  OrderedCollection new
+		debitingThrought:  MerchantProcessor new
+		measuringTimeWith: Clock new) 
+		andWebServer: webServer.
+	
+	webServer addService: '/createCart' action: [:request | interface createCart: request ].
+
+	webServer addService: '/addToCart' action: [:request | interface addToCart: request].
+	
+	webServer addService: '/listCart' action: [:request | interface listCart: request].
+	
+	webServer addService: '/checkoutCart' action: [:request | interface checkoutCart: request].
+	
+	webServer addService: '/listPurchases' action: [:request | interface listPurchases: request].
+	
+	
+		
+	! !
+
+!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:22:25'!
+usersAndCreditCards
+	
+	| notExpiredDate |
+	
+	notExpiredDate _ StoreTestObjectsFactory new yourself; notExpiredMonthOfYear.
+	
+	^ Dictionary new
+		at: 'validUser1' put: (CreditCard expiringOn: notExpiredDate );
+		at: 'validUser2' put: (CreditCard expiringOn: notExpiredDate);
+		yourself .
+		! !
+
+!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:22:33'!
+usersAndPasswords
+
+	^ Dictionary new
+		at: 'validUser1' put: 'validPassword1';
+		at: 'validUser2' put: 'validPassword2';
+		yourself .! !
 
 
 !classDefinition: #TusLibrosSystemFacade category: 'TusLibros-Model'!
