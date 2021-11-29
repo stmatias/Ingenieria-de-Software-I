@@ -1,97 +1,596 @@
-!classDefinition: #CreateCartWindows category: 'TusLibros-Model'!
-Panel subclass: #CreateCartWindows
+!classDefinition: #TusLibrosClientWindow category: 'TusLibros-Model'!
+Panel subclass: #TusLibrosClientWindow
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros-Model'!
 
-!CreateCartWindows methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:48:08'!
-build1stRow
-	| firstRowLayoutMorph sentenceTextBoxMorph |
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 18:00:37'!
+defaultExtent
+
+	^ 1000@485! !
+
+!TusLibrosClientWindow methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 17:31:31'!
+initializeDefaultWindow
+
+	TusLibrosClientWindowCreateCart open.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientWindow class' category: 'TusLibros-Model'!
+TusLibrosClientWindow class
+	instanceVariableNames: ''!
+
+!TusLibrosClientWindow class methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 17:31:02'!
+open
+
+	^ self new initializeDefaultWindow! !
+
+
+!classDefinition: #TusLibrosClientWindowAddToCart category: 'TusLibros-Model'!
+TusLibrosClientWindow subclass: #TusLibrosClientWindowAddToCart
+	instanceVariableNames: 'cartListMorph quantityToAddTextBoxMorph loginWindow catalogList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:37:19'!
+buildCartColumn
+
+	| removeFromCartButtonMorph checkoutButtonMorph listPurchasesButtonMorph 
+		cartColumnLayout logOutButtonMorph |
 	
-	sentenceTextBoxMorph := TextModelMorph textProvider: self model textGetter: #userText textSetter: #userText:.
-	sentenceTextBoxMorph innerTextMorph setProperty: #keyStroke: toValue: [ :key | sentenceTextBoxMorph innerTextMorph acceptContents ].
-	sentenceTextBoxMorph  borderWidth: 1; borderColor: Color skyBlue; morphWidth: 300. 
-
-	firstRowLayoutMorph := LayoutMorph newRow.
-	firstRowLayoutMorph separation: 25;
-	axisEdgeWeight: 0.5;
-	addMorph: (LabelMorph contents:'Usuario:');
-	addMorph: sentenceTextBoxMorph.
-
-	
-	^firstRowLayoutMorph.! !
-
-!CreateCartWindows methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:46:44'!
-build2ndRow
-	| firstRowLayoutMorph sentenceTextBoxMorph |
-	
-	sentenceTextBoxMorph := TextModelMorph textProvider: self model textGetter: #passwordText textSetter: #passwordText:. 
-	sentenceTextBoxMorph innerTextMorph setProperty: #keyStroke: toValue: [ :key | sentenceTextBoxMorph innerTextMorph acceptContents ] .
-	sentenceTextBoxMorph  borderWidth: 1; borderColor: Color skyBlue; morphWidth: 300. 
-
-	firstRowLayoutMorph := LayoutMorph newRow.
-	firstRowLayoutMorph separation: 25;
-	axisEdgeWeight: 0.5;
-	addMorph: (LabelMorph contents:'Contraseña:');
-	addMorph: sentenceTextBoxMorph.
-
-	
-	^firstRowLayoutMorph.! !
-
-!CreateCartWindows methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 21:09:13'!
-build3rdRow
-	| sendRequestButtonMorph |
-	
-	sendRequestButtonMorph := PluggableButtonMorph model: self model stateGetter: nil action: #sendCreateCartRequest  label: 'Create Cart'.
-	
-	^sendRequestButtonMorph.! !
-
-!CreateCartWindows methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:25:25'!
-buildMorphicWindow
+	cartListMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #cartList
+		indexGetter: #cartListIndex 
+		indexSetter: #cartListIndex:.
+	cartListMorph 
+		borderColor: Color skyBlue; 
+		borderWidth: 1.
+	cartListMorph layoutSpec 
+		proportionalWidth: 100;
+		proportionalHeight: 100.
 		
+	removeFromCartButtonMorph := PluggableButtonMorph 
+		model: self model 
+		stateGetter: nil 
+		action: #removeFromCart  
+		label: 'Quitar del carro'.	
+		
+	checkoutButtonMorph := PluggableButtonMorph 
+		model: self model 
+		stateGetter: nil 
+		action: #checkOut  
+		label: 'Check out'.	
+		
+	listPurchasesButtonMorph := PluggableButtonMorph 
+		model: self model 
+		stateGetter: nil 
+		action: #listPurchases  
+		label: 'Purchase history'.	
+		
+	logOutButtonMorph := PluggableButtonMorph 
+		model: self model 
+		stateGetter: nil 
+		action: #logout  
+		label: 'Log out'.	
+		
+	cartColumnLayout := LayoutMorph newColumn.
+	cartColumnLayout 
+		addMorph: (LabelMorph contents: 'Cart');
+		addMorph: cartListMorph;
+		addMorph: removeFromCartButtonMorph;
+		addMorph: checkoutButtonMorph;
+		addMorph: listPurchasesButtonMorph;
+		addMorph: logOutButtonMorph.
+		
+	^ cartColumnLayout! !
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:37:01'!
+buildCatalogColumn
+
+	| productSelectionLayoutMorph |
+	
+	catalogList := PluggableListMorph 
+		model: self model 
+		listGetter: #catalog
+		indexGetter: #catalogListIndex 
+		indexSetter: #catalogListIndex:.
+	catalogList 
+		borderColor: Color skyBlue; 
+		borderWidth: 1.
+	catalogList layoutSpec 
+		proportionalWidth: 100;
+		proportionalHeight: 100.
+		
+	productSelectionLayoutMorph := LayoutMorph newColumn.
+	productSelectionLayoutMorph 
+		separation: 10;
+		axisEdgeWeight: 0;
+		addMorph: (LabelMorph contents: 'Catalog');
+		addMorph: catalogList;
+		addMorph: self buildQuantitySelectionRow.
+		
+	^ productSelectionLayoutMorph ! !
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:36:50'!
+buildMorphicWindow
+
 	self layoutMorph beColumn;
 	separation: 15;
 	axisEdgeWeight: 0;
+	addMorph: self buildCatalogColumn;
+	addMorph: self buildCartColumn.! !
 
-	addMorph: self build1stRow;
-	addMorph: self build2ndRow;
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:37:53'!
+buildQuantitySelectionRow
+
+	| addProductButtonMorph quantitySelectionRowLayout |
 	
-	addMorph: self build3rdRow.
+	quantityToAddTextBoxMorph := TextModelMorph 
+		textProvider: self model 
+		textGetter: #quantityToAdd 
+		textSetter: #quantityToAdd:. 
+	quantityToAddTextBoxMorph innerTextMorph 
+		setProperty: #keyStroke:
+		toValue: [ :key | quantityToAddTextBoxMorph innerTextMorph  acceptContents ].
+	quantityToAddTextBoxMorph 
+		borderWidth: 1;
+		borderColor: Color skyBlue.
+	
+	addProductButtonMorph := PluggableButtonMorph 
+		model: self model 
+		stateGetter: nil 
+		action: #addToCart  
+		label: 'Add to cart'.	
+		
+	quantitySelectionRowLayout := LayoutMorph newRow.
+	quantitySelectionRowLayout
+		addMorph: (LabelMorph contents: 'Quantity');
+		addMorph: quantityToAddTextBoxMorph;
+		addMorph: addProductButtonMorph.
+		
+	^ quantitySelectionRowLayout.
+		
+	
+	
+	
 ! !
 
-!CreateCartWindows methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:14:13'!
-defaultExtent
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:33:31'!
+initializeTitled: aTitle withModel: aModel from: aLoginWindow
 
-	^ 1035@485
-	! !
+	loginWindow := aLoginWindow.
 
-!CreateCartWindows methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:10:33'!
+	self titleMorph showButtonsNamed: #( close collapse ).
+	self setLabel: aTitle.
+	self model: aModel.
+	self morphExtent: (self defaultExtent).
+	self buildMorphicWindow.
+	
+	self openInWorld.
+	
+	self model when: #cartHasChanged send: #refreshCart to: self.
+	self model when: #purchaseDone send: #openTicketWindow to: self.
+	self model when: #logoutDone send: #logout to: self.! !
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:36:25'!
+logout
+
+	self updateFields.
+	self openLoginWindow.! !
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:36:15'!
+openLoginWindow
+
+	loginWindow openInWorld.
+	self delete.! !
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:36:06'!
+openTicketWindow
+
+	TusLibrosClientWindowTicket openWith: self model from: loginWindow.
+	self delete.! !
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:35:32'!
+refreshCart
+	
+	cartListMorph updateList.
+	catalogList setSelectionIndex: 0.! !
+
+!TusLibrosClientWindowAddToCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:32:02'!
+updateFields
+
+	quantityToAddTextBoxMorph model actualContents: model quantityToAdd! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientWindowAddToCart class' category: 'TusLibros-Model'!
+TusLibrosClientWindowAddToCart class
+	instanceVariableNames: ''!
+
+!TusLibrosClientWindowAddToCart class methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:31:36'!
+openWith: aModel from: aLoginWindow
+
+	^ self new initializeTitled: 'Tus Libros - Bievenido ' withModel: aModel from: aLoginWindow.! !
+
+
+!classDefinition: #TusLibrosClientWindowCreateCart category: 'TusLibros-Model'!
+TusLibrosClientWindow subclass: #TusLibrosClientWindowCreateCart
+	instanceVariableNames: 'userNameTextBoxMorph passwordTextBoxMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:40:52'!
+buildClientIdRow
+
+	| clientIdRowLayoutMorph |
+	
+	userNameTextBoxMorph := TextModelMorph
+		textProvider: self model
+		textGetter: #clientId
+		textSetter: #clientId:.
+		
+	userNameTextBoxMorph  innerTextMorph  
+		setProperty: #keyStroke: 
+		toValue: [ :key | userNameTextBoxMorph  innerTextMorph acceptContents ].
+		
+	userNameTextBoxMorph  
+		borderWidth: 1; 
+		borderColor: Color skyBlue; 
+		morphWidth: 300.
+		
+	clientIdRowLayoutMorph := LayoutMorph newRow.
+	clientIdRowLayoutMorph
+		separation: 25;
+		axisEdgeWeight: 0.5;
+		addMorph: (LabelMorph contents: 'Client ID:');
+		addMorph: userNameTextBoxMorph .
+		
+	^ clientIdRowLayoutMorph! !
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:41:22'!
+buildMorphicWindow
+
+	self 
+		layoutMorph beColumn;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: self buildClientIdRow;
+		addMorph: self buildPasswordRow;
+		addMorph: self buildSubmitButton.! !
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:41:02'!
+buildPasswordRow
+
+	| passwordRowLayoutMorph |
+	
+	passwordTextBoxMorph := TextModelMorph
+		textProvider: self model
+		textGetter: #password
+		textSetter: #password:.
+		
+	passwordTextBoxMorph innerTextMorph  
+		setProperty: #keyStroke: 
+		toValue: [ :key | passwordTextBoxMorph innerTextMorph  acceptContents ].
+		
+	passwordTextBoxMorph 
+		borderWidth: 1; 
+		borderColor: Color skyBlue; 
+		morphWidth: 300.
+		
+	passwordRowLayoutMorph := LayoutMorph newRow.
+	passwordRowLayoutMorph
+		separation: 25;
+		axisEdgeWeight: 0.5;
+		addMorph: (LabelMorph contents: 'Password:');
+		addMorph: passwordTextBoxMorph.
+		
+	^ passwordRowLayoutMorph! !
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:18:32'!
+buildSubmitButton
+
+	| submitButtonMorph |
+	
+	submitButtonMorph := PluggableButtonMorph
+		model: self model
+		stateGetter: nil 
+		action: #login 
+		label: 'Login'.
+	
+	^ submitButtonMorph! !
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:35:59'!
 initializeWith: aTitle
 
 	self titleMorph showButtonsNamed: #( close collapse ).
 	self setLabel: aTitle.
-	self model: (CreateCartWindowsModel new).
+	self model: (TusLibrosClientWindowModel new).
 	self morphExtent: (self defaultExtent).
 	self buildMorphicWindow.
 	self openInWorld.
 	
-			
-	"self model when: #newWordsArrived send: #refreshListOfWords to: self."
+	self model when: #succesfulLogin send: #openMarketWindow to: self.
+	self model when: #error send: #openMarketWindow to: self.
+	self model when: #logout send: #update to: self.
 	
-	"Investigar:
-	self model when: #newWordsArrived send: #refreshListOfWords:and: to: self."! !
+		
+	! !
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:09:34'!
+openErrorWindow
+
+	TusLibrosClientWindowError openWith: self model.! !
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:46:58'!
+openMarketWindow
+	
+	TusLibrosClientWindowAddToCart openWith: self model from: self.
+	self delete.! !
+
+!TusLibrosClientWindowCreateCart methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:25:00'!
+updateFields
+
+	userNameTextBoxMorph model actualContents: model clientId.
+	passwordTextBoxMorph model actualContents: model password.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'CreateCartWindows class' category: 'TusLibros-Model'!
-CreateCartWindows class
+!classDefinition: 'TusLibrosClientWindowCreateCart class' category: 'TusLibros-Model'!
+TusLibrosClientWindowCreateCart class
 	instanceVariableNames: ''!
 
-!CreateCartWindows class methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:08:53'!
+!TusLibrosClientWindowCreateCart class methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 17:28:21'!
 open
+
+	^self new initializeWith: 'Tus Libros'! !
+
+
+!classDefinition: #TusLibrosClientWindowError category: 'TusLibros-Model'!
+TusLibrosClientWindow subclass: #TusLibrosClientWindowError
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!TusLibrosClientWindowError methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 17:54:42'!
+build1stRow
+
+	| firstColumnLayoutMorphOfSecondRow continueShoppingButtonMorph |
 	
-	^self new initializeWith: 'Create Cart Window'.! !
+	continueShoppingButtonMorph := TextModelMorph withText: self model errorMessage.	
+	
+	firstColumnLayoutMorphOfSecondRow := LayoutMorph newColumn.
+	firstColumnLayoutMorphOfSecondRow separation: 5; 
+	axisEdgeWeight: 0.5;
+	addMorph: (LabelMorph contents:'Error:');
+	addMorph: continueShoppingButtonMorph.
+	
+	
+	firstColumnLayoutMorphOfSecondRow layoutSpec fixedWidth: 390.
+		
+	^firstColumnLayoutMorphOfSecondRow.
+	
+	! !
+
+!TusLibrosClientWindowError methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:42:29'!
+buildMorphicWindow
+
+	self layoutMorph 
+		beColumn;
+		separation: 15;
+		axisEdgeWeight: 0;
+		addMorph: (LabelMorph contents: self model errorMessage).
+	self layoutMorph 
+		layoutSpec 
+		fixedHeight: 300; 
+		fixedWidth: 300.! !
+
+!TusLibrosClientWindowError methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:35:41'!
+intializeWith: aTitle withModel: aModel
+
+	self titleMorph showButtonsNamed: #( close collapse ).
+	self setLabel: aTitle.
+	self model: aModel .
+	self morphExtent: (self defaultExtent).
+	self buildMorphicWindow.
+	self openInWorld.
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientWindowError class' category: 'TusLibros-Model'!
+TusLibrosClientWindowError class
+	instanceVariableNames: ''!
+
+!TusLibrosClientWindowError class methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:11:51'!
+openWith: aModel
+
+	^ self new intializeWith: 'Error' withModel: aModel! !
+
+
+!classDefinition: #TusLibrosClientWindowPurchases category: 'TusLibros-Model'!
+TusLibrosClientWindow subclass: #TusLibrosClientWindowPurchases
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!TusLibrosClientWindowPurchases methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:22:30'!
+buildMorphicWindow
+
+	| purchaseHistoryListMorph |
+	
+	purchaseHistoryListMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #purchaseHistoryList
+		indexGetter: #purchaseHistoryListIndex 
+		indexSetter: #purchaseHistoryListIndex:.
+	purchaseHistoryListMorph 
+		borderColor: Color skyBlue; 
+		borderWidth: 1.
+	purchaseHistoryListMorph layoutSpec 
+		proportionalWidth: 100;
+		proportionalHeight: 100.
+	
+	self layoutMorph beRow;
+	separation: 15;
+	axisEdgeWeight: 0;
+	addMorph: purchaseHistoryListMorph.! !
+
+!TusLibrosClientWindowPurchases methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:31:54'!
+initializeWith: aTitle withPurchases: aPurchases 
+
+	self titleMorph showButtonsNamed: #( close collapse ).
+	self setLabel: aTitle.
+	self model:aPurchases .
+	self morphExtent: (self defaultExtent).
+	self buildMorphicWindow.
+	self openInWorld.
+
+			! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientWindowPurchases class' category: 'TusLibros-Model'!
+TusLibrosClientWindowPurchases class
+	instanceVariableNames: ''!
+
+!TusLibrosClientWindowPurchases class methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 17:53:42'!
+withPurchases: aPurchases
+
+	^ self new initializeWith: 'Tus Libros - Historial' withPurchases: aPurchases ! !
+
+
+!classDefinition: #TusLibrosClientWindowTicket category: 'TusLibros-Model'!
+TusLibrosClientWindow subclass: #TusLibrosClientWindowTicket
+	instanceVariableNames: 'loginWindow'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!TusLibrosClientWindowTicket methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 22:53:56'!
+build1stRow
+
+	| firstColumnLayoutMorphOfSecondRow continueShoppingButtonMorph ticketListMorph logOutButtonMorph |
+	
+	continueShoppingButtonMorph := PluggableButtonMorph model: self model stateGetter: nil  action: #continueShoppingActionButton label: 'Realizar otra compra'.	
+	
+	logOutButtonMorph := PluggableButtonMorph model: self model stateGetter: nil  action: #logOutActionButton label: 'Cerrar sesion'.	
+	
+	ticketListMorph := PluggableListMorph model: self model listGetter: #ticket indexGetter: #ticketSelectedIndex indexSetter: #ticketSelectedIndex.
+	ticketListMorph  borderColor: Color skyBlue; borderWidth: 1; morphWidth:300.
+	
+	firstColumnLayoutMorphOfSecondRow := LayoutMorph newColumn.
+	firstColumnLayoutMorphOfSecondRow separation: 5; 
+	axisEdgeWeight: 0.5;
+	addMorph: (LabelMorph contents:'Ticket Tus Libros');
+	addMorph: ticketListMorph;
+	addMorph: continueShoppingButtonMorph;
+	addMorph: logOutButtonMorph.
+	
+	firstColumnLayoutMorphOfSecondRow layoutSpec fixedWidth: 390.
+		
+	^firstColumnLayoutMorphOfSecondRow.
+	! !
+
+!TusLibrosClientWindowTicket methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:20:28'!
+buildMorphicWindow
+
+	| ticketListMorph buttonsLayoutMorph logOutButtonMorph newShoppingCartButtonMorph |
+	
+	ticketListMorph := PluggableListMorph 
+		model: self model 
+		listGetter: #ticketList
+		indexGetter: #ticketListIndex 
+		indexSetter: #ticketListIndex:.
+	ticketListMorph 
+		borderColor: Color skyBlue; 
+		borderWidth: 1.
+	ticketListMorph layoutSpec 
+		proportionalWidth: 100;
+		proportionalHeight: 100.
+		
+	newShoppingCartButtonMorph := PluggableButtonMorph 
+		model: self model 
+		stateGetter: nil 
+		action: #newShoppingCart  
+		label: 'New shopping cart'.	
+	
+	logOutButtonMorph := PluggableButtonMorph 
+		model: self model 
+		stateGetter: nil 
+		action: #logout  
+		label: 'Log out'.	
+	
+	buttonsLayoutMorph := LayoutMorph newRow.
+	buttonsLayoutMorph
+		separation: 10;
+		axisEdgeWeight: 0.5;
+		addMorph: newShoppingCartButtonMorph;
+		addMorph: logOutButtonMorph.
+	
+	self layoutMorph beColumn;
+	separation: 15;
+	axisEdgeWeight: 0;
+	addMorph: (LabelMorph contents: 'Purchase detail');
+	addMorph: ticketListMorph;
+	addMorph: buttonsLayoutMorph.! !
+
+!TusLibrosClientWindowTicket methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:20:37'!
+defaultExtent
+
+	^ 500@700! !
+
+!TusLibrosClientWindowTicket methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:20:53'!
+initializeTitled: aTitle withModel: aModel from: aLoginWindow
+
+	loginWindow := aLoginWindow .
+
+	self titleMorph showButtonsNamed: #( close collapse ).
+	self setLabel: aTitle.
+	self model: aModel.
+	self morphExtent: (self defaultExtent).
+	self buildMorphicWindow.
+	
+	self openInWorld.
+	
+	self model when: #newShoppingCartCreated send: #openMarketWindow to: self.
+	self model when: #logoutDone send: #openLoginWindow to: self.! !
+
+!TusLibrosClientWindowTicket methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:21:01'!
+openLoginWindow
+
+	loginWindow openInWorld.
+	self delete.! !
+
+!TusLibrosClientWindowTicket methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:21:16'!
+openMarketWindow
+
+	TusLibrosClientWindowAddToCart openWith: self model from: loginWindow.
+	self delete! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientWindowTicket class' category: 'TusLibros-Model'!
+TusLibrosClientWindowTicket class
+	instanceVariableNames: ''!
+
+!TusLibrosClientWindowTicket class methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 18:12:42'!
+for: aCartId withUserName: anUserName withPassword: aPassword andTicket: aTicket 
+
+	^self new initializeWith: ('Tus Libros - Ticket - ', anUserName asString) for: aCartId userName: anUserName withPassword: aPassword andTicket: aTicket.! !
+
+
+!classDefinition: #AuthenticationSystem category: 'TusLibros-Model'!
+Object subclass: #AuthenticationSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
 
 
 !classDefinition: #Cart category: 'TusLibros-Model'!
@@ -415,6 +914,42 @@ signalCartCanNotBeEmpty
 	self error: self cartCanNotBeEmptyErrorMessage! !
 
 
+!classDefinition: #ClientInformation category: 'TusLibros-Model'!
+Object subclass: #ClientInformation
+	instanceVariableNames: 'clientId password creditCard'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!ClientInformation methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:01:06'!
+creditCard
+	
+	^creditCard! !
+
+!ClientInformation methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:00:59'!
+initializeFor: aClientId authenticatedWith: aPassword payingWith: aCreditCard 
+	
+	clientId := aClientId.
+	password := aPassword.
+	creditCard := aCreditCard.! !
+
+!ClientInformation methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:01:12'!
+password
+	
+	^password! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ClientInformation class' category: 'TusLibros-Model'!
+ClientInformation class
+	instanceVariableNames: ''!
+
+!ClientInformation class methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:00:51'!
+for: aClientId authenticatedWith: aPassword payingWith: aCreditCard 
+	
+	^self new initializeFor: aClientId authenticatedWith: aPassword payingWith: aCreditCard ! !
+
+
 !classDefinition: #ClientInterface category: 'TusLibros-Model'!
 Object subclass: #ClientInterface
 	instanceVariableNames: 'port'
@@ -463,66 +998,22 @@ today
 	self subclassResponsibility! !
 
 
-!classDefinition: #CreateCartWindowsModel category: 'TusLibros-Model'!
-Object subclass: #CreateCartWindowsModel
-	instanceVariableNames: 'user clientInterface password cartId'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros-Model'!
-
-!CreateCartWindowsModel methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 21:05:23'!
-initialize
-
-	
-	user := ''.
-	password := ''.
-	clientInterface := ClientInterface new.! !
-
-!CreateCartWindowsModel methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:49:18'!
-passwordText
-
-	^password! !
-
-!CreateCartWindowsModel methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:48:48'!
-passwordText: aPassword
-
-
-	password := aPassword.
-	^true.! !
-
-!CreateCartWindowsModel methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 21:06:27'!
-sendCreateCartRequest
-		
-	
-	cartId := clientInterface createCartRequest: self userText with: self passwordText.
-	"
-	self triggerEvent: #newWordsArrived.
-	
-	Investiguen mensajes como:
-	self triggerEvent: #newWordsArrived with: 1.
-	self triggerEvent: #newWordsArrived withArguments: (Array with: 1 with: 2)"
-	! !
-
-!CreateCartWindowsModel methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:48:23'!
-userText
-
-	^user
-! !
-
-!CreateCartWindowsModel methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 20:48:26'!
-userText: aUserName
-
-
-	user := aUserName.
-	^true.! !
-
-
 !classDefinition: #CreditCard category: 'TusLibros-Model'!
 Object subclass: #CreditCard
-	instanceVariableNames: 'expiration'
+	instanceVariableNames: 'expiration number name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros-Model'!
+
+!CreditCard methodsFor: 'testing' stamp: 'MS 11/29/2021 13:00:05'!
+assertNameIsValid: aName
+
+	aName isEmpty 		ifTrue: [ self error: self class invalidCreditCardrrorMessage ].
+	
+	aName withBlanksTrimmed isEmpty		ifTrue: [ self error: self class invalidCreditCardrrorMessage ].
+	
+	aName size > 30 
+		ifTrue: [ self error: self class invalidCreditCardrrorMessage ].! !
 
 !CreditCard methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 18:39'!
 isExpiredOn: aDate
@@ -541,6 +1032,17 @@ initializeExpiringOn: aMonth
 
 	expiration := aMonth ! !
 
+
+!CreditCard methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:02:18'!
+initializeWithNumber: aCreditCardNumber of: aName expiringOn: aMonth
+
+	self assertNameIsValid: aName.
+
+	
+	expiration := aMonth.
+	number := aCreditCardNumber.
+	name := aName.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'CreditCard class' category: 'TusLibros-Model'!
@@ -551,6 +1053,16 @@ CreditCard class
 expiringOn: aMonth
 
 	^self new initializeExpiringOn: aMonth! !
+
+!CreditCard class methodsFor: 'instance creation' stamp: 'MS 11/29/2021 13:00:05'!
+invalidCreditCardrrorMessage
+
+	'Invalid credit card'! !
+
+!CreditCard class methodsFor: 'instance creation' stamp: 'MS 11/29/2021 12:56:47'!
+withNumber: aCreditCardNumber of: aName expiringOn: aMonth 
+	
+	^self new initializeWithNumber: aCreditCardNumber of: aName expiringOn: aMonth.! !
 
 
 !classDefinition: #LineItem category: 'TusLibros-Model'!
@@ -610,6 +1122,36 @@ README
 debit: anAmount from: aCreditCard
 
 	self subclassResponsibility ! !
+
+
+!classDefinition: #MerchantProcessorForInterface category: 'TusLibros-Model'!
+MerchantProcessor subclass: #MerchantProcessorForInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!MerchantProcessorForInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:04:09'!
+debit: anAmount from: aCreditCard
+
+	aCreditCard number = self class creditCardNumberWithoutFunds 
+		ifTrue: [self error: self class creditCardWithoutFundsErrorDescription ]! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MerchantProcessorForInterface class' category: 'TusLibros-Model'!
+MerchantProcessorForInterface class
+	instanceVariableNames: ''!
+
+!MerchantProcessorForInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:03:51'!
+creditCardNumberWithoutFunds
+
+	^ 1111111111111111! !
+
+!MerchantProcessorForInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 13:03:59'!
+creditCardWithoutFundsErrorDescription
+
+	^ 'Credit card without funds'! !
 
 
 !classDefinition: #Sale category: 'TusLibros-Model'!
@@ -691,181 +1233,829 @@ of: aCollectionOfLineItems
 	^self new initializeOf: aCollectionOfLineItems ! !
 
 
-!classDefinition: #TusLibrosRestInterface category: 'TusLibros-Model'!
-Object subclass: #TusLibrosRestInterface
-	instanceVariableNames: 'webServer port tusLibrosFacade'
+!classDefinition: #TusLibrosClientWindowModel category: 'TusLibros-Model'!
+Object subclass: #TusLibrosClientWindowModel
+	instanceVariableNames: 'cartId userName password interface errorMessage clientId restInterface quantityToAdd catalogList catalogListIndex cartList cartListIndex purchaseHistoryList ticketList'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros-Model'!
 
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:26:06'!
-addToCart: aRequest
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:44:05'!
+addToCart
 
-	| cartId isbn quantity |
-
-	[ | requestFields | 
-	requestFields := aRequest fields.
-	cartId := (requestFields at: 'cartId') asNumber.
-	isbn := requestFields at: 'isbn' .
-	quantity := (requestFields at: 'quantity') asNumber .] 
-		on: Error 
-		do: [ :anError | aRequest send400Response: anError messageText ].
+	self doSignalingError: [ | aProduct  |
 		
-	"[tusLibrosFacade add: quantity of: isbn toCartIdentifiedAs: cartId.
-	aRequest send200Response: (WebUtils jsonEncode: 'OK') ]
-		on: Error
-		do: [:anError | 		aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
-
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:32:32'!
-checkoutCart: aRequest
-
-	| cartId userName creditCartNumber creditCardExpirationMonthOfYear creditCardOwner |
-
-	[ | requestFields creditCard | 
-		requestFields _ aRequest fields.
-		cartId _ (requestFields at: 'cartId') asNumber.
-		userName _ requestFields at: 'userName'.
-		creditCard _ self class usersAndCreditCards at: userName.
-		creditCartNumber _ creditCard number.
- 	       creditCardExpirationMonthOfYear := creditCard expiration.
-		creditCardOwner _ userName]
-		on: Error 
-		do: [ :anError |aRequest send400Response: anError messageText ].
+		aProduct := self selectedProductFromCatalog.
 		
-	"[ | ticket  ticketDecoded |
-		ticket := tusLibrosFacade  checkOutCartIdentifiedAs: cartId 
-							withCreditCardNumbered: creditCartNumber 
-							ownedBy: creditCardOwner 
-							expiringOn: creditCardExpirationMonthOfYear.
-		ticketDecoded := Dictionary new.
-		ticket lineItemsDo: [:anItem | ticketDecoded at: anItem item put: anItem total asString ].
-		ticketDecoded at: 'Total' put: ticket total asString .
-		aRequest send200Response: (WebUtils jsonEncode: ticketDecoded)]
-		on: Error
-		do: [:anError | 		aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
-
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 22:01:54'!
-createCart: aRequest
-
-	| clientId password requestFields cartId |
-	requestFields := aRequest fields.
-	clientId := requestFields at: 'clientId'.
-	password := requestFields at: 'password'.
-	cartId := tusLibrosFacade createCartFor: clientId  authenticatedWith: password.
-	aRequest send200Response: (WebUtils jsonEncode: cartId).
-	"
-	[ | requestFields | 
-		requestFields := aRequest fields.
-		clientId := requestFields at: 'clientId'.
-		password := requestFields at: 'password' ]
-			on: Error 
-			do: [ :anError |aRequest send400Response: anError messageText ].
-	
-	
-	[cartId := tusLibrosFacade createCartFor: clientId  authenticatedWith: password.
-	aRequest send200Response: (WebUtils jsonEncode: cartId) ]
-		on: Error
-		do: [:anError | aRequest send400Response: (WebUtils jsonEncode: anError messageText)]
-	"! !
-
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 21:49:29'!
-destroy
-	
-	webServer ifNotNil:[webServer destroy].! !
-
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 21:55:28'!
-initializeWith: aFacade andWebServer: aWebServer withPort: aPortNumber
-	 
-	tusLibrosFacade := aFacade .
-	
-	webServer := aWebServer.
-	port := aPortNumber.
-	
-	webServer addService: '/createCart' action: [:request | self createCart: request].
-
-	webServer addService: '/addToCart' action: [:request | self addToCart: request].
-	
-	webServer addService: '/listCart' action: [:request | self listCart: request].
-	
-	webServer addService: '/checkoutCart' action: [:request | self checkoutCart: request].
-	
-	webServer addService: '/listPurchases' action: [:request | self listPurchases: request].! !
-
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:35:57'!
-listCart: aRequest
-
-	| cartId list |
-
-	[ | requestFields | 
-	requestFields := aRequest fields.
-	cartId := (requestFields at: 'cartId') asNumber]
-		on: Error 
-		do: [ :anError |aRequest send400Response: anError messageText ].
+		restInterface  sendRequestForAddToCart: (self convertToNumber: quantityToAdd) of: aProduct with: cartId.
 		
-	"[ | itemByAmount |		
-		list := tusLibrosFacade listCartIdentifiedAs: cartId .
-		itemByAmount := Dictionary new.
-		list do:[:anItem | itemByAmount at: anItem put: ((itemByAmount at: anItem ifAbsent:[0]) + 1)].
-		aRequest send200Response: (WebUtils jsonEncode: itemByAmount)]
-			on: Error
-			do: [:anError | 		aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
+		self listCartCart.
+		]! !
 
-!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:37:22'!
-listPurchases: aRequest
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:33:49'!
+cartList
 
-	| clientId password listPurchases |
+	^ cartList collect: [ :keyAndValue | (keyAndValue at: 1), '    ', (keyAndValue at: 2) asString ]! !
 
-	[ | requestFields | 
-		requestFields _ aRequest fields.
-		clientId _ requestFields at: 'clientId'.
-		password _ self class usersAndPasswords at: clientId]
-			on: Error 
-			do: [ :anError |aRequest send400Response: anError messageText ].
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:33:53'!
+cartListIndex
+
+	^ cartListIndex! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:33:58'!
+cartListIndex: newIndex
+
+	cartListIndex := newIndex! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:37:44'!
+catalog
 	
-	"
-	[listPurchases _ tusLibrosFacade listPurchasesOf: clientId authenticatingWith: password.
-	listPurchases  do:[:book :price | listPurchases  at: book put: price asString ].
-	aRequest send200Response: (WebUtils jsonEncode: listPurchases ) ]
-		on: Error
-		do: [:anError | aRequest send400Response: (WebUtils jsonEncode: anError messageText)]"! !
+	^ catalogList collect: [ :productAndPrice | (productAndPrice at: 1), '    $', (productAndPrice at: 2) asString ]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:37:38'!
+catalogListIndex
+
+	^ catalogListIndex! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:37:30'!
+catalogListIndex: newIndex
+
+	catalogListIndex := newIndex! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:27:13'!
+checkOut
+
+	self doSignalingError: [ | ticket |
+	
+		ticket := restInterface sendRequestForCheckoutToCart: cartId.
+		
+		self mapTicketResponse: ticket.
+		
+		self cleanCart.
+		
+		self triggerEvent: #purchaseDone with: self.
+	]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:34:03'!
+cleanCart
+
+	cartList removeAll.
+	self cartListIndex: 0! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:34:23'!
+clientId
+
+	^ clientId! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:34:35'!
+clientId: newClientId
+
+	clientId := newClientId! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:37:18'!
+convertToNumber: value
+
+	| number errorMsg |
+	
+	errorMsg := 'value must be an integer greater than zero'.
+	
+	[ number := value asNumber.
+	(number isInteger not or: [ number < 1 ]) 
+		ifTrue: [self error: errorMsg ] ]
+	on: Error 
+	do: [:error | self error: errorMsg ].
+	
+	^ number! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:33:24'!
+createCartRequest
+	
+	| catalog |
+	
+	[cartId _ interface sendRequestForCreateCartWithUser: userName andPassword: password]
+	on: Error
+	do:[:anError | | message | 
+		message _ interface messageTextError: anError messageText.
+		^TusLibrosClientWindowError openWith: message].
+	
+	catalog _ interface sendRequestForCatalog.
+	
+	TusLibrosClientWindowAddToCart openWith: catalog from: 	cartId .
+	
+	! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:52:51'!
+doSignalingError: aClosure
+
+	[^ aClosure value ] on: Error do: [ :error |
+		
+		self errorMessage: error messageText.
+		self triggerEvent: #error with: self.
+		]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:36:03'!
+doSignalingLoginError: aClosure
+
+	[^ aClosure value ] on: Error do: [ :error |
+		
+		self errorMessage: error messageText.
+		self triggerEvent: #loginErrorOccurred with: self.
+		]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:53:05'!
+doSignalingMarketError: aClosure
+
+	[^ aClosure value ] on: Error do: [ :error |
+		
+		self errorMessage: error messageText.
+		self triggerEvent: #error with: self.
+		]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:34:44'!
+emptyCardErrorDescription
+	
+	^'Empty card'! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:34:02'!
+emptyCatalogErrorDescription 
+
+	^'Empty catalog'	! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:36:13'!
+errorMessage
+
+	^ errorMessage! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:36:17'!
+errorMessage: anErrorMessage
+
+	errorMessage := anErrorMessage! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:33:05'!
+initialize
+
+	errorMessage := ''.
+	clientId := ''.
+	password := ''.
+	restInterface := TusLibrosInterface new.
+	quantityToAdd := '1'.
+	catalogList := OrderedCollection new.
+	catalogListIndex := 0.
+	cartList := OrderedCollection new.
+	cartListIndex := 0.
+	purchaseHistoryList := OrderedCollection new.
+	ticketList := OrderedCollection new.
+! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:39:06'!
+listCartCart
+
+	self doSignalingError: [ |  cartDictionary |
+	
+		cartDictionary := restInterface sendListCartRequestFor: cartId.
+		
+		cartList removeAll.	
+		cartDictionary keysAndValuesDo: [ :key :value | cartList add: {key. value}].
+		
+		self triggerEvent: #cartHasChanged with: self.
+	]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:38:53'!
+listPurchases
+
+	self doSignalingError: [ | purchaseHistoryDictionary |
+	
+		purchaseHistoryList removeAll.
+		
+		purchaseHistoryDictionary := restInterface sendListPurchasesRequestFor: clientId authenticatedWith: password.
+		
+		self mapPurchasesResponse: purchaseHistoryDictionary.
+		
+		TusLibrosClientWindowPurchases openWith: self.
+	]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:45:23'!
+login
+
+	self doSignalingError: [ | catalogDictionary |
+	
+		cartId := restInterface sendRequestForCreateCartWithUser: clientId		andPassword: password.
+			
+		catalogDictionary := restInterface sendRequestForListCatalog .
+		
+		self mapCatalogResponse: catalogDictionary.
+			
+		self triggerEvent: #successfulLogin with: self.
+	]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:38:05'!
+logout
+
+	self doSignalingError: [
+		self initialize.
+		self triggerEvent: #logoutDone with: self.
+		]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:34:57'!
+mapCatalogResponse: catalogDictionary
+	
+	catalogList removeAll.	
+	catalogDictionary keysAndValuesDo: [ :key :value | catalogList add: {key. value}].! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:35:06'!
+mapPurchasesResponse: purchaseHistoryDictionary
+
+	|  items total |
+	
+	purchaseHistoryList removeAll.
+	
+	items := purchaseHistoryDictionary at: 'items'.
+	total := purchaseHistoryDictionary at: 'total'.
+	
+	items do: [ :itemAndQuantity | purchaseHistoryList add: (itemAndQuantity at: 'item') , '    ' , (itemAndQuantity at: 'quantity') asString ].
+	purchaseHistoryList add: ('Total:   $' , total asString ).! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:35:13'!
+mapTicketResponse: ticket 
+	
+	| ticketTotal |
+	
+	ticketList removeAll.
+	
+	ticketTotal := 0.
+	
+	ticket do: [ :itemAndTotal | | total | 
+		total := itemAndTotal at: 'total'.
+		ticketList add: (itemAndTotal at: 'item') , '    $' , total asString.
+		ticketTotal := ticketTotal + total.
+		].
+	ticketList add: 'Total:    $' , ticketTotal asString.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:26:43'!
+newShoppingCart
+
+	self doSignalingError: [
+		cartId := restInterface sendRequestForCreateCartWithUser: clientId  andPassword: password.
+		
+		self triggerEvent: #newShoppingCartCreated with: self.
+		]
+! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:35:07'!
+noSelectedCartItemErrorDescription
+
+	^'No selected cart'! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:35:27'!
+noSelectedCatalogItemErrorDescription 
+
+	^'No selected catalog item'! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:34:41'!
+password
+
+	^ password! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:34:47'!
+password: newPassword
+
+	password := newPassword! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 19:49:37'!
+passwordText
+	
+	^password.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 19:49:41'!
+passwordText: aSentence
+	
+	password := aSentence.
+	^true.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:36:41'!
+purchaseHistoryList
+
+	^ purchaseHistoryList! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:36:37'!
+purchaseHistoryListIndex
+
+	^ 0! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:37:07'!
+quantityToAdd
+	
+	^ quantityToAdd! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:37:03'!
+quantityToAdd: newQuantity
+	
+	quantityToAdd := newQuantity.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:50:41'!
+removeFromCart
+
+	self doSignalingError: [
+		restInterface sendRequestForRemoveToCart: self selectedProductFromCart of: cartId .
+			
+		self listCartCart.
+		]! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:34:54'!
+selectedProductFromCart
+
+	cartList isEmpty ifTrue: [ self error: self  emptyCardErrorDescription ].
+	cartListIndex < 1 ifTrue: [ self error: self  noSelectedCartItemErrorDescription ].
+
+	^ (cartList at: cartListIndex) at: 1! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:34:02'!
+selectedProductFromCatalog
+
+	catalogList isEmpty ifTrue: [ self error: self  emptyCatalogErrorDescription ].
+	catalogListIndex < 1 ifTrue: [ self error: self  noSelectedCatalogItemErrorDescription ].
+
+	^ (catalogList at: catalogListIndex) at: 1.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:36:51'!
+ticketList
+
+	^ ticketList! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 14:36:47'!
+ticketListIndex
+
+	^ 0! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 19:49:45'!
+userNameText
+	
+	^userName.! !
+
+!TusLibrosClientWindowModel methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 19:49:48'!
+userNameText: aSentence
+	
+	userName := aSentence.
+	^true.! !
+
+
+!classDefinition: #TusLibrosEncoder category: 'TusLibros-Model'!
+Object subclass: #TusLibrosEncoder
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'TusLibrosRestInterface class' category: 'TusLibros-Model'!
-TusLibrosRestInterface class
+!classDefinition: 'TusLibrosEncoder class' category: 'TusLibros-Model'!
+TusLibrosEncoder class
 	instanceVariableNames: ''!
 
-!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:23:40'!
-catalogWithPrice
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:16:42'!
+mapPurchasesDetailToResponse: aPurchasesDetail
 
-	^ Dictionary new
-		at: 'book1' put: 10;
-		at: 'book2' put: 20;
-		yourself .! !
-
-!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'AC 11/15/2021 22:27:22'!
-for: aPortNumber
+	| items sortBlock |
 	
-	|webServer |
+	items := OrderedCollection new.
+	aPurchasesDetail itemsAndQuantitiesDo: [ :itemAndQuantity |
+		items add: (Dictionary
+			with: ('item'->itemAndQuantity key)
+			with: ('quantity'->itemAndQuantity value)) ].
 		
-	webServer := WebServer new listenOn: aPortNumber.
+	sortBlock := [ :element1 :element2 | (element1 at: 'item') <= (element2 at: 'item')].
 
-	^self new initializeWith: (TusLibrosSystemFacade 
-		authenticatingWith: self usersAndPasswords  
-		acceptingItemsOf:  self catalogWithPrice 
-		registeringOn:  OrderedCollection new
-		debitingThrought:  MerchantProcessor new
-		measuringTimeWith: ManualClock new) 
-		andWebServer: webServer
-		withPort: aPortNumber.
+	^ Dictionary with: ('items'->(items asSortedCollection: sortBlock) asArray) with: ('total'->aPurchasesDetail total).! !
+
+!TusLibrosEncoder class methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:17:24'!
+mapTicketToResponse: aTicket
 	
+	| response |
 	
+	response := OrderedCollection new.
 	
-	
+	aTicket lineItemsDo: [ :lineItem |
+		response add: (Dictionary
+			with: ('item'->lineItem item)
+			with: ('quantity'->lineItem quantityText )
+			with: ('total'->lineItem total))
+		].
 		
+	^ response asArray! !
+
+
+!classDefinition: #TusLibrosInterface category: 'TusLibros-Model'!
+Object subclass: #TusLibrosInterface
+	instanceVariableNames: 'port'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:33:51'!
+correctlyEncodeSpacesForUrlRequestParameter: aParameter
+	
+	^ aParameter copyReplaceAll: ' ' with: '%20'! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:34:03'!
+errorMessageFromHtml: htmlText
+
+	| textSeparatedByParagraphs |
+	
+	textSeparatedByParagraphs := htmlText findBetweenSubStrs: {'<p>'. '</p>'}.
+	textSeparatedByParagraphs size > 1 
+		ifTrue: [^ textSeparatedByParagraphs at: 2]
+		ifFalse: [^ htmlText ]! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:34:08'!
+handleJsonResponse: response
+
+	response isSuccess 
+		ifTrue:[ ^WebUtils jsonDecode: ((response content) readStream). ] 
+		ifFalse:[ ^self error: (self errorMessageFromHtml: response content) ]! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:34:16'!
+handleTextResponse: response
+
+	response isSuccess 
+		ifTrue:[ ^ (response content) readStream. ] 
+		ifFalse:[ ^self error: (self errorMessageFromHtml: response content) ]! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:31:30'!
+initialize
+
+	port := 8080! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 19:47:32'!
+messageTextError: aMessageText
+
+	^ aMessageText copyFrom: 87 to: (aMessageText size - 19) .
 	! !
 
-!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:22:25'!
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:31:35'!
+port
+
+	^port.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:36:01'!
+sendListPurchasesRequestFor: aClientId authenticatedWith: aPassword
+
+	| fieldDict response urlEncodedClientId urlEncodedPassword |
+
+	urlEncodedClientId := self 
+		correctlyEncodeSpacesForUrlRequestParameter: aClientId.	
+	urlEncodedPassword := self
+		correctlyEncodeSpacesForUrlRequestParameter: aPassword.
+	fieldDict := Dictionary 
+		with: ('clientId'->urlEncodedClientId)
+		with: ('password'->urlEncodedPassword).
+	
+	response := WebClient htmlSubmit: (self url,'/listPurchases') fields: fieldDict.
+	
+	^ self handleJsonResponse: response.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 19:55:49'!
+sendRequesFor: anEndpoint with: fields 
+	
+	| response |
+	response _ WebClient htmlSubmit: (self url,anEndpoint) fields: fields .
+	
+	response isSuccess 
+		ifTrue:[^(WebUtils jsonDecode: ((response content) readStream))] 
+		ifFalse:[^self error: response content].! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:45:31'!
+sendRequesForListCart: aCartId 
+	
+	| fieldDict response |
+
+	fieldDict := Dictionary with: ('cartId'->aCartId ).
+
+	response := WebClient htmlSubmit: (self url,'/listCart') fields: fieldDict.
+	
+	^ self handleJsonResponse: response.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:33:34'!
+sendRequestForAddToCart: aCartId of: anISBN with: aQuantity
+	
+	| fieldDict response  urlEncodedProduct |
+
+	urlEncodedProduct := self
+		correctlyEncodeSpacesForUrlRequestParameter: anISBN.
+	fieldDict := Dictionary 
+		with: ('quantity'->aQuantity asString)
+		with: ('product'->urlEncodedProduct)
+		with: ('cartId'->aCartId asString).
+	
+	response := WebClient htmlSubmit: (self url,'/addToCart') fields: fieldDict method: 'POST'.
+	
+	self handleTextResponse: response! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 17:58:50'!
+sendRequestForCatalog
+	
+	| fields |
+	
+	fields _ Dictionary new.
+	
+	^ self sendRequesFor: '/catalog' with: fields.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:44:34'!
+sendRequestForCheckoutToCart: aCartId   
+	
+	| fieldDict response |
+
+	fieldDict := Dictionary with: ('cartId'->aCartId ).
+
+	response := WebClient htmlSubmit: (self url,'/checkOutCart') fields: fieldDict.
+	
+	^ self handleJsonResponse: response.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:35:18'!
+sendRequestForCreateCartWithUser: anUser andPassword: aPassword
+	
+	| fieldDict response urlEncodedClientId urlEncodedPassword |
+
+	urlEncodedClientId := self 
+		correctlyEncodeSpacesForUrlRequestParameter: anUser.	
+	urlEncodedPassword := self
+		correctlyEncodeSpacesForUrlRequestParameter: aPassword.
+	fieldDict := Dictionary 
+		with: ('clientId'->urlEncodedClientId)
+		with: ('password'->urlEncodedPassword).
+	
+	response := WebClient htmlSubmit: (self url,'/createCart') fields: fieldDict method: 'POST'.
+	
+	^ self handleJsonResponse: response.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:45:59'!
+sendRequestForListCatalog
+
+	| response |
+	
+	response := WebClient htmlSubmit: (self url,'/listCatalog') fields: Dictionary new.
+	
+	^ self handleJsonResponse: response.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:47:10'!
+sendRequestForListPurchases: anUserName with: aPassword 
+
+	| fieldDict response urlEncodedClientId urlEncodedPassword |
+
+	urlEncodedClientId := self 
+		correctlyEncodeSpacesForUrlRequestParameter: anUserName.	
+	urlEncodedPassword := self
+		correctlyEncodeSpacesForUrlRequestParameter: aPassword.
+	fieldDict := Dictionary 
+		with: ('clientId'->urlEncodedClientId)
+		with: ('password'->urlEncodedPassword).
+	
+	response := WebClient htmlSubmit: (self url,'/listPurchases') fields: fieldDict.
+	
+	^ self handleJsonResponse: response.! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:47:33'!
+sendRequestForRemoveToCart: aCartId of: anISBN
+	
+	| fieldDict response urlEncodedProduct urlEncodedCartId |
+
+	urlEncodedProduct := self
+		correctlyEncodeSpacesForUrlRequestParameter: anISBN .
+	urlEncodedCartId := aCartId asString.
+	
+	fieldDict := Dictionary 
+		with: ('product'->urlEncodedProduct)
+		with: ('cartId'->urlEncodedCartId).
+	
+	response := WebClient htmlSubmit: (self url,'/removeFromCart') fields: fieldDict method: 'POST'.
+	
+	self handleTextResponse: response! !
+
+!TusLibrosInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/27/2021 17:39:45'!
+url 
+
+	^'http://localhost:', self port asString! !
+
+
+!classDefinition: #TusLibrosRestInterface category: 'TusLibros-Model'!
+Object subclass: #TusLibrosRestInterface
+	instanceVariableNames: 'tusLibrosFacade server port authenticationSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros-Model'!
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:23:04'!
+addToCart: aRequest
+
+	self handle: aRequest with: [	 | product quantity cartId |	
+		
+		cartId := self getParameter: 'cartId' from: aRequest.
+		product := self getParameter:  'product' from: aRequest.
+		quantity := self getParameter: 'quantity' from: aRequest. 
+		
+		tusLibrosFacade 
+			add: quantity asNumber
+			of: product
+			toCartIdentifiedAs: cartId asNumber.
+		
+		aRequest send200Response: 'OK'
+	]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:23:59'!
+checkoutCart: aRequest
+
+	self handle: aRequest with: [	 | cartId ticket response |	
+		
+		cartId := self getParameter: 'cartId' from: aRequest.
+		
+		ticket := tusLibrosFacade checkoutCart: cartId asNumber.
+			.
+		response := TusLibrosEncoder mapTicketToResponse: ticket.
+		
+		aRequest send200Response: (WebUtils jsonEncode: response).
+	]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:26:19'!
+createCart: aRequest
+
+	self handle: aRequest with: [	 | cartId clientId password |
+	
+		clientId := self getParameter: 'clientId' from: aRequest.
+		password := self getParameter: 'password' from: aRequest.
+
+		cartId := tusLibrosFacade createCartFor: clientId authenticatedWith: password.
+
+		aRequest send200Response: cartId asString
+		]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:25:12'!
+createCatalog
+
+	^ Dictionary new
+		at: 'Smalltalk' put: 5;
+		at: 'Harry Potter' put: 10;
+		at: 'C++' put: 100;
+		yourself! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 16:25:04'!
+createValidUsersAndClientInformation
+
+	|  hernan pepe today notExpiredCreditCard 
+	hernanInfo expiredCreditCard pepeInfo julio notExpiredWithoutFundsCreditCard julioInfo |
+	
+	hernan := 'Hernan'.
+	pepe := 'Pepe'.
+	julio := 'Julio'.
+	
+	today := DateAndTime now.
+
+	notExpiredCreditCard := CreditCard 
+		withNumber: 1111222211112222
+		of: hernan 
+		expiringOn: (Month month: today monthIndex year: today yearNumber + 1).
+	hernanInfo := ClientInformation 
+		for: hernan 
+		authenticatedWith: '1' 
+		payingWith: notExpiredCreditCard.
+		
+	expiredCreditCard := CreditCard 
+		withNumber: 8888222288882222
+		of: pepe 
+		expiringOn: (Month month: today monthIndex year: today yearNumber - 1).
+	pepeInfo := ClientInformation 
+		for: pepe 
+		authenticatedWith: '1' 
+		payingWith:  expiredCreditCard.
+		
+	notExpiredWithoutFundsCreditCard := CreditCard 
+		withNumber: MerchantProcessorForInterface creditCardNumberWithoutFunds
+		of: julio 
+		expiringOn: (Month month: today monthIndex year: today yearNumber + 1).
+	julioInfo := ClientInformation 
+		for: julio
+		authenticatedWith: '1' 
+		payingWith:  notExpiredWithoutFundsCreditCard.
+		
+	^ Dictionary new
+		at: hernan put: hernanInfo;
+		at: pepe put: pepeInfo;
+		at: julio put: julioInfo;
+		yourself! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 22:40:15'!
+destroy
+	
+	server ifNotNil:[server destroy].! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:21:39'!
+getParameter: aParameter from: aRequest
+
+	^ aRequest fields at: aParameter ifAbsent: [ self error: self missingParameterErrorMessage ]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:19:39'!
+handle: request with: aBlock
+		
+	[aBlock value]
+	on: Error
+	do: [ :anError |
+		request send400Response: (anError messageText) ]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:58:19'!
+initializeWith: aPortNumber
+
+	tusLibrosFacade _ TusLibrosSystemFacade new createFacade.
+	
+	port := aPortNumber .
+	
+	server _ WebServer new listenOn: self port.
+	
+	server addService: '/createCart' action: [:request | self createCart: request ].
+	server addService: '/addToCart' action: [:request | self addToCart: request].
+	server addService: '/listCart' action: [:request | self listCart: request].
+	server addService: '/checkoutCart' action: [:request | self checkoutCart: request].
+	server addService: '/listPurchases' action: [:request | self listPurchases: request].
+	server addService: '/removeToCart' action: [:request | self removeToCart: request].	
+	server addService: '/catalog' action: [:request | self listCatalog: request].
+	! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:51:13'!
+listCart: aRequest
+
+	self handle: aRequest with: [	 | catalog response |	
+		
+		catalog := tusLibrosFacade catalog.
+		
+		response := String streamContents:[ :s| WebUtils jsonMap: catalog on: s].
+		
+		aRequest send200Response: response.
+	]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 15:23:01'!
+listCatalog: request
+
+	self handle: request with: [	 | catalog response |	
+		
+		catalog := tusLibrosFacade catalog .
+		
+		response := String streamContents:[ :s| WebUtils jsonMap: catalog on: s].
+		
+		request send200Response: response.
+	]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:52:14'!
+listPurchases: aRequest
+
+	self handle: aRequest with: [	 | clientId password purchases response |	
+		
+		clientId := self getParameter: 'clientId' from: aRequest.
+		password := self getParameter: 'password' from: aRequest.
+		
+		purchases := aRequest listPurchasesOf: clientId authenticatingWith: password.
+		
+		response := TusLibrosEncoder mapPurchasesDetailToResponse: purchases.
+		
+		aRequest send200Response: (WebUtils jsonEncode: response).
+	]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:08:02'!
+merchantProcessor
+
+	^ MerchantProcessorForInterface new.! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:21:50'!
+missingParameterErrorMessage 
+	
+	^'Missing parameter'! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:49:39'!
+port
+	
+	^port! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/29/2021 12:52:58'!
+removeToCart: aRequest
+
+	self handle: aRequest with: [	 | product cartId |	
+		
+		cartId := self getParameter: 'cartId' from: aRequest.
+		product := self getParameter: 'product' from: aRequest.
+		
+		tusLibrosFacade 		 remove: product toCartIdentifiedAs: cartId asNumber.
+		
+		aRequest send200Response: 'OK'
+	]! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 19:45:45'!
+toEnconde: aTicket
+
+	| ticketToEncode |
+	
+	ticketToEncode _ Dictionary new.
+	aTicket lineItemsDo:[:anItem | ticketToEncode at: anItem item put: anItem total asString].
+	ticketToEncode at: 'Total' put: aTicket total asString.
+	
+	^ ticketToEncode ! !
+
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:07:52'!
 usersAndCreditCards
 	
 	| notExpiredDate |
@@ -878,13 +2068,25 @@ usersAndCreditCards
 		yourself .
 		! !
 
-!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/15/2021 14:22:33'!
-usersAndPasswords
+!TusLibrosRestInterface methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:07:11'!
+validUsersAndPasswords
 
 	^ Dictionary new
-		at: 'validUser1' put: 'validPassword1';
-		at: 'validUser2' put: 'validPassword2';
+		at: 'jose' put: 'password1';
+		at: 'ciro' put: 'password2';
 		yourself .! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosRestInterface class' category: 'TusLibros-Model'!
+TusLibrosRestInterface class
+	instanceVariableNames: ''!
+
+!TusLibrosRestInterface class methodsFor: 'as yet unclassified' stamp: 'MS 11/28/2021 23:01:13'!
+startIn: aPortNumber
+
+	^self new initializeWith: aPortNumber 
+	! !
 
 
 !classDefinition: #TusLibrosSystemFacade category: 'TusLibros-Model'!
@@ -924,6 +2126,61 @@ sessionHasExpiredErrorDescription
 
 	^'Can not use the cart after ', self sessionDuration minutes printString , ' minutes of inactivity'! !
 
+
+!TusLibrosSystemFacade methodsFor: 'time' stamp: 'MS 11/29/2021 13:06:03'!
+createFacade
+	
+	^ TusLibrosSystemFacade
+		authenticatingWith: self createValidUsersAndClientInformation
+		acceptingItemsOf: self createCatalog 
+		registeringOn: OrderedCollection new
+		debitingThrought: MerchantProcessorForInterface new
+		measuringTimeWith: Clock new.! !
+
+!TusLibrosSystemFacade methodsFor: 'time' stamp: 'MS 11/29/2021 16:16:12'!
+createValidUsersAndClientInformation
+
+	|  hernan pepe today notExpiredCreditCard 
+	hernanInfo expiredCreditCard pepeInfo julio notExpiredWithoutFundsCreditCard julioInfo |
+	
+	hernan := 'Hernan'.
+	pepe := 'Pepe'.
+	julio := 'Julio'.
+	
+	today := DateAndTime now.
+
+	notExpiredCreditCard := CreditCard 
+		withNumber: 1111222211112222
+		of: hernan 
+		expiringOn: (Month month: today monthIndex year: today yearNumber + 1).
+	hernanInfo := ClientInformation 
+		for: hernan 
+		authenticatedWith: '1' 
+		payingWith: notExpiredCreditCard.
+		
+	expiredCreditCard := CreditCard 
+		withNumber: 8888222288882222
+		of: pepe 
+		expiringOn: (Month month: today monthIndex year: today yearNumber - 1).
+	pepeInfo := ClientInformation 
+		for: pepe 
+		authenticatedWith: '1' 
+		payingWith:  expiredCreditCard.
+		
+	notExpiredWithoutFundsCreditCard := CreditCard 
+		withNumber: MerchantProcessorForInterface creditCardNumberWithoutFunds
+		of: julio 
+		expiringOn: (Month month: today monthIndex year: today yearNumber + 1).
+	julioInfo := ClientInformation 
+		for: julio
+		authenticatedWith: '1' 
+		payingWith:  notExpiredWithoutFundsCreditCard.
+		
+	^ Dictionary new
+		at: hernan put: hernanInfo;
+		at: pepe put: pepeInfo;
+		at: julio put: julioInfo;
+		yourself! !
 
 !TusLibrosSystemFacade methodsFor: 'time' stamp: 'HernanWilkinson 6/22/2013 13:02'!
 now
@@ -976,6 +2233,11 @@ generateCartId
 	lastId := lastId + 1.
 	^lastId! !
 
+!TusLibrosSystemFacade methodsFor: 'cart session management' stamp: 'MS 11/28/2021 19:45:27'!
+remove: aBook toCartIdentifiedAs: aCartId
+	
+	self withCartSessionIdentifiedAs: aCartId do: [ :cartSession | cartSession removeToCart: aBook ]! !
+
 !TusLibrosSystemFacade methodsFor: 'cart session management' stamp: 'HernanWilkinson 6/22/2013 13:02'!
 sessionDuration
 
@@ -1017,6 +2279,15 @@ createCartFor: aUser authenticatedWith: aPassword
 		cartSessions at: cartId put: cartSession.
 
 		cartId  ]! !
+
+!TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'MS 11/29/2021 16:15:07'!
+createCatalog
+
+	^ Dictionary new
+		at: 'Smalltalk' put: 5;
+		at: 'Harry Potter' put: 10;
+		at: 'C++' put: 100;
+		yourself! !
 
 !TusLibrosSystemFacade methodsFor: 'facade protocol' stamp: 'HernanWilkinson 6/17/2015 20:48'!
 listCartIdentifiedAs: aCartId
@@ -1061,6 +2332,11 @@ salesDoneBy: aUser
 	"Esto es un indicio de que por ahi conviene empezar a pensar en modelar un SaleBook - Hernan"
 	^ salesBook select: [ :aSale | aSale wasDoneBy: aUser ]! !
 
+
+!TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'MS 11/29/2021 12:51:28'!
+catalog
+
+	^catalog copy! !
 
 !TusLibrosSystemFacade methodsFor: 'initialization' stamp: 'HernanWilkinson 6/22/2013 14:17'!
 initializeAuthenticatingWith: aValidUsersAndPasswords
